@@ -6,6 +6,7 @@ public class Part : MonoBehaviour
 {
     private int id;
     private static int END_X = -10;
+    private bool isDragging;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +21,29 @@ public class Part : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (isDragging) {
+            Vector2 mousePosition = Input.mousePosition;
+            Vector2 mousePositionRelative = Camera.main.ScreenToWorldPoint(mousePosition);
+
+            float newPositionX = mousePositionRelative.x - transform.position.x;
+            float newPositionY = mousePositionRelative.y - transform.position.y;
+
+            transform.Translate(newPositionX, newPositionY, 0);
+        }
     }
 
-    public int getPartID()
+    void OnMouseDown() 
+    {
+        isDragging = true;
+    }
+
+    void OnMouseUp() 
+    {
+        isDragging = false;
+    }
+
+    int getPartID()
     {
         return id;
     }

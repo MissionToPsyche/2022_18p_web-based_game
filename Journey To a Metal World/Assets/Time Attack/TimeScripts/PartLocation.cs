@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PartLocationsData;
 
 public class PartLocation : MonoBehaviour
 {
-    private Color START_COLOR = Color.white;
-    private Color TRIGGERED_COLOR = Color.blue;
+    private Color start_color;
+    private Color triggered_color;
     private int id;
-    private SpriteRenderer renderer;
+    private SpriteRenderer rend;
 
     // Start is called before the first frame update
     void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        start_color = PartLocationsData.start_colors[name];
+        triggered_color = PartLocationsData.triggered_colors[name];
+        rend = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -23,11 +26,13 @@ public class PartLocation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        renderer.color = TRIGGERED_COLOR;
+        rend.color = triggered_color;
+        Debug.Log(triggered_color);
     }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        renderer.color = START_COLOR;
+        rend.color = start_color;
+        Debug.Log(start_color);
     }
 }

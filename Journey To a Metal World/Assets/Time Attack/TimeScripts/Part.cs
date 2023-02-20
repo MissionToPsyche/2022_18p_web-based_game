@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static PartsData;
+using static Logic;
 
 public class Part : MonoBehaviour
 {
-    private int id;
     private static int END_X = -10;
+
+    private int id;
     private bool isDragging;
     private bool isOverPartLocation;
+
+    private Logic logic;
 
     // Start is called before the first frame update
     void Start()
     {
         id = Random.Range(0, 5);
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
+
         GetComponent<SpriteRenderer>().color = PartsData.start_colors[id];
     }
 
@@ -26,6 +32,7 @@ public class Part : MonoBehaviour
         }
 
         if (!isDragging && isOverPartLocation) {
+            logic.incrementScore();
             Destroy(gameObject);
         }
 

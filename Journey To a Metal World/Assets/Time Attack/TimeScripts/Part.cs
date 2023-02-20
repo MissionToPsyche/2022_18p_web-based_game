@@ -8,6 +8,7 @@ public class Part : MonoBehaviour
     private int id;
     private static int END_X = -10;
     private bool isDragging;
+    private bool isOverPartLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,10 @@ public class Part : MonoBehaviour
     {
         if (transform.position.x < END_X) 
         {
+            Destroy(gameObject);
+        }
+
+        if (!isDragging && isOverPartLocation) {
             Destroy(gameObject);
         }
 
@@ -45,8 +50,24 @@ public class Part : MonoBehaviour
         isDragging = false;
     }
 
-    int getPartID()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        return id;
+        if (other.tag == "Part Location")
+        {
+            if (other.GetComponent<PartLocation>().getPartLocationID() == id) 
+            {
+                isOverPartLocation = true;
+            }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        if (other.tag == "Part Location")
+        {
+            if (other.GetComponent<PartLocation>().getPartLocationID() == id) 
+            {
+                isOverPartLocation = false;
+            }
+        }
     }
 }

@@ -15,24 +15,23 @@ public class PartLocation : MonoBehaviour
     {
         start_color = PartLocationsData.start_colors[name];
         triggered_color = PartLocationsData.triggered_colors[name];
+        id = PartLocationsData.ids[name];
+
         rend = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         rend.color = triggered_color;
-        Debug.Log(triggered_color);
     }
 
-    private void OnTriggerExit2D(Collider2D other) 
+    void OnTriggerExit2D(Collider2D other) 
     {
         rend.color = start_color;
-        Debug.Log(start_color);
+    }
+
+    public int getPartLocationID() 
+    {
+        return id;
     }
 }

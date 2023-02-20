@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 385048761}
   m_Layer: 0
   m_Name: +Y Part Location
-  m_TagString: Untagged
+  m_TagString: Part Location
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 406658207}
   m_Layer: 0
   m_Name: Antenna Part Location
-  m_TagString: Untagged
+  m_TagString: Part Location
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -835,7 +835,7 @@ GameObject:
   - component: {fileID: 915105405}
   m_Layer: 0
   m_Name: Spectrometer Part Location
-  m_TagString: Untagged
+  m_TagString: Part Location
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -959,7 +959,7 @@ GameObject:
   - component: {fileID: 929602548}
   m_Layer: 0
   m_Name: -Y Part Location
-  m_TagString: Untagged
+  m_TagString: Part Location
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1252,7 +1252,7 @@ GameObject:
   - component: {fileID: 1638898475}
   m_Layer: 0
   m_Name: Magnetometer Part Location
-  m_TagString: Untagged
+  m_TagString: Part Location
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

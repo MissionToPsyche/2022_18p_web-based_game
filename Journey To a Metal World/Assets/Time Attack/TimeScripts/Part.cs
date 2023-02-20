@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PartsData;
 
 public class Part : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class Part : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        id = Random.Range(0, 6);
+        id = Random.Range(0, 5);
+        GetComponent<SpriteRenderer>().color = PartsData.start_colors[id];
     }
 
     // Update is called once per frame

@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static StartColors;
 
 public class PartLocationsData
 {
     public static Dictionary<string, Color> start_colors = new Dictionary<string, Color>() {
-        {"Antenna Part Location", new Color(1f, 0.4f, 0.4f)},
-        {"Magnetometer Part Location", new Color(1f, 1f, 0.6f)},
-        {"Spectrometer Part Location", new Color(0.6f, 0.9f, 0.6f)},
-        {"+Y Part Location", new Color(0.3f, 0.7f, 1f)},
-        {"-Y Part Location", new Color(0.9f, 0.5f, 1f)}
+        {"Antenna Part Location", StartColors.START_RED},
+        {"Magnetometer Part Location", StartColors.START_YELLOW},
+        {"Spectrometer Part Location", StartColors.START_GREEN},
+        {"+Y Part Location", StartColors.START_BLUE},
+        {"-Y Part Location", StartColors.START_MAGENTA}
     };
 
     public static Dictionary<string, Color> triggered_colors = new Dictionary<string, Color>() {

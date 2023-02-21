@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PartsData;
 using static Logic;
 
 public class Part : MonoBehaviour
 {
+    [SerializeField] public Sprite antennaSprite;
+    [SerializeField] public Sprite magnetometerSprite;
+    [SerializeField] public Sprite spectrometerSprite;
+    [SerializeField] public Sprite positiveYPanelSprite;
+    [SerializeField] public Sprite negativeYPanelSprite;
+
     private static int END_X = -10;
 
     private int id;
@@ -20,7 +25,20 @@ public class Part : MonoBehaviour
         id = Random.Range(0, 5);
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
 
-        GetComponent<SpriteRenderer>().color = PartsData.start_colors[id];
+        loadSprite();
+    }
+
+    private void loadSprite() 
+    {
+        Dictionary<int, Sprite> sprites = new Dictionary<int, Sprite>() {
+            {0, antennaSprite},
+            {1, magnetometerSprite},
+            {2, spectrometerSprite},
+            {3, positiveYPanelSprite},
+            {4, negativeYPanelSprite}
+        };
+
+        GetComponent<SpriteRenderer>().sprite = sprites[id];
     }
 
     // Update is called once per frame

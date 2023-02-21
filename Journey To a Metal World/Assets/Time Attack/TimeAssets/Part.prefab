@@ -146,3 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ab7b68dbd714110ab72abb8e56bcbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  antennaSprite: {fileID: 21300000, guid: a8622f0eb515f45a3b3d06551c9110ac, type: 3}
+  magnetometerSprite: {fileID: 21300000, guid: b1da2488288604e4da8c48e9e3ac1d2e, type: 3}
+  spectrometerSprite: {fileID: 21300000, guid: e9177a44d60334c92894e4c6212f5555, type: 3}
+  positiveYPanelSprite: {fileID: 21300000, guid: 91073e3699bc34f6498e2d6b4ed50205, type: 3}
+  negativeYPanelSprite: {fileID: 21300000, guid: 4f88908e3b8434b889b875eebc2d36cd, type: 3}

@@ -11,7 +11,7 @@ public class Part : MonoBehaviour
     [SerializeField] public Sprite positiveYPanelSprite;
     [SerializeField] public Sprite negativeYPanelSprite;
 
-    private static int END_X = -10;
+    private static int END_X = -15;
 
     private int id;
     private bool isDragging;

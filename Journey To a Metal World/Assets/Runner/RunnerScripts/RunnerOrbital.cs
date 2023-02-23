@@ -7,7 +7,11 @@ public class RunnerOrbital : MonoBehaviour
 {
     int lives = 3;
     float power_bank = 100f;
-    float movement_speed = 0.5f;
+    float movement_speed = 2f;
+    float frames_per_second;
+    int INVINCIBILITY_FRAME_LENGTH;
+    int invinciblity_frames_left = 0;
+    int current_collisions = 0; // because we can theoretically hit multiple things at once
     Vector2 raw_input;
 
     // public input
@@ -20,20 +24,24 @@ public class RunnerOrbital : MonoBehaviour
 
     void Start()
     {
-        
+        this.frames_per_second = 1/Time.deltaTime;
+        this.INVINCIBILITY_FRAME_LENGTH = (int)frames_per_second;
     }
 
     // Update is called once per frame
     void Update()
     {
         // moving the orbital
-        OrbitalMovement();
+        this.OrbitalMovement();
+        this.DamageApplied(this.current_collisions);
+        this.invinciblity_frames_left--;
+
     }
 
     void OrbitalMovement()
     {
         //Distance per second  = units moving per frame * how many frames per second  * how many seconds per frame
-        Vector3 change = raw_input * movement_speed * Time.deltaTime;
+        Vector3 change = raw_input * this.movement_speed * Time.deltaTime;
         transform.position += change;
     }
 
@@ -41,7 +49,62 @@ public class RunnerOrbital : MonoBehaviour
     void OnMove(InputValue value)
     {
         //should be getting the result from the input to w and s keys
-        raw_input = value.Get<Vector2>();
-        Debug.Log("move value is " + raw_input);
+        this.raw_input = value.Get<Vector2>();
+        Debug.Log("move value is " + this.raw_input);
+    }
+
+    /**
+    when we collide with something we increase the count of how many things we are currently
+    colliding with. 
+    Collision2D other is representing the thing we collided with in case we need info from it
+    */
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        //note by default. it's per collision. also not exit collision. 
+        // use enter and exit to bound the invincibility? 
+        // include a timer of some sort otherwise explot. push meteroid to end
+        
+        this.current_collisions++;
+        // if (this.invinciblity_frames_left = 0)
+        // {
+        //     this.lives--;
+        //     this.invinciblity_frames_left = INVINCIBILITY_FRAME_LENGTH;
+        //     Debug.Log("Took a hit. number of lives left is: " + this.lives);
+        // }
+    }
+
+    /**
+    when we stop colliding with something we decrease the count of how many things we are currently
+    colliding with. By implementation, this number should never go below 0 
+    Collision2D other is representing the thing we collided with in case we need info from it
+    */
+    void OnCollisionExit2D(Collision2D other) 
+    {
+        this.current_collisions--;    
+    }
+
+    /**
+    Applies damage (minus 1 life) to the Orbital if it needs to be done. Specifically:
+        if the orbital is currently colliding with something and has no invincibility frames left
+    collision_count = how many things are currently colliding with the orbital
+    returns the amount of damage applied (as of right now always 1 or 0)    
+    */
+    int DamageApplied(int collision_count)
+    {
+        if (this.invinciblity_frames_left > 0)
+        {
+            Debug.Log("has " + this.invinciblity_frames_left + " invinciblity frames left. no lives lost. \n Lives left = " + this.lives);
+            return 0;
+        }
+
+        if (collision_count > 0)
+        {
+            this.lives--;
+            Debug.Log("No invincibility frames left. -1 life. \n Lives left = " + this.lives);
+            this.invinciblity_frames_left = this.INVINCIBILITY_FRAME_LENGTH;
+            return 1;
+        }
+        return 0; // no things currently colliding with object
+
     }
 }

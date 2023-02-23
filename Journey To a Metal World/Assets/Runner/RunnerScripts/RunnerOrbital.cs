@@ -17,6 +17,9 @@ public class RunnerOrbital : MonoBehaviour
     Vector2 raw_input;
     SpriteRenderer sprite;
     Color orbital_color;
+    bool game_over = false;
+    bool game_won = false;
+
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
     // flash.
 
@@ -42,7 +45,22 @@ public class RunnerOrbital : MonoBehaviour
         // moving the orbital
         this.OrbitalMovement();
         this.DamageApplied(this.current_collisions);
-        this.invinciblity_frames_left--;
+        if (this.invinciblity_frames_left > 0)
+        {
+            this.invinciblity_frames_left--; 
+        }
+
+        if (this.game_over == true)
+        {
+            if (this.game_won == false)
+            {
+                gameLostProcess(); 
+            }
+            else
+            {
+                
+            }
+        }
 
     }
 
@@ -101,6 +119,12 @@ public class RunnerOrbital : MonoBehaviour
     */
     int DamageApplied(int collision_count)
     {
+        if (this.lives <= 0)
+        {
+            this.game_over = true;
+            this.game_won = false;
+            return 0;
+        }
         if (this.invinciblity_frames_left > 0)
         {
             Debug.Log("has " + this.invinciblity_frames_left + " invinciblity frames left. no lives lost. \n Lives left = " + this.lives);
@@ -137,9 +161,32 @@ public class RunnerOrbital : MonoBehaviour
             this.lives--;
             Debug.Log("No invincibility frames left. -1 life. \n Lives left = " + this.lives);
             this.invinciblity_frames_left = this.INVINCIBILITY_FRAME_LENGTH;
+            if (this.lives == 0)
+            {
+                this.game_over = true;
+                this.game_won = false;
+                orbital_color.a = 255;
+                sprite.color = orbital_color;
+                this.invinciblity_frames_left = 0;
+            }
             return 1;
         }
         return 0; // no things currently colliding with object
 
+    }
+
+    /**
+    upon 0 lives left, fade out the player orbital. may integrate restart into this or turn it into separate
+    returns true upon game lost process completing (sprite goes fully invisible)
+    */
+    bool gameLostProcess()
+    {
+        this.orbital_color.a--;
+        this.sprite.color = orbital_color;
+        if (orbital_color.a == 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

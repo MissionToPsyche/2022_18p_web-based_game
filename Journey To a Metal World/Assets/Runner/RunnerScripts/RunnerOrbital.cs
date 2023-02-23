@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class RunnerOrbital : MonoBehaviour
 {
+    //alpha changes are so far untested
     int lives = 3;
     float power_bank = 100f;
     float movement_speed = 2f;
@@ -12,7 +13,12 @@ public class RunnerOrbital : MonoBehaviour
     int INVINCIBILITY_FRAME_LENGTH;
     int invinciblity_frames_left = 0;
     int current_collisions = 0; // because we can theoretically hit multiple things at once
+    bool damage_effect_on = false;
     Vector2 raw_input;
+    SpriteRenderer sprite;
+    Color orbital_color;
+    // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
+    // flash.
 
     // public input
     // deing each update probably subtrat from this value if
@@ -25,7 +31,9 @@ public class RunnerOrbital : MonoBehaviour
     void Start()
     {
         this.frames_per_second = 1/Time.deltaTime;
-        this.INVINCIBILITY_FRAME_LENGTH = (int)frames_per_second;
+        this.INVINCIBILITY_FRAME_LENGTH = (int)frames_per_second * 2;
+        sprite = GetComponent<SpriteRenderer>();
+        orbital_color = sprite.color;
     }
 
     // Update is called once per frame
@@ -84,7 +92,9 @@ public class RunnerOrbital : MonoBehaviour
     }
 
     /**
-    Applies damage (minus 1 life) to the Orbital if it needs to be done. Specifically:
+    Applies damage (minus 1 life) to the Orbital if it needs to be done and takes care of invincible frame decreasing
+    and any other special effects related to damage
+    Specifically:
         if the orbital is currently colliding with something and has no invincibility frames left
     collision_count = how many things are currently colliding with the orbital
     returns the amount of damage applied (as of right now always 1 or 0)    
@@ -94,11 +104,36 @@ public class RunnerOrbital : MonoBehaviour
         if (this.invinciblity_frames_left > 0)
         {
             Debug.Log("has " + this.invinciblity_frames_left + " invinciblity frames left. no lives lost. \n Lives left = " + this.lives);
+            if (this.invinciblity_frames_left % ((int)(this.INVINCIBILITY_FRAME_LENGTH/2)) == 0)
+            {
+                // orbital_color.a = 0;
+                if (damage_effect_on == true)
+                {
+                    this.damage_effect_on = false;
+                    orbital_color.a = 0;
+                    sprite.color = orbital_color;
+                    // sprite.color.a = 0;
+                    Debug.Log("orbital should be invisible");
+                }
+                else if (damage_effect_on == false)
+                {
+                    this.damage_effect_on = true;
+                    orbital_color.a = 255;    
+                    sprite.color = orbital_color;
+                    Debug.Log("orbital is visible");
+
+                }
+            }
             return 0;
         }
-
+        //so if it's here then there was 0 invincibility frames
+        this.damage_effect_on = false;
+        
+        orbital_color.a = 255;
+        sprite.color = orbital_color;
         if (collision_count > 0)
         {
+            this.damage_effect_on = true;
             this.lives--;
             Debug.Log("No invincibility frames left. -1 life. \n Lives left = " + this.lives);
             this.invinciblity_frames_left = this.INVINCIBILITY_FRAME_LENGTH;

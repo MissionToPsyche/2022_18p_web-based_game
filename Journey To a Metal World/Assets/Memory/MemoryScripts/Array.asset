@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b891d0e637df8141930d06c62f288dd, type: 3}
+  m_Name: Array
+  m_EditorClassIdentifier: 
+  solar_system_array:
+  - {fileID: 11400000, guid: ef5cd9752c50c5a4c8653a3b56b7bb9b, type: 2}
+  - {fileID: 11400000, guid: cb431c8905ea6184db51a3933154dd2e, type: 2}
+  - {fileID: 11400000, guid: 80b8114d365dc00458fc02ff98bbd835, type: 2}
+  - {fileID: 11400000, guid: 5b75354e3e5dec044a139ffcb5a07a99, type: 2}
+  - {fileID: 11400000, guid: 600f9a28604a77e4b82f329dd6aa91f2, type: 2}
+  - {fileID: 11400000, guid: 5e7ede9299d248842b3003002ea808e9, type: 2}
+  - {fileID: 11400000, guid: 4cd10c9869ea04e4d8666f5d1b1b3cea, type: 2}
+  - {fileID: 11400000, guid: 80d76a52ce5dbde438c8077687c19ba9, type: 2}
+  - {fileID: 11400000, guid: 7a03727252d6416459764c3a80cee963, type: 2}
+  max_entries: 8

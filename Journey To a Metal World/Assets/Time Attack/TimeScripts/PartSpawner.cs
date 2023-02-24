@@ -5,7 +5,7 @@ using UnityEngine;
 public class PartSpawner : MonoBehaviour
 {
     public GameObject part;
-    public float spawnRate = 0.5;
+    public float spawnRate = 0.5f;
     private float timer = 0;
 
     // Start is called before the first frame update

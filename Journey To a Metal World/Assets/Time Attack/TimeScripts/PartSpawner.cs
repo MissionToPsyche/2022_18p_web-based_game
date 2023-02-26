@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class PartSpawner : MonoBehaviour
 {
-    public GameObject part;
-    public float spawnRate = 1.5f;
+    [SerializeField] public GameObject part;
+    [SerializeField] public float spawnRate = 1.5f;
+
     private float timer = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         Instantiate(part, transform.position, transform.rotation);
     }
 
-    // Update is called once per frame
+    /*
+    * Function: Update
+    * --------------------
+    * Increases the timer if not enough time has elapsed, else spawns
+    * a part
+    */
     void Update()
     {
         if (timer < spawnRate) {

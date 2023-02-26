@@ -19,7 +19,6 @@ public class Part : MonoBehaviour
 
     private Logic logic;
 
-    // Start is called before the first frame update
     void Start()
     {
         id = Random.Range(0, 5);
@@ -28,6 +27,13 @@ public class Part : MonoBehaviour
         loadSprite();
     }
 
+    /*
+    * Function: loadSprite
+    * --------------------
+    * Loads the correct sprite to be rendered for the part
+    *
+    * NOTES:    Uses part ID to assign sprite
+    */
     private void loadSprite() 
     {
         Dictionary<int, Sprite> sprites = new Dictionary<int, Sprite>() {
@@ -41,7 +47,12 @@ public class Part : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = sprites[id];
     }
 
-    // Update is called once per frame
+    /*
+    * Function: Update
+    * --------------------
+    * Destroys the part if necessary conditions are met, else updates 
+    * the position of the part to the position of the mouse
+    */
     void Update()
     {
         if (transform.position.x < END_X) 
@@ -65,16 +76,31 @@ public class Part : MonoBehaviour
         }
     }
 
+    /*
+    * Function: OnMouseDown
+    * --------------------
+    * Part is being dragged
+    */
     void OnMouseDown() 
     {
         isDragging = true;
     }
 
+    /*
+    * Function: OnMouseUp
+    * --------------------
+    * Part is not being dragged
+    */
     void OnMouseUp() 
     {
         isDragging = false;
     }
 
+    /*
+    * Function: OnTriggerEnter2D
+    * --------------------
+    * Part triggers the part location with the matching ID
+    */
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Part Location")
@@ -86,6 +112,11 @@ public class Part : MonoBehaviour
         }
     }
 
+    /*
+    * Function: OnTriggerExit2D
+    * --------------------
+    * Part stops triggering the part location with the matching ID
+    */
     void OnTriggerExit2D(Collider2D other) {
         if (other.tag == "Part Location")
         {

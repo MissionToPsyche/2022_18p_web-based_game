@@ -7,10 +7,11 @@ public class PartSpawner : MonoBehaviour
     [SerializeField] public GameObject part;
     [SerializeField] public float spawnRate = 1.5f;
 
-    private float timer = 0;
+    private float timer;
 
     void Start()
     {
+        timer = 0;
         Instantiate(part, transform.position, transform.rotation);
     }
 

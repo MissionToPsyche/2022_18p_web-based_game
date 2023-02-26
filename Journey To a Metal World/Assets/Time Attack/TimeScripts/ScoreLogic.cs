@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Logic : MonoBehaviour
+public class ScoreLogic : MonoBehaviour
 {
-    private int score;
     [SerializeField] public Text scoreText;
+
+    private int score;
 
     [ContextMenu("Increment Score")]
     public void incrementScore() 
     {
         score += 1;
-        scoreText.text = score.ToString();
+        scoreText.text = "Score: " + score.ToString();
     }
 }

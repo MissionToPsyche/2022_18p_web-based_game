@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Logic;
+using static ScoreLogic;
 
 public class Part : MonoBehaviour
 {
@@ -17,12 +17,12 @@ public class Part : MonoBehaviour
     private bool isDragging;
     private bool isOverPartLocation;
 
-    private Logic logic;
+    private ScoreLogic logic;
 
     void Start()
     {
         id = Random.Range(0, 5);
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<ScoreLogic>();
 
         loadSprite();
     }

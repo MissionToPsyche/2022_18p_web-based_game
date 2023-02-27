@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static ScoreLogic;
+using static TimeLogic;
 
 public class Part : MonoBehaviour
 {
@@ -17,12 +18,14 @@ public class Part : MonoBehaviour
     private bool isDragging;
     private bool isOverPartLocation;
 
-    private ScoreLogic logic;
+    private ScoreLogic scoreLogic;
+    private TimeLogic timeLogic;
 
     void Start()
     {
         id = Random.Range(0, 5);
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<ScoreLogic>();
+        scoreLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<ScoreLogic>();
+        timeLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<TimeLogic>();
 
         loadSprite();
     }
@@ -61,11 +64,11 @@ public class Part : MonoBehaviour
         }
 
         if (!isDragging && isOverPartLocation) {
-            logic.incrementScore();
+            scoreLogic.incrementScore();
             Destroy(gameObject);
         }
 
-        if (isDragging) {
+        if (!timeLogic.getIsGameOver() && isDragging) {
             Vector2 mousePosition = Input.mousePosition;
             Vector2 mousePositionRelative = Camera.main.ScreenToWorldPoint(mousePosition);
 

@@ -14,7 +14,7 @@ public class TimeLogic : MonoBehaviour
 
     void Start() 
     {
-        timer = 3;
+        timer = 30;
         isGameOver = false;
     }
 

@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 
 public class RunnerOrbital : MonoBehaviour
 {
-    //alpha changes are so far untested
+    // so for points. moving past a meteoroid without collisions. if collided then penalty and no point gain.
+    // use triggers
     int lives = 3;
+    int MAX_LIVES = 3;
     float power_bank = 100f;
     float movement_speed = 2f;
     float frames_per_second;
@@ -80,17 +82,44 @@ public class RunnerOrbital : MonoBehaviour
     }
 
     /**
+        Currently the only trigger is the finish line. It will mark game over 
+    */
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.tag == "Finish" && this.game_over == false)
+        {
+            this.game_over = true;
+            this.game_won = true;
+            Debug.Log("Finish Line passed");
+        }    
+    }
+
+    // void OnTrig
+
+    /**
     when we collide with something we increase the count of how many things we are currently
     colliding with. 
     Collision2D other is representing the thing we collided with in case we need info from it
     */
     void OnCollisionEnter2D(Collision2D other)
     {
+        this.current_collisions++;
+
         //note by default. it's per collision. also not exit collision. 
         // use enter and exit to bound the invincibility? 
         // include a timer of some sort otherwise explot. push meteroid to end
-        
-        this.current_collisions++;
+        // if ((other.gameObject.CompareTag("Finish") == true) && this.game_over == false)
+        // if (this.game_over == false)
+        // {
+        //     this.game_over = true;
+        //     this.game_won = true;
+        //     Debug.Log("Finish Line passed");
+        // }
+        // else
+        // {
+            // this.current_collisions++;
+
+        // }
         // if (this.invinciblity_frames_left = 0)
         // {
         //     this.lives--;
@@ -106,7 +135,13 @@ public class RunnerOrbital : MonoBehaviour
     */
     void OnCollisionExit2D(Collision2D other) 
     {
+        // if (other.gameObject.CompareTag("Finish") == false)
+        // if (other.tag != "Finish")
+        // {
+        //     this.current_collisions--;    
+        // }
         this.current_collisions--;    
+        
     }
 
     /**
@@ -188,5 +223,15 @@ public class RunnerOrbital : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public int GetMaxLives()
+    {
+        return this.MAX_LIVES;
+    }
+
+    public int GetLives()
+    {
+        return this.lives;
     }
 }

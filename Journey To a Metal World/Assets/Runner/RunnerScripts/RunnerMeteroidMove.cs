@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeteroidMove : MonoBehaviour
+public class RunnerMeteroidMove : MonoBehaviour
 {
     // will likely need to be able to trigger the orbital
     [SerializeField] float movement_speed = -0.001f;

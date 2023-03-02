@@ -6,7 +6,11 @@ using UnityEngine.InputSystem;
 public class RunnerOrbital : MonoBehaviour
 {
     // so for points. moving past a meteoroid without collisions. if collided then penalty and no point gain.
-    // use triggers
+    // use triggers. ah but needs to have a boolean. gain point 1 time. can lose points multiple times
+
+    //need to bound the movement to a max and min at top and bottom to not just go off screen and win that way. mm
+    //or just put colliders along the sides. ... that could work. except then I must specify those ones don't 
+    // cause damage
     int lives = 3;
     int MAX_LIVES = 3;
     float power_bank = 100f;
@@ -22,6 +26,7 @@ public class RunnerOrbital : MonoBehaviour
     bool game_over = false;
     bool game_won = false;
 
+    
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
     // flash.
 
@@ -92,6 +97,12 @@ public class RunnerOrbital : MonoBehaviour
             this.game_won = true;
             Debug.Log("Finish Line passed");
         }    
+        else if (other.tag == "PointBox")
+        {
+            RunnerMeteoroidPoints pointManager = other.GetComponent<RunnerMeteoroidPoints>();
+            pointManager.ReachedPointsArea();   
+        }
+
     }
 
     // void OnTrig
@@ -104,7 +115,7 @@ public class RunnerOrbital : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         this.current_collisions++;
-
+        other.gameObject.transform.BroadcastMessage("SetPointTotalToZero");
         //note by default. it's per collision. also not exit collision. 
         // use enter and exit to bound the invincibility? 
         // include a timer of some sort otherwise explot. push meteroid to end

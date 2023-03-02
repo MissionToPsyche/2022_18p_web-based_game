@@ -35,6 +35,9 @@ public class RunnerUI : MonoBehaviour
         score_text.text = (score_keeper.GetScore()).ToString();
     }
 
+    /**
+    Called by the restart button to restart the game by reloading the scene
+    */
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

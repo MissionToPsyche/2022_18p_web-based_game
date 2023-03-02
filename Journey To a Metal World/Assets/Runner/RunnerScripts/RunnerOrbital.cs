@@ -23,8 +23,10 @@ public class RunnerOrbital : MonoBehaviour
     Vector2 raw_input;
     SpriteRenderer sprite;
     Color orbital_color;
+    RunnerScore score_keeper;
     bool game_over = false;
     bool game_won = false;
+    int COLLISION_MINUS_POINT = -1;
 
     
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
@@ -42,8 +44,10 @@ public class RunnerOrbital : MonoBehaviour
     {
         this.frames_per_second = 1/Time.deltaTime;
         this.INVINCIBILITY_FRAME_LENGTH = (int)frames_per_second * 2;
-        sprite = GetComponent<SpriteRenderer>();
-        orbital_color = sprite.color;
+        this.sprite = GetComponent<SpriteRenderer>();
+        this.orbital_color = sprite.color;
+        this.score_keeper = FindObjectOfType<RunnerScore>();
+
     }
 
     // Update is called once per frame
@@ -205,6 +209,8 @@ public class RunnerOrbital : MonoBehaviour
         {
             this.damage_effect_on = true;
             this.lives--;
+            score_keeper.AddToScore(this.COLLISION_MINUS_POINT);
+
             Debug.Log("No invincibility frames left. -1 life. \n Lives left = " + this.lives);
             this.invinciblity_frames_left = this.INVINCIBILITY_FRAME_LENGTH;
             if (this.lives == 0)

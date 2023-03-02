@@ -30,7 +30,7 @@ public class RunnerScore : MonoBehaviour
     public void AddToScore(int val) 
     {
         this.score += val;
-        Mathf.Clamp(this.score, 0, int.MaxValue); // keeps score from going below 0
+        score = Mathf.Clamp(this.score, 0, int.MaxValue); // keeps score from going below 0
         Debug.Log("New Score: " + this.score);
     }
     

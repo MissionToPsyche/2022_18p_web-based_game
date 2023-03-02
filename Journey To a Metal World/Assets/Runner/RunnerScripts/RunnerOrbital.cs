@@ -11,6 +11,8 @@ public class RunnerOrbital : MonoBehaviour
     //need to bound the movement to a max and min at top and bottom to not just go off screen and win that way. mm
     //or just put colliders along the sides. ... that could work. except then I must specify those ones don't 
     // cause damage
+
+    // start having increasing speed with longer no collisions. probably want to cap it somwhere though
     int lives = 3;
     int MAX_LIVES = 3;
     float power_bank = 100f;

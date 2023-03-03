@@ -54,7 +54,8 @@ public class GameCarousel : MonoBehaviour
 
     public void playGame()
     {
-
+        GameObject game = carousel.First.Value;
+        SceneManager.LoadScene(game.name);
     }
 
     void printCarousel()

@@ -29,6 +29,7 @@ public class RunnerOrbital : MonoBehaviour
     bool game_over = false;
     bool game_won = false;
     int COLLISION_MINUS_POINT = -1;
+    RunnerMeteoroidMove stage; 
 
     
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
@@ -49,6 +50,7 @@ public class RunnerOrbital : MonoBehaviour
         this.sprite = GetComponent<SpriteRenderer>();
         this.orbital_color = sprite.color;
         this.score_keeper = FindObjectOfType<RunnerScore>();
+        this.stage = FindObjectOfType<RunnerMeteoroidMove>();
 
     }
 

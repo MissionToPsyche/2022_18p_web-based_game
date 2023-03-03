@@ -578,8 +578,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 671735138}
-        m_TargetAssemblyTypeName: ScreenCarousel, Assembly-CSharp
-        m_MethodName: nextScreen
+        m_TargetAssemblyTypeName: GameCarousel, Assembly-CSharp
+        m_MethodName: nextGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1158,10 +1158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fccdd91a68c624ef3a60f712f7257552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreAttackScreen: {fileID: 2337391676458849988, guid: b529fe8ac79c24e9dadd02e35fa9f601, type: 3}
-  timeAttackScreen: {fileID: 4825068981226256579, guid: 8abc1c525d92d441681275f2b410a2b0, type: 3}
-  memoryScreen: {fileID: 4370253087156654192, guid: 535605c4ec229456f9ee371cdf35a2ef, type: 3}
-  runnerScreen: {fileID: 1554097679758305041, guid: ce6f6bca96e694759bccdbaf894833b3, type: 3}
+  scoreAttackGame: {fileID: 2337391676458849988, guid: b529fe8ac79c24e9dadd02e35fa9f601, type: 3}
+  timeAttackGame: {fileID: 4825068981226256579, guid: 8abc1c525d92d441681275f2b410a2b0, type: 3}
+  memoryGame: {fileID: 4370253087156654192, guid: 535605c4ec229456f9ee371cdf35a2ef, type: 3}
+  runnerGame: {fileID: 1554097679758305041, guid: ce6f6bca96e694759bccdbaf894833b3, type: 3}
 --- !u!1 &708210317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,8 +1331,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 671735138}
-        m_TargetAssemblyTypeName: ScreenCarousel, Assembly-CSharp
-        m_MethodName: prevScreen
+        m_TargetAssemblyTypeName: GameCarousel, Assembly-CSharp
+        m_MethodName: prevGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

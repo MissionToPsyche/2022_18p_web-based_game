@@ -25,7 +25,7 @@ public class ScreenCarousel : MonoBehaviour
     }
 
     [ContextMenu("Next")]
-    void nextScreen() 
+    public void nextScreen() 
     {
         LinkedListNode<GameObject> oldScreen = carousel.First;
         carousel.RemoveFirst();
@@ -35,7 +35,7 @@ public class ScreenCarousel : MonoBehaviour
     }
 
     [ContextMenu("Previous")]
-    void prevScreen()
+    public void prevScreen()
     {
         LinkedListNode<GameObject> newScreen = carousel.Last;
         carousel.RemoveLast();

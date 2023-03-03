@@ -19,6 +19,9 @@ public class ScreenCarousel : MonoBehaviour
         rend = GetComponent<SpriteRenderer>();
         GameObject[] screens = {scoreAttackScreen, timeAttackScreen, memoryScreen, runnerScreen};
         carousel = new LinkedList<GameObject>(screens);
+
+        GameObject screen = carousel.First.Value;
+        rend.color = screen.GetComponent<SpriteRenderer>().color;
         
         printCarousel();
         
@@ -31,6 +34,8 @@ public class ScreenCarousel : MonoBehaviour
         carousel.RemoveFirst();
         carousel.AddLast(oldScreen);
 
+        GameObject screen = carousel.First.Value;
+        rend.color = screen.GetComponent<SpriteRenderer>().color;
         printCarousel();
     }
 
@@ -41,6 +46,8 @@ public class ScreenCarousel : MonoBehaviour
         carousel.RemoveLast();
         carousel.AddFirst(newScreen);
 
+        GameObject screen = carousel.First.Value;
+        rend.color = screen.GetComponent<SpriteRenderer>().color;
         printCarousel();
     }
 

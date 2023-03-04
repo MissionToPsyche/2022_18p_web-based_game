@@ -124,6 +124,7 @@ public class RunnerOrbital : MonoBehaviour
     {
         this.current_collisions++;
         other.gameObject.transform.BroadcastMessage("SetPointTotalToZero");
+        stage.ResetSpeed();
         //note by default. it's per collision. also not exit collision. 
         // use enter and exit to bound the invincibility? 
         // include a timer of some sort otherwise explot. push meteroid to end

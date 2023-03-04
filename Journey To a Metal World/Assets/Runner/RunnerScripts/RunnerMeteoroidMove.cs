@@ -5,10 +5,10 @@ using UnityEngine;
 public class RunnerMeteoroidMove : MonoBehaviour
 {
     // will likely need to be able to trigger the orbital
-    [SerializeField] float MIN_MOVEMENT_SPEED = -0.001f;
-    [SerializeField] float current_movement_speed = -0.001f;
+    [SerializeField] float MIN_MOVEMENT_SPEED = -0.01f;
+    [SerializeField] float current_movement_speed = -0.01f;
     [SerializeField] float MAX_MOVEMENT_SPEED = -0.5f;
-    [SerializeField] float SPEED_INCREASE = -0.001f;
+    [SerializeField] float SPEED_INCREASE = -0.01f;
     
     // Start is called before the first frame update
     void Start()

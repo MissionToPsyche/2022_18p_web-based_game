@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextPhase : MonoBehaviour
+public class PhaseALogic : MonoBehaviour
 {
     [ContextMenu("Next Phase")]
     public void nextPhase()

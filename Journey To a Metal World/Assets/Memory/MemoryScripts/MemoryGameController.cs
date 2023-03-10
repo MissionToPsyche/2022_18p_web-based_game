@@ -14,13 +14,34 @@ public class MemoryGameController : MonoBehaviour
     }
 
 
-    private int generateRandomSolarComponentIndex()
+    public GameObject[] getSolarComponentArray()
     {
-        return Random.Range(0, solar_components.Length);
+        return solar_components;
     }
 
 
-    private void disableSolarComponentClick()
+    public int getDifficultyGauge()
+    {
+        return difficultyGauge;
+    }
+
+
+    public void addToDifficultyGauge(int num_to_increase)
+    {
+        if (num_to_increase < 0)
+        {
+            return;
+        }
+        if (difficultyGauge + num_to_increase > 20)
+        {
+            return;
+        }
+        
+        difficultyGauge += num_to_increase;
+    }
+
+
+    public void disableSolarComponentClick()
     {
         foreach(GameObject obj in solar_components)
         {
@@ -30,18 +51,12 @@ public class MemoryGameController : MonoBehaviour
     }
 
 
-    private void enableSolarComponentClick()
+    public void enableSolarComponentClick()
     {
         foreach(GameObject obj in solar_components)
         {
             Debug.Log(obj.name + " has been enabled");
             obj.GetComponent<Button>().interactable = true;
         }
-    }
-
-
-    private void displayMemoryPattern()
-    {
-
     }
 }

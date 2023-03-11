@@ -6,6 +6,8 @@ using UnityEngine;
 public class MemoryPattenGenerator : MonoBehaviour
 {
     private MemoryGameController controller;
+    [SerializeField] float highlight_object_speed = 1.5f;
+    [SerializeField] float return_to_original_color_speed = 0.5f;
 
 
     private void Awake()
@@ -14,10 +16,9 @@ public class MemoryPattenGenerator : MonoBehaviour
     }
 
 
-    private void Update()
+    private void Start()
     {
-        // temporary to show that it works
-        displayMemoryPattern();
+        
     }
 
 
@@ -27,18 +28,29 @@ public class MemoryPattenGenerator : MonoBehaviour
     }
 
 
-    private void displayMemoryPattern()
+    public void generatePattern()
     {
-        if (controller.getDifficultyGauge() == 5)
+        StartCoroutine(displayMemoryPattern());
+    }
+
+
+    IEnumerator displayMemoryPattern()
+    {
+        int difficulty_index = 0;
+        while (difficulty_index <= controller.getDifficultyGauge())
         {
-            return;
-        }
-        for (int difficulty_index = 0; difficulty_index <= controller.getDifficultyGauge(); ++difficulty_index)
-        {
-            Debug.Log("object: " + controller.getSolarComponentArray()[generateRandomSolarComponentIndex()]);
+            int random_index = generateRandomSolarComponentIndex();
+            GameObject solar_component = controller.getSolarComponentArray()[random_index];
+            solar_component.GetComponent<Image>().color = Color.black;
+            yield return new WaitForSeconds(highlight_object_speed);
+            solar_component.GetComponent<Image>().color = Color.white;
+            yield return new WaitForSeconds(return_to_original_color_speed);
+            Debug.Log("object: " + solar_component);
+
+            ++difficulty_index;
+            
         }
         Debug.Log("\niteration: " + controller.getDifficultyGauge());
         controller.addToDifficultyGauge(1);
-        
     }
 }

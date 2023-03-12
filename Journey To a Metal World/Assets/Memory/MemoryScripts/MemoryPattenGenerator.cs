@@ -23,12 +23,6 @@ public class MemoryPattenGenerator : MonoBehaviour
     }
 
 
-    public MemoryGameController GetGameController()
-    {
-        return controller;
-    }
-
-
     public ArrayList getPatternStorage()
     {
         return pattern_storage;

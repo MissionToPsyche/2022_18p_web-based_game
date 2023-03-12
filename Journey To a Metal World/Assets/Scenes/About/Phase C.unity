@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79442400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.35, y: -2.92, z: 0}
+  m_LocalPosition: {x: 7.56, y: 3.07, z: 0}
   m_LocalScale: {x: 0.3541, y: 0.3541, z: 0.3541}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -290,8 +290,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 534443080}
-        m_TargetAssemblyTypeName: PhaseBLogic, Assembly-CSharp
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: NextPhase, Assembly-CSharp
         m_MethodName: nextPhase
         m_Mode: 1
         m_Arguments:
@@ -411,7 +411,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Phase B
+  m_Text: Phase C
 --- !u!222 &325356921
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -573,7 +573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541574603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.2, y: 4.21, z: 0}
+  m_LocalPosition: {x: -11.2, y: -2.92, z: 0}
   m_LocalScale: {x: 0.3541, y: 0.3541, z: 0.3541}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -805,8 +805,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.54}
-  m_SizeDelta: {x: 345.61, y: 213.76}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 187.31, y: 211.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1052304105
 MonoBehaviour:
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a11ae6daf3ccb4c90a3ae03068726f12, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c94e9614f53e54a7f9c4e941695cbde1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -917,7 +917,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRELIMINARY DESIGN OF ALL INSTRUMENTS & SPACECRAFT
+  m_Text: FINAL DESIGN & SUBSYSTEM FRABRICATION, ASSEMBLY, & TESTING
 --- !u!222 &1065632783
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1037,8 +1037,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The Psyche spacecraft and the scientific instrumentation onboard it were
-    designed by science and engineering teams on the mission
+  m_Text: Scientific instruments began being built by the science and engineering
+    teams
 --- !u!222 &1396053761
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1071,14 +1071,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613218517}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.3230917, w: 0.9463677}
   m_LocalPosition: {x: -1.4, y: -0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 687672246}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 37.7}
 --- !u!212 &1613218519
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1209,7 +1209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661802057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.66, y: 4.66, z: 0}
+  m_LocalPosition: {x: -9.87, y: -2.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1541,7 +1541,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054731965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.45, y: -7.85, z: 0}
+  m_LocalPosition: {x: -1.04, y: -8.51, z: 0}
   m_LocalScale: {x: 0.3541, y: 0.3541, z: 0.3541}
   m_ConstrainProportionsScale: 0
   m_Children: []

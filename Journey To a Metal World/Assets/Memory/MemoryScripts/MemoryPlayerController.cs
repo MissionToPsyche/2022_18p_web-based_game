@@ -7,8 +7,8 @@ public class MemoryPlayerController : MonoBehaviour
 {
     private MemoryPattenGenerator pattern_generator;
     private MemoryGameController controller;
-    private ArrayList player_selection = new ArrayList();
-
+    private Queue<GameObject> player_selection = new Queue<GameObject>();
+    
 
     private void Awake()
     {
@@ -16,7 +16,20 @@ public class MemoryPlayerController : MonoBehaviour
         controller = FindObjectOfType<MemoryGameController>();
     }
 
-    public void makeSelection()
+    
+    private void Update()
+    {
+
+    }
+
+
+    public Queue<GameObject> getPlayerSelection()
+    {
+        return player_selection;
+    }
+
+
+    public void roundSetup()
     {
 
         // enables the player to click on the buttons

@@ -10,7 +10,7 @@ public class MemoryGameController : MonoBehaviour
 
     void Start()
     {
-        disableSolarComponentClick();
+        //disableSolarComponentClick();
     }
 
 

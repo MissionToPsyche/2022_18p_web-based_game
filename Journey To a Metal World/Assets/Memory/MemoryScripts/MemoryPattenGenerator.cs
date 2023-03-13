@@ -8,7 +8,7 @@ public class MemoryPattenGenerator : MonoBehaviour
     [SerializeField] float highlight_object_speed = 1.5f;
     [SerializeField] float return_to_original_color_speed = 0.5f;
     private MemoryGameController controller;
-    private ArrayList pattern_storage = new ArrayList();
+    private Queue<GameObject> pattern_storage = new Queue<GameObject>();
 
 
     private void Awake()
@@ -23,7 +23,7 @@ public class MemoryPattenGenerator : MonoBehaviour
     }
 
 
-    public ArrayList getPatternStorage()
+    public Queue<GameObject> getPatternStorage()
     {
         return pattern_storage;
     }
@@ -49,7 +49,7 @@ public class MemoryPattenGenerator : MonoBehaviour
             GameObject solar_component = controller.getSolarComponentArray()[random_index];
 
             // add this to an array to verify if the player chooses the correct one.
-            pattern_storage.Add(solar_component);
+            pattern_storage.Enqueue(solar_component);
             
             solar_component.GetComponent<Image>().color = Color.black;
             yield return new WaitForSeconds(highlight_object_speed);

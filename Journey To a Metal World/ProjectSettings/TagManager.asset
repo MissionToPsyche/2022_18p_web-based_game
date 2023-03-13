@@ -6,11 +6,13 @@ TagManager:
   tags:
   - orbital
   - PointBox
+  - Part Location
+  - Logic
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Parts
   - Water
   - UI
   - 

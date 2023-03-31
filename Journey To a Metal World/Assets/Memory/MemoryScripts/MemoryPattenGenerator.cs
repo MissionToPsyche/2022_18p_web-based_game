@@ -17,12 +17,6 @@ public class MemoryPattenGenerator : MonoBehaviour
     }
 
 
-    private void Start()
-    {
-        generatePattern();
-    }
-
-
     private int generateRandomSolarComponentIndex()
     {
         return Random.Range(0, controller.getSolarComponentArray().Length);
@@ -48,7 +42,7 @@ public class MemoryPattenGenerator : MonoBehaviour
 
     IEnumerator displayMemoryPattern()
     {
-        int difficulty_index = 0;
+        int difficulty_index = 1;
         while (difficulty_index <= controller.getDifficultyGauge())
         {
             int random_index = generateRandomSolarComponentIndex();

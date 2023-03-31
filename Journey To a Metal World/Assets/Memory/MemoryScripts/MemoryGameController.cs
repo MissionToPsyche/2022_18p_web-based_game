@@ -6,7 +6,7 @@ using UnityEngine;
 public class MemoryGameController : MonoBehaviour
 {
     [SerializeField] GameObject[] solar_components;
-    private int difficultyGauge = 3; // caps out at 15 or maybe 20
+    private int difficultyGauge = 1; // caps out at 15 or maybe 20
 
     void Start()
     {

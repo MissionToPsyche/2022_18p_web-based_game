@@ -1,3 +1,8 @@
+/*
+*   The MemoryPlayerController class holds our main game logic. It will check if the player makes the right selection and award them
+*   with the points for the round.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -15,6 +20,7 @@ public class MemoryPlayerController : MonoBehaviour
     private bool generated_pattern = false;
     
 
+    /// <summary> Finds the MemoryPatternGenerator and MemoryGameController objects to use later on. </summary>
     private void Awake()
     {
         pattern_generator = FindObjectOfType<MemoryPatternGenerator>();
@@ -22,6 +28,9 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
     
+    /// <summary> Every frame, we will check to see if a new pattern needs to be generated. If it does, then we generate
+    /// the pattern and prevent the player from clicking on the objects to prevent problems. We will also run our game logic and
+    /// update our score. </summary>
     private void Update()
     {
         // we also want to give a bit of a pause to give the player time before starting the next pattern
@@ -37,13 +46,25 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    /// <summary> Gets the queue of all the objects the player has clicked on. </summary>
+    /// <returns> A queue holding GameObjects. </returns>
     public Queue<GameObject> getPlayerSelection()
     {
         return player_selection;
     }
 
 
-    IEnumerator generatePatternWithPause()
+    /// <summary> Gets the score of the player that will be useful for displaying the score in the main screen. </summary>
+    /// <returns An integer holding the score of the player. </returns>
+    public int getScore()
+    {
+        return player_score;
+    }
+
+
+    /// <summary> Checks to see if we need to generate a new pattern </summary>
+    /// <returns> An IEnumerator that pauses so that pattern generation is not instant and players have time to prepare. </returns>
+    private IEnumerator generatePatternWithPause()
     {
         yield return new WaitForSeconds(1.5f);
         if (!generated_pattern)
@@ -55,6 +76,8 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    /// <summary> Our main game logic that checks whether or not the player correctly selects the GameObject that was generated.
+    /// It will award players with points when the selection is correct, and trigger a game over when the selection is incorrect. </summary> 
     public void roundController()
     {
         // if the pattern has not been generated then do nothing

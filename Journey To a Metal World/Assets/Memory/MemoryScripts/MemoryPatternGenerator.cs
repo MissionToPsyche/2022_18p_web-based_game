@@ -1,3 +1,7 @@
+/*
+*   The MemoryPatternGenerator class is responsible for the generation of patterns for the memory game.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -11,24 +15,30 @@ public class MemoryPatternGenerator : MonoBehaviour
     private Queue<GameObject> pattern_storage = new Queue<GameObject>();
 
 
+    /// <summary> Finds the MemoryGameController object to use its methods. </summary>
     private void Awake()
     {
         controller = FindObjectOfType<MemoryGameController>();
     }
 
 
+    /// <summary> Generates a random index in the range of 0 to the length of the GameObject array (exclusive). </summary>
+    /// <returns> An random integer representing an index within our array. </returns>
     private int generateRandomSolarComponentIndex()
     {
         return Random.Range(0, controller.getSolarComponentArray().Length);
     }
 
 
+    /// <summary> Returns the queue of randomly generated objects. </summary>
+    /// <returns> A queue holding GameObjects with the length of the difficulty index. </returns>
     public Queue<GameObject> getPatternStorage()
     {
         return pattern_storage;
     }
 
 
+    /// <summary> Wipes any old patterns from our queue and starts a coroutine that generates our new pattern. </summary>
     public void generatePattern()
     {
         if (pattern_storage.Count > 0)
@@ -40,7 +50,10 @@ public class MemoryPatternGenerator : MonoBehaviour
     }
 
 
-    IEnumerator displayMemoryPattern()
+    /// <summary> The algorithm that generates our pattern. It will enqueue a random GameObject based on
+    /// our generateRandomSolarComponentIndex() method and change its color to indicate that it was chosen. </summary>
+    /// <returns> An IEnumerator to pause between highlighting the object and changing its color back to normal. </returns>
+    private IEnumerator displayMemoryPattern()
     {
         int difficulty_index = 1;
         while (difficulty_index <= controller.getDifficultyGauge())

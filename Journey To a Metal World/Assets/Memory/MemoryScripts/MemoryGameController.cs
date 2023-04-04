@@ -8,9 +8,12 @@ public class MemoryGameController : MonoBehaviour
     [SerializeField] GameObject[] solar_components;
     private int difficultyGauge = 1; // caps out at 15 or maybe 20
 
+    private bool finish_pattern_once = false;
+
+
     void Start()
     {
-        //disableSolarComponentClick();
+        disableSolarComponentClick();
     }
 
 
@@ -23,6 +26,18 @@ public class MemoryGameController : MonoBehaviour
     public int getDifficultyGauge()
     {
         return difficultyGauge;
+    }
+
+
+    public void changePatternPermissions(bool flag)
+    {
+        finish_pattern_once = flag;
+    }
+
+
+    public bool getPatternPermission()
+    {
+        return finish_pattern_once;
     }
 
 

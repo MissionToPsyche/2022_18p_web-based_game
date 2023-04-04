@@ -7,7 +7,7 @@ using TMPro;
 public class MemoryPlayerController : MonoBehaviour
 {
     [SerializeField] GameObject score_text;
-    private MemoryPattenGenerator pattern_generator;
+    private MemoryPatternGenerator pattern_generator;
     private MemoryGameController controller;
     private Queue<GameObject> player_selection = new Queue<GameObject>();
     private int player_score = 0;
@@ -17,14 +17,20 @@ public class MemoryPlayerController : MonoBehaviour
 
     private void Awake()
     {
-        pattern_generator = FindObjectOfType<MemoryPattenGenerator>();
+        pattern_generator = FindObjectOfType<MemoryPatternGenerator>();
         controller = FindObjectOfType<MemoryGameController>();
     }
 
     
     private void Update()
     {
-        roundSetup();
+        // we also want to give a bit of a pause to give the player time before starting the next pattern
+        if (!generated_pattern)
+        {
+            controller.disableSolarComponentClick();
+            StartCoroutine(generatePatternWithPause());
+        }
+        roundController();
         
         // connects the player_score with the text that is shown on the screen
         score_text.GetComponent<TextMeshProUGUI>().text = "Score: " + player_score.ToString();
@@ -37,20 +43,31 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
-    public void roundSetup()
+    IEnumerator generatePatternWithPause()
     {
+        yield return new WaitForSeconds(1.5f);
         if (!generated_pattern)
         {
             // if the pattern has not been generated, then generate it
             pattern_generator.generatePattern();
             generated_pattern = true;
         }
+    }
 
-        // enables the player to click on the buttons
-        //controller.enableSolarComponentClick();
 
-        // holds the number of solar objects that were randomly generated
-        int patten_length = pattern_generator.getPatternStorage().Count;
+    public void roundController()
+    {
+        // if the pattern has not been generated then do nothing
+        if (!generated_pattern)
+        {
+            return;
+        }
+
+        if (controller.getPatternPermission())
+        {
+            controller.enableSolarComponentClick();
+            controller.changePatternPermissions(false);
+        }
 
         // setup timer
 
@@ -67,6 +84,10 @@ public class MemoryPlayerController : MonoBehaviour
             else
             {
                 Debug.Log("Correct!");
+
+                // if the pattern is complete then you add one to the score
+                player_score += 10 * controller.getDifficultyGauge();
+
                 pattern_generator.getPatternStorage().Dequeue();
                 player_selection.Dequeue();
                     
@@ -74,28 +95,19 @@ public class MemoryPlayerController : MonoBehaviour
                 {
                     // when we successfully repeat the pattern then it is complete and we can increase the player's score
                     complete_pattern = true;
+                    controller.disableSolarComponentClick();
                 }
 
             }
         }
 
         if (complete_pattern)
-        {
-            // if the pattern is complete then you add one to the score
-            player_score += 10 * controller.getDifficultyGauge();
-                
+        {       
             // if we complete the pattern then we don't enter this if statement anymore (score doesn't go up)
             complete_pattern = false;
             // if we complete the pattern then we need to generate a new pattern (that is harder)
-            StartCoroutine(Pause());
             generated_pattern = false;
         }
-    }
-
-
-    IEnumerator Pause()
-    {
-        yield return new WaitForSeconds(2);
     }
 
 }

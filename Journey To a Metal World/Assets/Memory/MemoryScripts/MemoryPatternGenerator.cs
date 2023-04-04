@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class MemoryPattenGenerator : MonoBehaviour
+public class MemoryPatternGenerator : MonoBehaviour
 {
     [SerializeField] float highlight_object_speed = 1.5f;
     [SerializeField] float return_to_original_color_speed = 0.5f;
@@ -64,5 +64,8 @@ public class MemoryPattenGenerator : MonoBehaviour
         // might move this to when the player successfully repeats the pattern then it will get harder
         Debug.Log("\niteration: " + controller.getDifficultyGauge());
         controller.addToDifficultyGauge(1);
+
+        // lets us know that we can enable player click
+        controller.changePatternPermissions(true);
     }
 }

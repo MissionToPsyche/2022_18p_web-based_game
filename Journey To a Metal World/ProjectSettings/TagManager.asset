@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Sun
+  - Post Processing
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Space
+    uniqueID: 2101469547
+    locked: 0
+  - name: Sun
+    uniqueID: 2360913783
+    locked: 0
+  - name: Star
+    uniqueID: 2837546471
+    locked: 0
+  - name: Planets
+    uniqueID: 801956263
     locked: 0

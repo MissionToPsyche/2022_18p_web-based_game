@@ -55,6 +55,18 @@ public class MemoryPatternGenerator : MonoBehaviour
     /// <returns> An IEnumerator to pause between highlighting the object and changing its color back to normal. </returns>
     private IEnumerator displayMemoryPattern()
     {
+        if (controller.getDifficultyGauge() > 1)
+        {
+            if (highlight_object_speed > 0.2f) // the fastest speed that the object will stay highlighted for
+            {
+                highlight_object_speed -= 0.05f;
+            }
+            if (return_to_original_color_speed > 0.15f) // the fastest speed for the next object to be selected
+            {
+                return_to_original_color_speed -= 0.05f;
+            }
+        }
+
         int difficulty_index = 1;
         while (difficulty_index <= controller.getDifficultyGauge())
         {
@@ -71,12 +83,8 @@ public class MemoryPatternGenerator : MonoBehaviour
             Debug.Log("object: " + solar_component);
 
             ++difficulty_index;
-            
         }
 
-        // might move this to when the player successfully repeats the pattern then it will get harder
-        Debug.Log("\niteration: " + controller.getDifficultyGauge());
-        controller.addToDifficultyGauge(1);
 
         // lets us know that we can enable player click
         controller.changePatternPermissions(true);

@@ -92,9 +92,9 @@ public class MemoryPlayerController : MonoBehaviour
             controller.changePatternPermissions(false);
         }
 
-        // setup timer
+        // TODO: setup timer
 
-        // setup if selection was correct
+        
         if (player_selection.Count != 0)
         {
             if (pattern_generator.getPatternStorage().Peek() != player_selection.Peek())
@@ -130,6 +130,10 @@ public class MemoryPlayerController : MonoBehaviour
             complete_pattern = false;
             // if we complete the pattern then we need to generate a new pattern (that is harder)
             generated_pattern = false;
+
+            // if the player successfully repeats the pattern then we increase the difficulty
+            Debug.Log("\niteration: " + controller.getDifficultyGauge());
+            controller.addToDifficultyGauge(1);
         }
     }
 

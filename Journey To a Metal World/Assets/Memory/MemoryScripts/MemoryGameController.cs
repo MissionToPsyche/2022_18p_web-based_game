@@ -79,7 +79,7 @@ public class MemoryGameController : MonoBehaviour
     {
         foreach(GameObject obj in solar_components)
         {
-            Debug.Log(obj.name + " has been disabled");
+            // Debug.Log(obj.name + " has been disabled");
             obj.GetComponent<Button>().interactable = false;
         }
     }
@@ -90,7 +90,7 @@ public class MemoryGameController : MonoBehaviour
     {
         foreach(GameObject obj in solar_components)
         {
-            Debug.Log(obj.name + " has been enabled");
+            // Debug.Log(obj.name + " has been enabled");
             obj.GetComponent<Button>().interactable = true;
         }
     }

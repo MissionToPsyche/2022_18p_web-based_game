@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MemoryPlayerController : MonoBehaviour
 {
@@ -76,6 +77,13 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    private IEnumerator restartMemoryGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        yield return new WaitForSeconds(1f);
+    }
+
+
     /// <summary> Our main game logic that checks whether or not the player correctly selects the GameObject that was generated.
     /// It will award players with points when the selection is correct, and trigger a game over when the selection is incorrect. </summary> 
     public void roundController()
@@ -101,7 +109,10 @@ public class MemoryPlayerController : MonoBehaviour
             {
                 Debug.Log("Invalid Selection");
                 player_selection.Clear();
-                // temporary will change later on
+                
+                // for now it restarts the game whenever the player makees an invalid selection
+                StartCoroutine(restartMemoryGame());
+
                 return;
             }
             else

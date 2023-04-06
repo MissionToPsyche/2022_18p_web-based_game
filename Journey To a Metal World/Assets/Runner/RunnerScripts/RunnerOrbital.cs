@@ -22,6 +22,7 @@ public class RunnerOrbital : MonoBehaviour
     int invinciblity_frames_left = 0;
     int current_collisions = 0; // because we can theoretically hit multiple things at once
     bool damage_effect_on = false;
+
     Vector2 raw_input;
     SpriteRenderer sprite;
     Color orbital_color;
@@ -31,6 +32,12 @@ public class RunnerOrbital : MonoBehaviour
     int COLLISION_MINUS_POINT = -1;
     RunnerMeteoroidMove stage; 
 
+    Vector2 min_bounds;
+    Vector2 max_bounds;
+    [SerializeField] float padding_left = 1.5f;
+    [SerializeField] float padding_right = 1.5f;
+    [SerializeField] float padding_top = 2.1f;
+    [SerializeField] float padding_bottom = 0.9f;
     
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
     // flash.
@@ -51,6 +58,7 @@ public class RunnerOrbital : MonoBehaviour
         this.orbital_color = sprite.color;
         this.score_keeper = FindObjectOfType<RunnerScore>();
         this.stage = FindObjectOfType<RunnerMeteoroidMove>();
+        InitBounds();
 
     }
 
@@ -58,8 +66,8 @@ public class RunnerOrbital : MonoBehaviour
     void Update()
     {
         // moving the orbital
-        this.OrbitalMovement();
-        this.DamageApplied(this.current_collisions);
+        OrbitalMovement();
+        DamageApplied(this.current_collisions);
         if (this.invinciblity_frames_left > 0)
         {
             this.invinciblity_frames_left--; 
@@ -79,12 +87,27 @@ public class RunnerOrbital : MonoBehaviour
 
     }
 
+    /**
+    Initializes the bounds of the game
+    */
+    void InitBounds()
+    {
+        Camera main_camera = Camera.main;
+        min_bounds = main_camera.ViewportToWorldPoint(new Vector2(0, 0));
+        max_bounds = main_camera.ViewportToWorldPoint(new Vector2(1, 1));
+    }
+
     void OrbitalMovement()
     {
-        //Distance per second  = units moving per frame * how many frames per second  * how many seconds per frame
-        Vector3 change = raw_input * this.movement_speed * Time.deltaTime;
-        transform.position += change;
+        Vector2 delta = raw_input * movement_speed * Time.deltaTime;;
+        Vector2 new_position = new Vector2();
+        new_position.x = Mathf.Clamp(transform.position.x + delta.x, this.min_bounds.x + this.padding_left, 
+            this.max_bounds.x - this.padding_right);
+        new_position.y = Mathf.Clamp(transform.position.y + delta.y, this.min_bounds.y + this.padding_bottom, 
+            this.max_bounds.y - this.padding_top);
+        transform.position = new_position;
     }
+
 
     // intended to work with movement asset. 
     void OnMove(InputValue value)

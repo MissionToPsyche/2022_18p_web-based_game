@@ -36,4 +36,12 @@ public class RunnerMeteoroidMove : MonoBehaviour
     {
         this.current_movement_speed = this.MIN_MOVEMENT_SPEED;
     }
+
+    /**
+    returns the current speed of the meteoroids on the screen
+    */
+    public float getCurrentSpeed()
+    {
+        return this.current_movement_speed;
+    }
 }

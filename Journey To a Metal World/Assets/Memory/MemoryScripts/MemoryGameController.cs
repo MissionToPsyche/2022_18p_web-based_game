@@ -9,6 +9,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class MemoryGameController : MonoBehaviour
 {
@@ -30,6 +32,13 @@ public class MemoryGameController : MonoBehaviour
     public GameObject[] getSolarComponentArray()
     {
         return solar_components;
+    }
+
+
+    public IEnumerator restartMemoryGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        yield return new WaitForSeconds(1f);
     }
 
 

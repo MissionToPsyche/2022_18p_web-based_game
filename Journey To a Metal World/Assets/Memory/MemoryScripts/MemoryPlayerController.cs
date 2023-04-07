@@ -77,13 +77,6 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
-    private IEnumerator restartMemoryGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        yield return new WaitForSeconds(1f);
-    }
-
-
     /// <summary> Our main game logic that checks whether or not the player correctly selects the GameObject that was generated.
     /// It will award players with points when the selection is correct, and trigger a game over when the selection is incorrect. </summary> 
     public void roundController()
@@ -111,7 +104,7 @@ public class MemoryPlayerController : MonoBehaviour
                 player_selection.Clear();
                 
                 // for now it restarts the game whenever the player makees an invalid selection
-                StartCoroutine(restartMemoryGame());
+                StartCoroutine(controller.restartMemoryGame());
 
                 return;
             }

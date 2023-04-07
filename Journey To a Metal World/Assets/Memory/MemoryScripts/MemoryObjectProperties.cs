@@ -11,12 +11,14 @@ public class MemoryObjectProperties : MonoBehaviour
 {
     [SerializeField] GameObject solar_object;
     private MemoryPlayerController player_controller;
+    private MemoryGameController controller;
 
 
     /// <summary> Finds the MemoryPlayerController class so that it can be used in other methods. </summary>
     void Awake()
     {
         player_controller = FindObjectOfType<MemoryPlayerController>();
+        controller = FindObjectOfType<MemoryGameController>();
     }
 
 
@@ -45,5 +47,11 @@ public class MemoryObjectProperties : MonoBehaviour
     {
         Debug.Log(solar_object + " added");
         player_controller.getPlayerSelection().Enqueue(solar_object);
+    }
+
+
+    public void restart()
+    {
+        StartCoroutine(controller.restartMemoryGame());
     }
 }

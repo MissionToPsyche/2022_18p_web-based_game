@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 public class MemoryPlayerController : MonoBehaviour
 {
     [SerializeField] GameObject score_text;
+    [SerializeField] MemoryGameOverScreen game_over_screen;
     private MemoryPatternGenerator pattern_generator;
     private MemoryGameController controller;
     private Queue<GameObject> player_selection = new Queue<GameObject>();
@@ -104,7 +105,7 @@ public class MemoryPlayerController : MonoBehaviour
                 player_selection.Clear();
                 
                 // for now it restarts the game whenever the player makees an invalid selection
-                StartCoroutine(controller.restartMemoryGame());
+                game_over_screen.setup(player_score);
 
                 return;
             }

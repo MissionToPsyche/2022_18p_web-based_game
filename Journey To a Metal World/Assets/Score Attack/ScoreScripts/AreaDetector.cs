@@ -39,20 +39,20 @@ public class AreaDetector : MonoBehaviour
         Score.total_score += 10;
         AreaGenerator.cur_area_count--;
 
-        if (GameEnds())
-        {
-            Restart.restart = true;
-        }
+        // if (GameEnds())
+        // {
+        //     Restart.restart = true;
+        // }
     }
 
-    bool GameEnds()
-    {
-        if(AreaGenerator.cur_area_count <= 0)
-        {
-            return true;
-        }
-        return false;
-    }
+    // bool GameEnds()
+    // {
+    //     if(AreaGenerator.cur_area_count <= 0)
+    //     {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 }
 
 // using System.Collections;

@@ -12,7 +12,7 @@ public class AreaGenerator : MonoBehaviour
 
     void Start()
     {
-        
+        cur_area_count = 0;
     }
 
     void Update()

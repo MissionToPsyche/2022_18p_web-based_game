@@ -15,6 +15,7 @@ public class Orbitting : MonoBehaviour
     {
         transform.position = new Vector3(0f, 0f, 0);
         degree = 0.0;
+        speed = 0.1f;
         iter_count = 0;
     }
 
@@ -22,6 +23,7 @@ public class Orbitting : MonoBehaviour
     {
         UpdatePosition();
         SpeedUp();
+        StopOrbit();
     }
 
     void UpdatePosition()
@@ -50,6 +52,13 @@ public class Orbitting : MonoBehaviour
             speed += 0.03f;
             Debug.Log("speed up");
 
+        }
+    }
+
+    void StopOrbit()
+    {
+        if(EndScene.timeout){
+            speed = 0.0f;
         }
     }
 

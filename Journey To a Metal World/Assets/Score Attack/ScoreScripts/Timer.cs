@@ -9,17 +9,16 @@ public class Timer : MonoBehaviour
     public TMP_Text TextMeshPro;
     void Start()
     {
-        total_time = 60;
+        total_time = 10;
     }
 
     void Update()
     {
-        if(total_time > 0){
+        if(EndScene.timeout == false && total_time > 0){
             total_time -= Time.deltaTime;
         }
         else{
-            
-            total_time += 60;
+            total_time = 0;
         }
         
         TextMeshPro.text = "Time: " + ((int)total_time).ToString();

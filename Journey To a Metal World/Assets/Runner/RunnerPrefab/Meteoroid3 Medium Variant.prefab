@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5157409723541600578, guid: 8d53437147ccb4446a84c3a64108138b, type: 3}
       propertyPath: m_Name
-      value: Meteoroid3 Medium
+      value: Meteoroid3 Medium Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5157409723541600579, guid: 8d53437147ccb4446a84c3a64108138b, type: 3}
       propertyPath: m_RootOrder
@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5157409723541600579, guid: 8d53437147ccb4446a84c3a64108138b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1556997
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5157409723541600579, guid: 8d53437147ccb4446a84c3a64108138b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.9224339
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5157409723541600579, guid: 8d53437147ccb4446a84c3a64108138b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -69,11 +69,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5157409725338722041, guid: 8d53437147ccb4446a84c3a64108138b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5023
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5157409725338722041, guid: 8d53437147ccb4446a84c3a64108138b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7489
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d53437147ccb4446a84c3a64108138b, type: 3}

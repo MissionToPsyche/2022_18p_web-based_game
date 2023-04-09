@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56c049936d1c46d45a06f8ea5e5c2626, type: 3}
-  m_Name: Mid Wave Meteoroid1 Medium
+  m_Name: Bottom Wave Meteoroid1 small
   m_EditorClassIdentifier: 
   enemy_prefabs:
-  - {fileID: 515507882688951504, guid: e49f8758bdfd2aa45aa5d519289d2e0f, type: 3}
-  pathPrefab: {fileID: 975211388772147482, guid: da001452ab4216a43b875b69b3036043, type: 3}
+  - {fileID: 5663959972182693374, guid: 5ee87109e3944d74d82d4015285a7a9e, type: 3}
+  pathPrefab: {fileID: 1648084365811257049, guid: 482677bfff24b8e4d91ed64212141668, type: 3}
   move_speed: 3
   time_between_enemy_spawns: 2
   spawn_time_variance: 0

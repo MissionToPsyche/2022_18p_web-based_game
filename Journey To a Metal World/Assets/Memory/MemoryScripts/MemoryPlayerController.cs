@@ -104,8 +104,12 @@ public class MemoryPlayerController : MonoBehaviour
                 Debug.Log("Invalid Selection");
                 player_selection.Clear();
                 
+                // once you set a possible high score, you must also save it so that it won't be wiped on the restart
+                controller.setHighScore(player_score);
+                controller.saveHighScore();
+                
                 // for now it restarts the game whenever the player makees an invalid selection
-                game_over_screen.setup(player_score);
+                game_over_screen.setup(player_score, controller.getHighScore());
 
                 return;
             }

@@ -15,9 +15,23 @@ using UnityEngine.SceneManagement;
 public class MemoryGameController : MonoBehaviour
 {
     [SerializeField] GameObject[] solar_components;
-    private int difficultyGauge = 1; // caps out at 15 or maybe 20
+    private int difficulty_gauge = 1; // caps out at 15 or maybe 20
+    private int high_score = 0;
 
     private bool finish_pattern_once = false;
+
+
+    void Awake()
+    {
+        if (PlayerPrefs.HasKey("high_score"))
+        {
+            high_score = PlayerPrefs.GetInt("high_score");
+        }
+        else
+        {
+            saveHighScore();
+        }
+    }
 
 
     /// <summary> At the start of the game, prevents players from clicking on any of the objects on the screen. </summary>
@@ -25,6 +39,7 @@ public class MemoryGameController : MonoBehaviour
     {
         disableSolarComponentClick();
     }
+    
 
 
     /// <summary> Returns the array holding all of the objects that can be found on the screen. </summary>
@@ -46,7 +61,29 @@ public class MemoryGameController : MonoBehaviour
     /// <returns> A 32-bit positive integer, representing the difficulty level. </returns>
     public int getDifficultyGauge()
     {
-        return difficultyGauge;
+        return difficulty_gauge;
+    }
+
+
+    public int getHighScore()
+    {
+        return high_score;
+    }
+
+
+    public void setHighScore(int possible_high_score)
+    {
+        // we only update the high score if the new one is larger
+        if (possible_high_score > high_score)
+        {
+            high_score = possible_high_score;
+        }
+    }
+
+
+    public void saveHighScore()
+    {
+        PlayerPrefs.SetInt("high_score", high_score);
     }
 
 
@@ -74,12 +111,12 @@ public class MemoryGameController : MonoBehaviour
         {
             return;
         }
-        if (difficultyGauge + num_to_increase > 20)
+        if (difficulty_gauge + num_to_increase > 20)
         {
             return;
         }
         
-        difficultyGauge += num_to_increase;
+        difficulty_gauge += num_to_increase;
     }
 
 

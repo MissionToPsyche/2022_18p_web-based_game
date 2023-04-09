@@ -8,11 +8,13 @@ using UnityEngine.SceneManagement;
 public class MemoryGameOverScreen : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI points_text;
+    [SerializeField] TextMeshProUGUI high_score_text;
 
-    public void setup(int score)
+    public void setup(int score, int high_score)
     {
         gameObject.SetActive(true);
-        points_text.text = "High Score: \n" + score.ToString();
+        points_text.text = "Your Score: \n" + score.ToString();
+        high_score_text.text = "High Score: \n" + high_score.ToString();
     }
 
 

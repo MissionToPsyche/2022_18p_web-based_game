@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bottom Wave Meteoroid1 small
   m_EditorClassIdentifier: 
   enemy_prefabs:
-  - {fileID: 5663959972182693374, guid: 5ee87109e3944d74d82d4015285a7a9e, type: 3}
+  - {fileID: 5912671128604821445, guid: 8c96d710a26faa04fa770fa8cfbdb5a7, type: 3}
   pathPrefab: {fileID: 1648084365811257049, guid: 482677bfff24b8e4d91ed64212141668, type: 3}
   move_speed: 3
   time_between_enemy_spawns: 2

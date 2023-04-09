@@ -2578,12 +2578,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave_configs:
-  - {fileID: 11400000, guid: 7fb04d112aa85ac4fbea98394f06fe6f, type: 2}
+  - {fileID: 11400000, guid: 8c00e1f5996a18d4b9b90e06f2ff0270, type: 2}
+  - {fileID: 11400000, guid: c0315e3d301b125479113d9ee5b93743, type: 2}
+  - {fileID: 11400000, guid: 57fa68dfabbdd054f8a5f193e55160a5, type: 2}
+  - {fileID: 11400000, guid: 5d256e99ef5e7144d96dca5f722e25aa, type: 2}
+  - {fileID: 11400000, guid: 65ff7f520174ae74595ef09cdc6a9e3b, type: 2}
+  - {fileID: 11400000, guid: c13e34ab9e546a54aaeb6838e6d0c6f4, type: 2}
+  - {fileID: 11400000, guid: 2bbb186dee520d14baa7112c12f94b10, type: 2}
   - {fileID: 11400000, guid: 516196e1d22ed0e48bc509cee963bbe7, type: 2}
-  - {fileID: 11400000, guid: 516196e1d22ed0e48bc509cee963bbe7, type: 2}
-  - {fileID: 11400000, guid: 73b39b2ae34b26f479328f7898321f76, type: 2}
-  - {fileID: 11400000, guid: af2e520aebc4a5f48ab49ff758caf7f3, type: 2}
-  - {fileID: 11400000, guid: f13084c636af945428bdcd327f17174a, type: 2}
+  - {fileID: 11400000, guid: 685ab10d56195994c80e67d5a8dc65af, type: 2}
   wave_delay: 1
 --- !u!4 &1066441455
 Transform:

@@ -7,7 +7,7 @@ public class WaveConfigSO : ScriptableObject
 {
     [SerializeField] List<GameObject> enemy_prefabs;
     [SerializeField] Transform pathPrefab;
-    [SerializeField] float move_speed = 0.3f;
+    [SerializeField] float move_speed = 3f;
     // note, this is positive because it is being used
     // with a path and so if it were negative it would actually go
     // the opposite direction of the next path point rather than simply to the left

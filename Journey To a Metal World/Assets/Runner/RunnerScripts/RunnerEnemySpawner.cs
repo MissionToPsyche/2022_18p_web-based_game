@@ -4,25 +4,35 @@ using UnityEngine;
 using UnityEngine.UI;
 public class RunnerEnemySpawner : MonoBehaviour
 {
-    [SerializeField] WaveConfigSO current_wave;
+    WaveConfigSO current_wave;
+    [SerializeField] List<WaveConfigSO> wave_configs;
+    // [SerializeField] List<Transform> 
+    [SerializeField] float wave_delay = 1f;
 
     void Start() 
     {
-        StartCoroutine(SpawnEnemies());    
+        StartCoroutine(SpawnEnemyWaves());    
     }
 
     //coroutine
-    IEnumerator SpawnEnemies()
+    IEnumerator SpawnEnemyWaves()
     {
-        
-        for (int i = 0; i < this.current_wave.GetEnemyCount(); i++)
+        foreach (WaveConfigSO wave in wave_configs)
         {
-            Instantiate(current_wave.GetEnemyPrefab(i),
-                current_wave.GetStartingWaypoint().position, 
-                Quaternion.identity, transform);
-            // break out and wait for something
+            this.current_wave = wave;
+            for (int i = 0; i < this.current_wave.GetEnemyCount(); i++)
+            {
+                Instantiate(current_wave.GetEnemyPrefab(i),
+                    current_wave.GetStartingWaypoint().position, 
+                    Quaternion.identity, transform);
+                // break out and wait for something
+                // as of right now there will only be one thing in each wave so
+                //that I can not have a stream of all meteoroids in one line. will
+                // need the following line if more than 1 meteoroid in a wave
+                // yield return new WaitForSeconds(current_wave.GetRandomSpawnTime());
+            }
+            yield return new WaitForSeconds(this.wave_delay);
 
-            yield return new WaitForSeconds(current_wave.GetRandomSpawnTime());
         }
 
     }

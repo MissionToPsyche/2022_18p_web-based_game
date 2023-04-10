@@ -13,9 +13,10 @@ public class RunnerOrbital : MonoBehaviour
     // cause damage
 
     // start having increasing speed with longer no collisions. probably want to cap it somwhere though
-    int lives = 3;
-    int MAX_LIVES = 3;
-    float power_bank = 100f;
+    
+    [SerializeField] int MAX_LIVES = 3;
+    int lives;
+    // float power_bank = 100f;
     float movement_speed = 2f;
     float frames_per_second;
     int INVINCIBILITY_FRAME_LENGTH;
@@ -38,17 +39,10 @@ public class RunnerOrbital : MonoBehaviour
     [SerializeField] float padding_right = 1.5f;
     [SerializeField] float padding_top = 2.1f;
     [SerializeField] float padding_bottom = 0.9f;
+    RunnerLivesFrontEndManager visual_manager;
     
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
     // flash.
-
-    // public input
-    // deing each update probably subtrat from this value if
-    // movements keys are being pressed. otherwise increase this value 
-    // Start is called before the first frame update
-
-
-    //will need to react to triggers 
 
     void Start()
     {
@@ -58,6 +52,8 @@ public class RunnerOrbital : MonoBehaviour
         this.orbital_color = sprite.color;
         this.score_keeper = FindObjectOfType<RunnerScore>();
         this.stage = FindObjectOfType<RunnerMeteoroidMove>();
+        this.visual_manager = FindObjectOfType<RunnerLivesFrontEndManager>();
+        this.lives = MAX_LIVES;
         InitBounds();
 
     }
@@ -236,7 +232,7 @@ public class RunnerOrbital : MonoBehaviour
         if (collision_count > 0)
         {
             this.damage_effect_on = true;
-            this.lives--;
+            DecreaseLives();
             score_keeper.AddToScore(this.COLLISION_MINUS_POINT);
 
             Debug.Log("No invincibility frames left. -1 life. \n Lives left = " + this.lives);
@@ -269,6 +265,13 @@ public class RunnerOrbital : MonoBehaviour
         }
         return false;
     }
+
+    void DecreaseLives()
+    {
+        this.lives--;
+        this.visual_manager.DecreaseLifeSprite();
+    }
+    
 
     public int GetMaxLives()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EndScene : MonoBehaviour
 {
-    private Canvas endCanvas;
+    private Canvas end_canvas;
     private SpriteRenderer scene_mask;
     public static bool timeout = false;
     
@@ -12,26 +12,25 @@ public class EndScene : MonoBehaviour
     void Start()
     {
         timeout = false;
-        GameObject gameObject = GameObject.Find("Reload Canvas");
-        GameObject gameObject2 = GameObject.Find("black");
-        if(gameObject != null){
-            endCanvas = gameObject.GetComponent<Canvas>();       
-            // endCanvas.renderMode = RenderMode.ScreenSpaceOverlay;  
-            endCanvas.enabled = false;
+        GameObject game_object = GameObject.Find("End Scene");
+        GameObject game_object_2 = GameObject.Find("End Background");
+        if(game_object != null){
+            end_canvas = game_object.GetComponent<Canvas>();       
+            end_canvas.enabled = false;
         }
-        if(gameObject2 != null){
-            scene_mask = gameObject2.GetComponent<SpriteRenderer>();
+        if(game_object_2 != null){
+            scene_mask = game_object_2.GetComponent<SpriteRenderer>();
             scene_mask.enabled = false;
         }
     }
 
+    /* If timeout, enable all end scene */
     void Update()
     {
         if(Timer.total_time <= 0){
             timeout = true;
             scene_mask.enabled = true;
-            endCanvas.enabled = true;
-            endCanvas.renderMode = RenderMode.WorldSpace;
+            end_canvas.enabled = true;
         }
     }
 }

@@ -9,7 +9,6 @@ public class Ray : MonoBehaviour
         if(other.tag == "research area")
         {
             Destroy(gameObject, 0.2f);
-        }
-        
+        }   
     }
 }

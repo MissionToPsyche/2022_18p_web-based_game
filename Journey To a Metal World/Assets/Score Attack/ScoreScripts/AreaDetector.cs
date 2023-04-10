@@ -6,7 +6,6 @@ public class AreaDetector : MonoBehaviour
 {
     private SpriteRenderer research_area;
     private float shrink_speed;
-    // static int area_count = 0;
 
     void Start()
     {
@@ -19,6 +18,8 @@ public class AreaDetector : MonoBehaviour
         UpdatePosition();
     }
 
+
+    /* This function is to shrink the size of the research area for each update */
     void UpdatePosition()
     {
         if(ResearchAreaExist() && (research_area.transform.localScale.x >= 0.2f && research_area.transform.localScale.y >= 0.2f))
@@ -32,8 +33,10 @@ public class AreaDetector : MonoBehaviour
         return research_area;
     }
 
+    /* Destroy the research area and update score when it is triggered by the ray */
     void OnTriggerEnter2D(Collider2D other) 
     {
+        Debug.Log(gameObject.transform.position);
         Destroy(gameObject);
         Destroy(other);
         Score.total_score += 10;

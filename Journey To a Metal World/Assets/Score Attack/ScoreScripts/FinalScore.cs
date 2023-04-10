@@ -7,11 +7,6 @@ using TMPro;
 public class FinalScore : MonoBehaviour
 {
     public TMP_Text TextMeshPro;
-    
-    void Start()
-    {
-
-    }
 
     void Update()
     {

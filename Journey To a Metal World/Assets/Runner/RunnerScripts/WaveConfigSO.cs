@@ -16,6 +16,8 @@ public class WaveConfigSO : ScriptableObject
     [SerializeField] float time_between_enemy_spawns = 2f;
     [SerializeField] float spawn_time_variance = 0f;
     [SerializeField] float minimum_spawn_time = 1f;
+    // RunnerMeteoroidMove meteoroid_move;
+
 
     /**
     Creates a random number that is based at the time_between_enemy_spawns variable with variance of
@@ -30,9 +32,9 @@ public class WaveConfigSO : ScriptableObject
     }
 
 
-    // void Awake() 
+    // void Start() 
     // {
-        
+        // this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
     // }
 
     public int GetEnemyCount()
@@ -67,6 +69,7 @@ public class WaveConfigSO : ScriptableObject
 
     public float GetMoveSpeed()
     {
+        // return this.meteoroid_move.GetCurrentSpeed();
         return this.move_speed;
     }
 }

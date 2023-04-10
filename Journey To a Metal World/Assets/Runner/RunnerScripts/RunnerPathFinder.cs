@@ -15,11 +15,12 @@ public class RunnerPathFinder : MonoBehaviour
     WaveConfigSO wave_config;
     RunnerEnemySpawner enemy_spawner;
     List<Transform> waypoints;
+    // RunnerMeteoroidMove meteoroid_move;
     int waypoint_index = 0; // so that we start at the first waypoint    
 
     void Awake() 
     {
-        enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
+        this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
         // print(enemy_spawner);    
     }
 
@@ -28,6 +29,8 @@ public class RunnerPathFinder : MonoBehaviour
         wave_config = enemy_spawner.GetCurrentWave();
         waypoints = wave_config.GetWaypoints();
         transform.position = waypoints[waypoint_index].position; 
+        // this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
+
     }
 
 
@@ -42,6 +45,7 @@ public class RunnerPathFinder : MonoBehaviour
         {
             Vector3 target_position = waypoints[waypoint_index].position;
             float delta = wave_config.GetMoveSpeed() * Time.deltaTime;
+            // float delta = meteoroid_move.GetCurrentSpeed() * Time.deltaTime; 
             transform.position = Vector2.MoveTowards(transform.position, 
                 target_position, delta);
             if (transform.position == target_position)

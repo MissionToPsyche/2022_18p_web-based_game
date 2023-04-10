@@ -8,20 +8,36 @@ public class RunnerEnemySpawner : MonoBehaviour
     [SerializeField] List<WaveConfigSO> wave_configs;
     // [SerializeField] List<Transform> 
     [SerializeField] float wave_delay = 1f;
+    bool continue_spawning = true;
+    bool finished_all_waves = false;
 
     void Start() 
     {
         StartCoroutine(SpawnEnemyWaves());    
     }
 
+
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.tag == "Finish")
+        {
+            this.continue_spawning = false;
+        }     
+    }
+
     //coroutine
     IEnumerator SpawnEnemyWaves()
     {
-        foreach (WaveConfigSO wave in wave_configs)
+        foreach (WaveConfigSO wave in this.wave_configs)
         {
             this.current_wave = wave;
             for (int i = 0; i < this.current_wave.GetEnemyCount(); i++)
             {
+                if (this.continue_spawning == false)
+                {
+                    yield return new WaitForSeconds(0);
+                }
+
                 Instantiate(current_wave.GetEnemyPrefab(i),
                     current_wave.GetStartingWaypoint().position, 
                     Quaternion.identity, transform);
@@ -34,11 +50,23 @@ public class RunnerEnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(this.wave_delay);
 
         }
-
+        this.finished_all_waves = true;
     }
 
+
+    /**
+        returns the status of the finished_all_waves variable (ie. true if all waves have finished)
+        otherwise it will return false
+    */
+    public bool GetFinishedAllWaves()
+    {
+        return this.finished_all_waves;
+    }
+    /**
+        returns the current wave that is being spawned
+    */
     public WaveConfigSO GetCurrentWave()
     {
-        return current_wave;
+        return this.current_wave;
     }
 }

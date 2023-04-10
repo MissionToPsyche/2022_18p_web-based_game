@@ -1,3 +1,8 @@
+/*
+*   The TimeLogic class manages the time for the Time Attack game.
+*   This class determines whether time has run out and the game is over.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +17,13 @@ public class TimeLogic : MonoBehaviour
     private float timer;
     private bool isGameOver;
 
+
     void Start() 
     {
         timer = 30;
         isGameOver = false;
     }
+
 
     void Update() 
     {
@@ -32,15 +39,18 @@ public class TimeLogic : MonoBehaviour
         
     }
 
+
     void updateTime()
     {
         timeText.text = "Time Left: " + ((int) timer).ToString();
     }
 
+
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
 
     public bool getIsGameOver()
     {

@@ -1,61 +1,56 @@
+/*
+*   The PartLogic class is responsible for the logic of the parts within the Time Attack game.
+*   This class manages the click-and-drag mechanic of parts and increments the player's total points
+*   when a part is successfully moved to its correct location.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ScoreLogic;
-using static TimeLogic;
 
-public class Part : MonoBehaviour
+public class PartLogic : MonoBehaviour
 {
+    private static int END_X = -15;
+    private static ScoreLogic scoreLogic;
+    private static TimeLogic timeLogic;
+
+    private int partType;
+    private bool isDragging;
+    private bool isOverPartLocation;
+
     [SerializeField] public Sprite antennaSprite;
     [SerializeField] public Sprite magnetometerSprite;
     [SerializeField] public Sprite spectrometerSprite;
     [SerializeField] public Sprite positiveYPanelSprite;
     [SerializeField] public Sprite negativeYPanelSprite;
 
-    private static int END_X = -15;
+    public static Dictionary<int, Sprite> PART_SPRITES;
 
-    private int id;
-    private bool isDragging;
-    private bool isOverPartLocation;
 
-    private ScoreLogic scoreLogic;
-    private TimeLogic timeLogic;
-
-    void Start()
+    void Awake() 
     {
-        id = Random.Range(0, 5);
         scoreLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<ScoreLogic>();
         timeLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<TimeLogic>();
 
-        loadSprite();
-    }
-
-    /*
-    * Function: loadSprite
-    * --------------------
-    * Loads the correct sprite to be rendered for the part
-    *
-    * NOTES:    Uses part ID to assign sprite
-    */
-    private void loadSprite() 
-    {
-        Dictionary<int, Sprite> sprites = new Dictionary<int, Sprite>() {
+        PART_SPRITES = new Dictionary<int, Sprite>() {
             {0, antennaSprite},
             {1, magnetometerSprite},
             {2, spectrometerSprite},
             {3, positiveYPanelSprite},
             {4, negativeYPanelSprite}
         };
-
-        GetComponent<SpriteRenderer>().sprite = sprites[id];
     }
 
-    /*
-    * Function: Update
-    * --------------------
-    * Destroys the part if necessary conditions are met, else updates 
-    * the position of the part to the position of the mouse
-    */
+
+    void Start()
+    {
+        partType = generatePartType();
+        loadSprite();
+    }
+
+
+    /// <summary> Destroys the part if necessary conditions are met, else updates the position 
+    /// of the part to the position of the mouse </summary>
     void Update()
     {
         if (transform.position.x < END_X) 
@@ -79,51 +74,54 @@ public class Part : MonoBehaviour
         }
     }
 
-    /*
-    * Function: OnMouseDown
-    * --------------------
-    * Part is being dragged
-    */
+
+    /// <summary> Randomly generates a part type to be assigned to the part </summary>
+    /// <returns> An integer representing the type of the part </returns>
+    private int generatePartType()
+    {
+        return Random.Range(0, 5);
+    }
+
+
+    private void loadSprite()
+    {
+
+        GetComponent<SpriteRenderer>().sprite = PART_SPRITES[partType];
+    }
+
+
+    /// <summary> The player is moving the part </summary>
     void OnMouseDown() 
     {
         isDragging = true;
     }
 
-    /*
-    * Function: OnMouseUp
-    * --------------------
-    * Part is not being dragged
-    */
+
+    /// <summary> The player is releasing the part </summary>
     void OnMouseUp() 
     {
         isDragging = false;
     }
 
-    /*
-    * Function: OnTriggerEnter2D
-    * --------------------
-    * Part triggers the part location with the matching ID
-    */
+
+    /// <summary> Determines if the part being moved is over the correct part location </summary>
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Part Location")
         {
-            if (other.GetComponent<PartLocation>().getPartLocationID() == id) 
+            if (other.GetComponent<PartLocation>().getPartLocationType() == partType) 
             {
                 isOverPartLocation = true;
             }
         }
     }
 
-    /*
-    * Function: OnTriggerExit2D
-    * --------------------
-    * Part stops triggering the part location with the matching ID
-    */
+
+    /// <summary> Determines if the part being moved has left the correct part location </summary>
     void OnTriggerExit2D(Collider2D other) {
         if (other.tag == "Part Location")
         {
-            if (other.GetComponent<PartLocation>().getPartLocationID() == id) 
+            if (other.GetComponent<PartLocation>().getPartLocationType() == partType) 
             {
                 isOverPartLocation = false;
             }

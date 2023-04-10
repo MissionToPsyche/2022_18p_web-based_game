@@ -1,3 +1,9 @@
+/*
+*   The PartSpawner class handles the creation of new parts for the Time Attack game.
+*   This class spawns parts at a regular interval determined by the value assigned
+*   to spawnRate.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,25 +15,28 @@ public class PartSpawner : MonoBehaviour
 
     private float timer;
 
+
     void Start()
     {
         timer = 0;
-        Instantiate(part, transform.position, transform.rotation);
+        SpawnPart();
     }
 
-    /*
-    * Function: Update
-    * --------------------
-    * Increases the timer if not enough time has elapsed, else spawns
-    * a part
-    */
+
+    /// <summary> Increments the timer until a new part should be created </summary>
     void Update()
     {
         if (timer < spawnRate) {
             timer += Time.deltaTime;
         } else {
-            Instantiate(part, transform.position, transform.rotation);
             timer = 0;
+            SpawnPart();
         }
+    }
+
+
+    private void SpawnPart()
+    {
+        Instantiate(part, transform.position, transform.rotation);
     }
 }

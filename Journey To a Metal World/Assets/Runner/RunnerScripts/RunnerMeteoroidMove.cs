@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// works well enough ish for the background movement dependency / related code
+//however will not work with wave. code
+// may need dedicated code inside the wave runner to do the speeds for that one?
+// problem is getting it to react to the orbital... unless I give it a trigger too?
+// but then the bigger problem is that even if one meteoroid interacts, I wanted them
+// all to slow down to give the impression that the orbital was speeding up and then
+// lost speed. 
+// idea...make this or some other script that moves itself transform.Translate... give it to the meteoroid spawner object. all 
+// meteoroids made from it are children. by moving the parent it should affect the children. the spawner itself
+// cannot hit anything (well once I remove the collider that was to be used to make sure the finish line would
+// not conflict with it.)
 public class RunnerMeteoroidMove : MonoBehaviour
 {
     // will likely need to be able to trigger the orbital

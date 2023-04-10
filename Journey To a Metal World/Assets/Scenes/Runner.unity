@@ -415,7 +415,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 46228225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5089d6bb6ddb1da41a4eadc6c42bfcb5, type: 3}
+  m_Script: {fileID: 11500000, guid: efb965b1cec99e34ab03650b2253e2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &77112326
@@ -849,10 +849,10 @@ RectTransform:
   m_Father: {fileID: 775451544}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -56, y: -25.76001}
-  m_SizeDelta: {x: 84.54001, y: 30}
+  m_AnchoredPosition: {x: 433.76, y: -29.630005}
+  m_SizeDelta: {x: -894.98, y: 37.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &174704641
 MonoBehaviour:
@@ -1290,7 +1290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467007815}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.6741, y: -0.004099995, z: 0}
+  m_LocalPosition: {x: -21.79, y: -0.004099995, z: 0}
   m_LocalScale: {x: 1.6994, y: 1.6994, z: 1.6994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1858,7 +1858,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754600562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.21, y: 0, z: 0}
   m_LocalScale: {x: 1.6962, y: 1.6962, z: 1.6962}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1907,7 +1907,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 5ea95b933ba6a11488b4bd7466ced06c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3297,8 +3297,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 28375a57974c49d4db141615e0d28a9b, type: 2}
+  m_sharedMaterial: {fileID: -1440319020103359648, guid: 28375a57974c49d4db141615e0d28a9b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4906,7 +4906,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: af62b4320592fa2439d7cb13175dee55, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5075,8 +5075,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.056}
   m_AnchorMin: {x: 0, y: 0.8954146}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.26000977, y: -0.2999878}
-  m_SizeDelta: {x: 1, y: 0.6100006}
+  m_AnchoredPosition: {x: 0.2000122, y: -1.2200012}
+  m_SizeDelta: {x: 8.73, y: 2.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2133883308
 MonoBehaviour:

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 // brainstorming note:
-// hmm consider for points. if I can't increase points when they pass immediately.
-// then what about when they come off the screen and get destroyed? make it so 
-// each meteoroid has a point value and a collision reduces it to 0... and loss of point 
-// for current points. or we divide by 3 or something like that otherwise too many points?
-// or I let an entire wave be worth 1 point
+
 // note, needed to add this to the literal meteoroid component to get it to move. 
 // may produce problems with multiple paths, check more later
+
+// changing the speed in this file so that it increases could work... the thing is, 
+// I need to find out if it can in fact take another object
+// also making this comment because the merge didn't get all the files I need
+// but otherwise the merge thinks everything is up to date
 public class RunnerPathFinder : MonoBehaviour
 {
     WaveConfigSO wave_config;

@@ -8,7 +8,7 @@ public class HighestScore : MonoBehaviour
 {
     public TMP_Text TextMeshPro;
     public static int highest_score = 0;
-    // Update is called once per frame
+
     void Update()
     {
         if(Score.total_score > highest_score){

@@ -25,4 +25,9 @@ public class Restart : MonoBehaviour
         SceneManager.LoadScene("Score Attack");
         Debug.Log("restart");
     }
+
+    public void doMainMenu(){
+        SceneManager.LoadScene("Main Menu");
+        Debug.Log("Main Menu");
+    }
 }

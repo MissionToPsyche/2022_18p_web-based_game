@@ -4,6 +4,29 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: ccb69d1ca814d2d4f9e19b343deeae0f, type: 2}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Memory.unity
+    guid: a91e56a1f9c004b4fa8129ca1aaba988
+  - enabled: 1
+    path: Assets/Scenes/Runner.unity
+    guid: f2a722dd5c65b5340b987ad266306a34
+  - enabled: 1
+    path: Assets/Scenes/Score Attack.unity
+    guid: 130d20fa4d663a14abece5ef2cf5341e
+  - enabled: 1
+    path: Assets/Scenes/Time Attack.unity
+    guid: 6a3f31d0964a203469f50c69e7a80a5b
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/About/Phase A.unity
+    guid: 6c6b28576d9ab4565aaa2cd2ed387bdb
+  - enabled: 1
+    path: Assets/Scenes/About/Phase B.unity
+    guid: 6dbccc73121634a7a95fee7b2a865c66
+  - enabled: 1
+    path: Assets/Scenes/About/Phase C.unity
+    guid: 9ff01143bf8164243987919aa636c8f4
+  m_configObjects: {}

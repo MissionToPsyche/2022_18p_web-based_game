@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// point system broken. something went wrong!
 public class RunnerMeteoroidPoints : MonoBehaviour
 {
     // Start is called before the first frame update

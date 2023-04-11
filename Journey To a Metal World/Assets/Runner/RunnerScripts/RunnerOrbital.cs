@@ -62,6 +62,7 @@ public class RunnerOrbital : MonoBehaviour
     void Update()
     {
         // moving the orbital
+        // need to 
         OrbitalMovement();
         DamageApplied(this.current_collisions);
         if (this.invinciblity_frames_left > 0)
@@ -118,6 +119,10 @@ public class RunnerOrbital : MonoBehaviour
     */
     void OnTriggerEnter2D(Collider2D other) 
     {
+        if (this.game_over == true)
+        {
+            return;
+        }
         if (other.tag == "Finish" && this.game_over == false)
         {
             this.game_over = true;

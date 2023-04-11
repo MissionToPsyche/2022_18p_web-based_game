@@ -4373,7 +4373,7 @@ GameObject:
   - component: {fileID: 1971605073}
   m_Layer: 0
   m_Name: Orbital
-  m_TagString: orbital
+  m_TagString: Orbital
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -6,11 +6,13 @@ TagManager:
   tags:
   - ray
   - research area
+  - Part Location
+  - Logic
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Parts
   - Water
   - UI
   - Sun

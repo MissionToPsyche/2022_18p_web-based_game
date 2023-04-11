@@ -16,12 +16,14 @@ public class RunnerPathFinder : MonoBehaviour
     WaveConfigSO wave_config;
     RunnerEnemySpawner enemy_spawner;
     List<Transform> waypoints;
-    // RunnerMeteoroidMove meteoroid_move;
+    RunnerMeteoroidMove meteoroid_move;
+    [SerializeField] float speed;
     int waypoint_index = 0; // so that we start at the first waypoint    
 
     void Awake() 
     {
         this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
+
         // print(enemy_spawner);    
     }
 
@@ -30,7 +32,7 @@ public class RunnerPathFinder : MonoBehaviour
         wave_config = enemy_spawner.GetCurrentWave();
         waypoints = wave_config.GetWaypoints();
         transform.position = waypoints[waypoint_index].position; 
-        // this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
+        this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
 
     }
 
@@ -45,10 +47,13 @@ public class RunnerPathFinder : MonoBehaviour
         if (waypoint_index < waypoints.Count)
         {
             Vector3 target_position = waypoints[waypoint_index].position;
-            float delta = wave_config.GetMoveSpeed() * Time.deltaTime;
-            // float delta = meteoroid_move.GetCurrentSpeed() * Time.deltaTime; 
+            // float delta = wave_config.GetMoveSpeed() * Time.deltaTime;
+            float delta = meteoroid_move.GetCurrentSpeed() * Time.deltaTime;  // somehow this
+            //doesn't seem to impact the speed?
             transform.position = Vector2.MoveTowards(transform.position, 
                 target_position, delta);
+            this.speed = delta; // for testing purposes, trying to figure out speed...
+            
             if (transform.position == target_position)
             {
                 waypoint_index++;

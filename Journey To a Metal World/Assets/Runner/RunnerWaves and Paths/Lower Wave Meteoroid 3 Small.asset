@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c049936d1c46d45a06f8ea5e5c2626, type: 3}
+  m_Name: Lower Wave Meteoroid 3 Small
+  m_EditorClassIdentifier: 
+  enemy_prefabs:
+  - {fileID: 3125195265773859282, guid: bbd258522ba263743928e18897115a04, type: 3}
+  pathPrefab: {fileID: 7862929187388384075, guid: 99f4d2e1afca1b74d959c7983b231034, type: 3}
+  move_speed: 3
+  time_between_enemy_spawns: 2
+  spawn_time_variance: 0
+  minimum_spawn_time: 1

@@ -52,6 +52,12 @@ public class TimeLogic : MonoBehaviour
     }
 
 
+    public void exitGame()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+
     public bool getIsGameOver()
     {
         return isGameOver;

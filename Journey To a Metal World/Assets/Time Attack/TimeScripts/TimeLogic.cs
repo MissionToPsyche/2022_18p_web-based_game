@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TimeLogic : MonoBehaviour
 {
-    [SerializeField] public Text timeText;
+    [SerializeField] public TextMeshProUGUI timeText;
     [SerializeField] public GameObject gameOver;
 
     private float timer;

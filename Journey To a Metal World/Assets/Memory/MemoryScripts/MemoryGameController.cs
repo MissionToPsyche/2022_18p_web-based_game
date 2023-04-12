@@ -52,8 +52,15 @@ public class MemoryGameController : MonoBehaviour
 
     public IEnumerator restartMemoryGame()
     {
+        yield return new WaitForSeconds(0.3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        yield return new WaitForSeconds(1f);
+    }
+
+
+    public IEnumerator returnToMainMenu()
+    {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene("Main Menu");
     }
 
 

@@ -54,4 +54,10 @@ public class MemoryObjectProperties : MonoBehaviour
     {
         StartCoroutine(controller.restartMemoryGame());
     }
+
+
+    public void mainMenu()
+    {
+        StartCoroutine(controller.returnToMainMenu());
+    }
 }

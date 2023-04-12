@@ -13,7 +13,8 @@ using TMPro;
 public class TimeLogic : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI timeText;
-    [SerializeField] public GameObject gameOver;
+    [SerializeField] public float totalTime;
+    [SerializeField] public GameObject gameOverDisplay;
 
     private float timer;
     private bool isGameOver;
@@ -21,7 +22,7 @@ public class TimeLogic : MonoBehaviour
 
     void Start() 
     {
-        timer = 30;
+        timer = totalTime;
         isGameOver = false;
     }
 
@@ -33,7 +34,7 @@ public class TimeLogic : MonoBehaviour
                 timer -= Time.deltaTime;
                 updateTime();
             } else {
-                gameOver.SetActive(true);
+                gameOverDisplay.GetComponent<GameOverDisplay>().setup(GetComponent<ScoreLogic>().getScore());
                 isGameOver = true;
             }
         }
@@ -43,7 +44,7 @@ public class TimeLogic : MonoBehaviour
 
     void updateTime()
     {
-        timeText.text = "Time Left: " + ((int) timer).ToString();
+        timeText.text = "Time: " + ((int) timer).ToString();
     }
 
 

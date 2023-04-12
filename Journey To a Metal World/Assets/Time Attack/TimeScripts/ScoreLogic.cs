@@ -21,4 +21,10 @@ public class ScoreLogic : MonoBehaviour
         score += 1;
         scoreText.text = "Score: " + score.ToString();
     }
+
+
+    public int getScore()
+    {
+        return score;
+    }
 }

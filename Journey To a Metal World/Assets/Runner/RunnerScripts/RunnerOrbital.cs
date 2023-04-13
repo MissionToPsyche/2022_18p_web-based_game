@@ -126,6 +126,7 @@ public class RunnerOrbital : MonoBehaviour
         {
             this.game_over = true;
             this.game_won = true;
+            stage.StopMeteoroidMovement(); // 
             Debug.Log("Finish Line passed");
         }    
         else if (other.tag == "PointBox")

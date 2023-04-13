@@ -25,7 +25,6 @@ public class RunnerPathFinder : MonoBehaviour
     {
         this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
 
-        // print(enemy_spawner);    
     }
 
     void Start() 

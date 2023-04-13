@@ -18,12 +18,15 @@ public class RunnerEnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemyWaves());    
     }
 
-
+    /**
+        when we see the Finish tagged trigger we stop spawning meteoroids since we've reached psyche. 
+    */
     void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.tag == "Finish")
         {
             this.continue_spawning = false;
+            Debug.Log("Meteoroids should stop spawning");
         }     
     }
 

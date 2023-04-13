@@ -42,6 +42,11 @@ public class RunnerBackgroundMove : MonoBehaviour
         transform.Translate(x_movement, 0, 0);
     }
 
+    public void StopBackgroundMovement()
+    {
+        this.moving = false;
+        Debug.Log("Background movement should be stopped");
+    }
 
    
 }

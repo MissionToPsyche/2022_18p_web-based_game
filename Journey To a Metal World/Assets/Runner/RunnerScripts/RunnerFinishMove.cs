@@ -11,13 +11,14 @@ public class RunnerFinishMove : MonoBehaviour
 {
     bool moving = false;
     RunnerMeteoroidMove meteoroid_move;
+    RunnerBackgroundMove background_move;
     float SPEED_DENOMINATOR = 2;
     
      // Start is called before the first frame update
 
     void Start()
     {
-         meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
+        meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
     }
 
     // Update is called once per frame
@@ -40,6 +41,7 @@ public class RunnerFinishMove : MonoBehaviour
     public void StopMoving()
     {
         this.moving = false;
+
     }
 
     void DoMovement()

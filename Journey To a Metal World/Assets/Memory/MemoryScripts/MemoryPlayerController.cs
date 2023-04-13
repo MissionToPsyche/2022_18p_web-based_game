@@ -14,6 +14,7 @@ public class MemoryPlayerController : MonoBehaviour
 {
     [SerializeField] GameObject score_text;
     [SerializeField] MemoryGameOverScreen game_over_screen;
+    [SerializeField] MemoryGameStartScreen game_start_screen;
     private MemoryPatternGenerator pattern_generator;
     private MemoryGameController controller;
     private Queue<GameObject> player_selection = new Queue<GameObject>();
@@ -27,6 +28,7 @@ public class MemoryPlayerController : MonoBehaviour
     {
         pattern_generator = FindObjectOfType<MemoryPatternGenerator>();
         controller = FindObjectOfType<MemoryGameController>();
+        game_start_screen = FindObjectOfType<MemoryGameStartScreen>();
     }
 
     
@@ -36,15 +38,18 @@ public class MemoryPlayerController : MonoBehaviour
     private void Update()
     {
         // we also want to give a bit of a pause to give the player time before starting the next pattern
-        if (!generated_pattern)
+        if (game_start_screen.hasGameStarted())
         {
-            controller.disableSolarComponentClick();
-            StartCoroutine(generatePatternWithPause());
+            if (!generated_pattern)
+            {
+                controller.disableSolarComponentClick();
+                StartCoroutine(generatePatternWithPause());
+            }
+            roundController();
+            
+            // connects the player_score with the text that is shown on the screen
+            score_text.GetComponent<TextMeshProUGUI>().text = "Score: " + player_score.ToString();
         }
-        roundController();
-        
-        // connects the player_score with the text that is shown on the screen
-        score_text.GetComponent<TextMeshProUGUI>().text = "Score: " + player_score.ToString();
     }
 
 

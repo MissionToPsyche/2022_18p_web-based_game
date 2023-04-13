@@ -20,7 +20,7 @@ public class RunnerUI : MonoBehaviour
 
     void Awake() 
     {
-        score_keeper = FindObjectOfType<RunnerScore>();    
+        this.score_keeper = FindObjectOfType<RunnerScore>();    
     }
 
      void Start() 
@@ -31,9 +31,9 @@ public class RunnerUI : MonoBehaviour
 
     void Update()
     {
-        // lives_slider.value = player_lives.GetLives();
-
-        score_text.text = (score_keeper.GetScore()).ToString();
+        this.score_text.text = this.score_keeper.GetScore().ToString();
+        // Debug.Log(this.score_keeper);
+        // Debug.Log(this.score_
     }
 
     /**

@@ -41,6 +41,7 @@ public class RunnerOrbital : MonoBehaviour
     [SerializeField] float padding_top = 2.1f;
     [SerializeField] float padding_bottom = 0.9f;
     RunnerLivesFrontEndManager visual_manager;
+    [SerializeField] RunnerGameOverScreen game_over_screen;
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
     // flash.
 
@@ -55,6 +56,7 @@ public class RunnerOrbital : MonoBehaviour
         this.visual_manager = FindObjectOfType<RunnerLivesFrontEndManager>();
         this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
         this.lives = MAX_LIVES;
+        // this.game_over_screen = FindObjectOfType<RunnerGameOverScreen>();
         InitBounds();
 
     }
@@ -75,11 +77,14 @@ public class RunnerOrbital : MonoBehaviour
         {
             if (this.game_won == false)
             {
-                gameLostProcess(); 
+                if (gameLostProcess() == true)
+                {
+                    BringUpScoreScreen();
+                } 
             }
             else
             {
-                
+                BringUpScoreScreen();
             }
         }
 
@@ -124,18 +129,19 @@ public class RunnerOrbital : MonoBehaviour
         {
             return;
         }
-        if (other.tag == "Finish" && this.game_over == false)
-        {
-            this.game_over = true;
-            this.game_won = true;
-            stage.StopMeteoroidMovement(); // 
-            Debug.Log("Finish Line passed");
-        }    
         else if (other.tag == "PointBox")
         {
             RunnerMeteoroidPoints pointManager = other.GetComponent<RunnerMeteoroidPoints>();
             pointManager.ReachedPointsArea();   
         }
+        else if (other.tag == "Finish" && this.game_over == false) 
+        // game_over == false is to make sure this triggers only once
+        {
+            this.game_over = true;
+            this.game_won = true;
+            stage.StopMeteoroidMovement();
+            Debug.Log("Finish Line passed");
+        }    
 
     }
 
@@ -151,27 +157,7 @@ public class RunnerOrbital : MonoBehaviour
         this.current_collisions++;
         other.gameObject.transform.BroadcastMessage("SetPointTotalToZero");
         stage.ResetSpeed();
-        //note by default. it's per collision. also not exit collision. 
-        // use enter and exit to bound the invincibility? 
-        // include a timer of some sort otherwise explot. push meteroid to end
-        // if ((other.gameObject.CompareTag("Finish") == true) && this.game_over == false)
-        // if (this.game_over == false)
-        // {
-        //     this.game_over = true;
-        //     this.game_won = true;
-        //     Debug.Log("Finish Line passed");
-        // }
-        // else
-        // {
-            // this.current_collisions++;
 
-        // }
-        // if (this.invinciblity_frames_left = 0)
-        // {
-        //     this.lives--;
-        //     this.invinciblity_frames_left = INVINCIBILITY_FRAME_LENGTH;
-        //     Debug.Log("Took a hit. number of lives left is: " + this.lives);
-        // }
     }
 
     /**
@@ -181,11 +167,6 @@ public class RunnerOrbital : MonoBehaviour
     */
     void OnCollisionExit2D(Collision2D other) 
     {
-        // if (other.gameObject.CompareTag("Finish") == false)
-        // if (other.tag != "Finish")
-        // {
-        //     this.current_collisions--;    
-        // }
         this.current_collisions--;    
         
     }
@@ -272,11 +253,32 @@ public class RunnerOrbital : MonoBehaviour
         this.enemy_spawner.StopSpawningMeteoroids();
         if (orbital_color.a == 0)
         {
+            
             return true;
         }
         return false;
     }
 
+    void BringUpScoreScreen()
+    {
+        int current_score = this.score_keeper.GetScore();
+        if (this.score_keeper.IsLargerThanCurrentHighScore(current_score) == true)
+        {
+            this.score_keeper.SetRunnerHighScore(current_score);
+        }
+        this.game_over_screen.SetupScreen(current_score, this.score_keeper.GetRunnerHighScore(), this.game_won);
+        Debug.Log("game Over screen method finished");
+        // int result = score_keeper.UpdateHighScore(current_score);
+
+        // int last_high_score = 
+        // this.game_over_screen.SetupScreen();
+    }
+
+    /**
+        if we want a different screen for success I'll need this
+        that said, the runner game is the only one that doesn't operate on a timer so...
+        we'll see if we want it
+    */
     void gameWinProcess()
     {
         // this.movement_speed = 0;

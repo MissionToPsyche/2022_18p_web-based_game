@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class PartLocation : MonoBehaviour
 {
-    private static Color TRANSPARENT = new Color(1, 1, 1, 0.35f);
+    private static Color TRANSPARENT = new Color(1, 1, 1, 0.75f);
     private static Color OPAQUE = new Color(1, 1, 1, 1);
 
     private int partLocationType;

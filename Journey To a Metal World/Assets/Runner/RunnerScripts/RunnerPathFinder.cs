@@ -18,6 +18,7 @@ public class RunnerPathFinder : MonoBehaviour
     List<Transform> waypoints;
     RunnerMeteoroidMove meteoroid_move;
     [SerializeField] float speed;
+    [SerializeField] float rawSpeed;
     int waypoint_index = 0; // so that we start at the first waypoint    
 
     void Awake() 
@@ -53,7 +54,7 @@ public class RunnerPathFinder : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, 
                 target_position, delta);
             this.speed = delta; // for testing purposes, trying to figure out speed...
-            
+            this.rawSpeed = meteoroid_move.GetCurrentSpeed();
             if (transform.position == target_position)
             {
                 waypoint_index++;

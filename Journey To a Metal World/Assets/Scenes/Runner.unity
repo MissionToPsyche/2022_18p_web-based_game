@@ -404,7 +404,7 @@ Transform:
   - {fileID: 467007816}
   - {fileID: 754600563}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &46228227
 MonoBehaviour:
@@ -476,12 +476,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130181821}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.56, y: 0.04, z: 1.6387032}
+  m_LocalPosition: {x: 17.578556, y: -2.9357111, z: 11.609031}
   m_LocalScale: {x: 1, y: 10.0291, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 925969480}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &130181823
 BoxCollider2D:
@@ -1790,7 +1790,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &694087512
 GameObject:
@@ -1835,7 +1835,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &696481466
 GameObject:
@@ -2125,13 +2125,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755597949}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.82, y: -0.2, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 24.838556, y: -3.1757112, z: 9.970327}
   m_LocalScale: {x: 3.0168104, y: 3.0168104, z: 3.0168104}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_Father: {fileID: 925969480}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &775451540
 GameObject:
@@ -2233,7 +2233,7 @@ RectTransform:
   - {fileID: 174704640}
   - {fileID: 263127376}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2252,8 +2252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f4558b06e6a674b85ed78547f328be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives_slider: {fileID: 696481468}
-  player_lives: {fileID: 1971605067}
   score_text: {fileID: 1296421685}
 --- !u!1 &817027647
 GameObject:
@@ -2827,6 +2825,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &925969478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925969480}
+  - component: {fileID: 925969479}
+  m_Layer: 0
+  m_Name: Finish
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &925969479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925969478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5089d6bb6ddb1da41a4eadc6c42bfcb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &925969480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925969478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.9814441, y: 2.975711, z: -9.970327}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 755597951}
+  - {fileID: 130181822}
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1027776083
 GameObject:
   m_ObjectHideFlags: 0
@@ -3017,7 +3061,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1066441456
 BoxCollider2D:
@@ -3590,7 +3634,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1677852930
 GameObject:
@@ -3949,7 +3993,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1806842767
 GameObject:
@@ -5170,7 +5214,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 975211388772147482, guid: da001452ab4216a43b875b69b3036043, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 975211388772147482, guid: da001452ab4216a43b875b69b3036043, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5284,7 +5328,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1648084365811257049, guid: 482677bfff24b8e4d91ed64212141668, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1648084365811257049, guid: 482677bfff24b8e4d91ed64212141668, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5516,7 +5560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7862929187388384075, guid: 99f4d2e1afca1b74d959c7983b231034, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7862929187388384075, guid: 99f4d2e1afca1b74d959c7983b231034, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5569,7 +5613,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2814404541040584013, guid: 98491bbb4dc406c47a77a295fcc72817, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2814404541040584013, guid: 98491bbb4dc406c47a77a295fcc72817, type: 3}
       propertyPath: m_LocalPosition.x

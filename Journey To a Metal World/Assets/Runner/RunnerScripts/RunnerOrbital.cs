@@ -40,7 +40,6 @@ public class RunnerOrbital : MonoBehaviour
     [SerializeField] float padding_top = 2.1f;
     [SerializeField] float padding_bottom = 0.9f;
     RunnerLivesFrontEndManager visual_manager;
-    
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
     // flash.
 
@@ -111,7 +110,7 @@ public class RunnerOrbital : MonoBehaviour
     {
         //should be getting the result from the input to w and s keys
         this.raw_input = value.Get<Vector2>();
-        Debug.Log("move value is " + this.raw_input);
+        // Debug.Log("move value is " + this.raw_input);
     }
 
     /**
@@ -269,6 +268,12 @@ public class RunnerOrbital : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    void gameWinProcess()
+    {
+        // this.movement_speed = 0;
+        
     }
 
     void DecreaseLives()

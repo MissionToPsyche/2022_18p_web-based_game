@@ -10,9 +10,11 @@ public class RunnerEnemySpawner : MonoBehaviour
     [SerializeField] float wave_delay = 1f;
     bool continue_spawning = true;
     bool finished_all_waves = false;
+    RunnerFinishMove finishline;
 
     void Start() 
     {
+        this.finishline = FindObjectOfType<RunnerFinishMove>();
         StartCoroutine(SpawnEnemyWaves());    
     }
 
@@ -51,6 +53,7 @@ public class RunnerEnemySpawner : MonoBehaviour
 
         }
         this.finished_all_waves = true;
+        this.finishline.StartMoving();
     }
 
 

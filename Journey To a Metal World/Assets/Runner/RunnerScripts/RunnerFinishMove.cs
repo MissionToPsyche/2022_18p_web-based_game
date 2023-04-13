@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// need to pick condition to stop it from moving. likely may involve setting up a trigger 
+// for it to hit. for that matter may be using a trigger to tell the background when to stop moving.
+// ... may need to spawn backgrounds if it gets long enough. 
+// and then get into writing out the randomizing aspect at some point
+// mqy need to change steering speed though if orbital feels like it's moving slow
 public class RunnerFinishMove : MonoBehaviour
 {
     bool moving = false;
@@ -27,9 +32,14 @@ public class RunnerFinishMove : MonoBehaviour
 
     }
 
-    void StartMoving()
+    public void StartMoving()
     {
         this.moving = true;
+    }
+
+    public void StopMoving()
+    {
+        this.moving = false;
     }
 
     void DoMovement()

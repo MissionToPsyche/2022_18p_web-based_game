@@ -850,7 +850,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -494.79996, y: -32.320007}
+  m_AnchoredPosition: {x: -494.79993, y: -32.320007}
   m_SizeDelta: {x: -1017.64, y: 58.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &174704641
@@ -1020,7 +1020,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -432.79996, y: -32.320007}
+  m_AnchoredPosition: {x: -432.79993, y: -32.320007}
   m_SizeDelta: {x: -1017.64, y: 58.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &263127377
@@ -1773,10 +1773,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8937b82607b1d43b2e04d4c3eb1ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MIN_MOVEMENT_SPEED: 1
-  current_movement_speed: 1
-  MAX_MOVEMENT_SPEED: 10
-  SPEED_INCREASE: 0.2
+  MIN_MOVEMENT_SPEED: 0.01
+  current_movement_speed: 0.01
+  MAX_MOVEMENT_SPEED: 20
+  SPEED_INCREASE: 0.01
 --- !u!4 &545896071
 Transform:
   m_ObjectHideFlags: 0
@@ -2106,7 +2106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: b26de8203a71ca54d91cc5bb5e42bdf3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

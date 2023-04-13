@@ -10,6 +10,7 @@ public class RunnerEnemySpawner : MonoBehaviour
     [SerializeField] float wave_delay = 1f;
     bool continue_spawning = true;
     bool finished_all_waves = false;
+    bool send_finishline = true;
     RunnerFinishMove finishline;
 
     void Start() 
@@ -40,7 +41,7 @@ public class RunnerEnemySpawner : MonoBehaviour
             {
                 if (this.continue_spawning == false)
                 {
-                    yield return new WaitForSeconds(0);
+                    break;
                 }
 
                 Instantiate(current_wave.GetEnemyPrefab(i),
@@ -56,7 +57,10 @@ public class RunnerEnemySpawner : MonoBehaviour
 
         }
         this.finished_all_waves = true;
-        this.finishline.StartMoving();
+        if (this.send_finishline == true)
+        {
+            this.finishline.StartMoving();
+        }
     }
 
 
@@ -74,5 +78,15 @@ public class RunnerEnemySpawner : MonoBehaviour
     public WaveConfigSO GetCurrentWave()
     {
         return this.current_wave;
+    }
+
+    /**
+        signals the spawner to stop spawning new meteoroids
+    */
+    public void StopSpawningMeteoroids()
+    {
+        this.continue_spawning = false;
+        this.send_finishline = false;
+
     }
 }

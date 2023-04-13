@@ -32,6 +32,7 @@ public class RunnerOrbital : MonoBehaviour
     bool game_won = false;
     int COLLISION_MINUS_POINT = -1;
     RunnerMeteoroidMove stage; 
+    RunnerEnemySpawner enemy_spawner;
 
     Vector2 min_bounds;
     Vector2 max_bounds;
@@ -52,6 +53,7 @@ public class RunnerOrbital : MonoBehaviour
         this.score_keeper = FindObjectOfType<RunnerScore>();
         this.stage = FindObjectOfType<RunnerMeteoroidMove>();
         this.visual_manager = FindObjectOfType<RunnerLivesFrontEndManager>();
+        this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
         this.lives = MAX_LIVES;
         InitBounds();
 
@@ -264,6 +266,10 @@ public class RunnerOrbital : MonoBehaviour
     {
         this.orbital_color.a--;
         this.sprite.color = orbital_color;
+        // this.stage.StopMeteoroidMovement();
+        // this would stop movement. but for the more interesting and nicer view, 
+        // let's instead just let any existing meteoroids keep going but not spawn any more
+        this.enemy_spawner.StopSpawningMeteoroids();
         if (orbital_color.a == 0)
         {
             return true;

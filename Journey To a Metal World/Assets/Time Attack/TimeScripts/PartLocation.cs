@@ -11,6 +11,13 @@ public class PartLocation : MonoBehaviour
 {
     private static Color TRANSPARENT = new Color(1, 1, 1, 0.75f);
     private static Color OPAQUE = new Color(1, 1, 1, 1);
+    private static Dictionary<string, int> PART_LOCATIONS = new Dictionary<string, int>() {
+        {"Antenna Part Location", 0},
+        {"Magnetometer Part Location", 1},
+        {"Spectrometer Part Location", 2},
+        {"+Y Part Location", 3},
+        {"-Y Part Location", 4}
+    };
 
     private int partLocationType;
     private SpriteRenderer rend;
@@ -18,7 +25,7 @@ public class PartLocation : MonoBehaviour
 
     void Start()
     {
-        partLocationType = PartIndex.PART_LOCATIONS[name];
+        partLocationType = PART_LOCATIONS[name];
         rend = GetComponent<SpriteRenderer>();
     }
 

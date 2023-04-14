@@ -18,12 +18,14 @@ public class TimeLogic : MonoBehaviour
 
     private float timer;
     private bool isGameOver;
+    private ScoreLogic scoreLogic;
 
 
     void Start() 
     {
         timer = totalTime;
         isGameOver = false;
+        scoreLogic = GetComponent<ScoreLogic>();
     }
 
 
@@ -34,7 +36,9 @@ public class TimeLogic : MonoBehaviour
                 timer -= Time.deltaTime;
                 updateTime();
             } else {
-                gameOverDisplay.GetComponent<GameOverDisplay>().setup(GetComponent<ScoreLogic>().getScore());
+                scoreLogic.setHighScore();
+                scoreLogic.saveHighScore();
+                gameOverDisplay.GetComponent<GameOverDisplay>().setup(scoreLogic.getScore(), scoreLogic.getHighScore());
                 isGameOver = true;
             }
         }

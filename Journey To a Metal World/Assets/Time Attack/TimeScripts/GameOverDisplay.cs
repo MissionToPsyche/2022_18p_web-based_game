@@ -5,15 +5,15 @@ using TMPro;
 
 public class GameOverDisplay : MonoBehaviour
 {
-    [SerializeField] public TextMeshProUGUI score_text;
-    [SerializeField] public TextMeshProUGUI high_score_text;
+    [SerializeField] public TextMeshProUGUI scoreText;
+    [SerializeField] public TextMeshProUGUI highScoreText;
     [SerializeField] public GameObject logicManager;
 
 
-    public void setup(int score)
+    public void setup(int score, int highScore)
     {   
-        score_text.text = "Your Score: \n" + score.ToString();
-        // // high_score_text.text = "High Score: \n" + high_score.ToString();
+        scoreText.text = "Your Score: \n" + score.ToString();
+        highScoreText.text = "High Score: \n" + highScore.ToString();
         gameObject.SetActive(true);
     }
 }

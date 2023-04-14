@@ -3476,8 +3476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b448b2164d8c4c10bd59bb3133cb565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score_text: {fileID: 1389734989}
-  high_score_text: {fileID: 319212848}
+  scoreText: {fileID: 1389734989}
+  highScoreText: {fileID: 319212848}
   logicManager: {fileID: 44699907}
 --- !u!1 &1389734987
 GameObject:

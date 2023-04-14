@@ -9,8 +9,10 @@ public class Rotating : MonoBehaviour
     public float speed = Orbitting.speed;
     void Update()
     {
-        speed = Orbitting.speed;
-        transform.Rotate(new Vector3(0, 0, speed));
+        if(StartScene.game_start == true){
+            speed = Orbitting.speed;
+            transform.Rotate(new Vector3(0, 0, speed));
+        }
     }
 
 }

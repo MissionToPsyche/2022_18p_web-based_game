@@ -15,7 +15,9 @@ public class AreaDetector : MonoBehaviour
 
     void Update()
     {
-        UpdatePosition();
+        if(StartScene.game_start == true){
+            UpdatePosition();
+        }
     }
 
 

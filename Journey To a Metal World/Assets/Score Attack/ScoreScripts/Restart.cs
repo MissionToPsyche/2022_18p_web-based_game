@@ -20,6 +20,11 @@ public class Restart : MonoBehaviour
     //         restart = false;
     //     }
     // }
+
+    public void doStart(){
+        StartScene.game_start = true;
+    }
+
     public void doRestart(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("Score Attack");

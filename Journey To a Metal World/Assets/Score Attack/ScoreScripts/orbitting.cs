@@ -13,17 +13,20 @@ public class Orbitting : MonoBehaviour
     
     void Start()
     {
+        
         transform.position = new Vector3(0f, 0f, 0);
         degree = 0.0;
         speed = 0.1f;
-        iter_count = 0;
+        iter_count = 0;        
     }
 
     void Update()
     {
-        UpdatePosition();
-        SpeedUp();
-        StopOrbit();
+        if(StartScene.game_start == true){
+            UpdatePosition();
+            SpeedUp();
+            StopOrbit();
+        }
     }
 
     void UpdatePosition()

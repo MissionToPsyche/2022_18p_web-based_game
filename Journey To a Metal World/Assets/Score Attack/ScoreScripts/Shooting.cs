@@ -24,7 +24,7 @@ public class Shooting : MonoBehaviour
 
     void Fire()
     {
-        if(this.isFire){
+        if(this.isFire && StartScene.game_start == true){
             this.coroutine = this.FireContinuously();
             StartCoroutine(this.coroutine);
         }

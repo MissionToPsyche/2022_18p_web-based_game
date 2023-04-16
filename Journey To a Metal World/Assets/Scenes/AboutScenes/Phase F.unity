@@ -411,7 +411,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Phase E
+  m_Text: Phase F
 --- !u!222 &325356921
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -533,8 +533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c359eb5a6ba4572887e71491568fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPhaseName: Phase F
-  prevPhaseName: Phase D
+  nextPhaseName: Phase A
+  prevPhaseName: Phase E
 --- !u!4 &534443081
 Transform:
   m_ObjectHideFlags: 0
@@ -843,7 +843,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MARS GRAVITY ASSIST, ARRIVAL, & ORBIT
+  m_Text: MISSION CLOSEOUT
 --- !u!222 &1065632783
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -963,8 +963,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The spacecraft uses a Mars gravity assist on its way to Psyche. Upon arrival
-    it engages in a four-stage orbit.
+  m_Text: The mission comes to an end and all remaining deliverables are curated
+    by the mission team.
 --- !u!222 &1396053761
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1584,7 +1584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f199d3d87a57d4b97aaedc82f735e7b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b1996570f0e0492cbcca2abc074d5c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

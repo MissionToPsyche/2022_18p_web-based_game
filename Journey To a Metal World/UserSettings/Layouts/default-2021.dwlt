@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1027
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 76
+  controlID: 37
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 77
+  controlID: 38
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 78
+  controlID: 39
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -189,8 +189,8 @@ MonoBehaviour:
     y: 0
     width: 339
     height: 579
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -317,23 +317,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/About
+    - Assets/About/Phase F/PhaseFAssets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes/About
+  - Assets/About/Phase F/PhaseFAssets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/jonathanchen/Documents/GitHub/2022_18p_web-based_game/Journey
     To a Metal World
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 65.5}
-    m_SelectedIDs: 48660000
-    m_LastClickedID: 26184
-    m_ExpandedIDs: 00000000e8650000ea650000006600000a660000146800001668000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: c09e0000
+    m_LastClickedID: 40640
+    m_ExpandedIDs: 00000000ba650000dc650000e46500001268000014680000166800008c820000a6920000bc9e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -361,7 +361,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e8650000ea650000
+    m_ExpandedIDs: 00000000ba650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -450,21 +450,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: deebffff1eecffff5eecffff6cefffffacefffffecefffff2cf0ffff6cf0ffffacf0fffffef0ffff62f1ffffacf1ffffecf1ffff2cf2ffff6cf2ffffbaf2ffff1ef4ffff68f8ffffbaf9fffff8f9ffff36faffff2cfbffff686800006c680000c0730000e0750000
+      m_ExpandedIDs: 66adffffcac0ffff02c1ffff3ec8ffff7ac8ffffb6c8fffff2c8ffff2ec9ffff6ac9ffffa6c9ffffe2c9ffff1ecaffffe2ccffff1ed8ffff5ad8ffff96d8ffffced8ffff3ed9ffff5cdaffff98daffffd4daffff10dbffffb2dbffffeedbffff2adcffff66dcffff62ddffffc2ddfffffeddffff3adeffff88deffff1adfffff5adfffff96dfffffd2dfffff0ee0ffff4ae0ffffe0e6ffffbeebfffff0f2ffffa8f3ffff32faffff1afbffff4c660000586600000c6a0000506d0000f26e0000f66e0000048000001e800000ae810000c8810000108700002a8700004e9200005292000064920000649e0000689e00007a9e0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Logic Manager
+        m_OriginalName: Logic Manager
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 37442
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -747,16 +747,16 @@ MonoBehaviour:
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
-  m_SceneIsLit: 1
+  m_SceneIsLit: 0
   m_SceneLighting: 1
   m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2.6400936, y: 1.6514738, z: 1158.796}
+    m_Target: {x: 1.7341483, y: 0.27280375, z: 0.4372721}
     speed: 2
-    m_Value: {x: 2.6400936, y: 1.6514738, z: 1158.796}
+    m_Value: {x: 1.7341483, y: 0.27280375, z: 0.4372721}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -807,9 +807,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 12.6111965
+    m_Target: 5.944052
     speed: 2
-    m_Value: 12.6111965
+    m_Value: 5.944052
   m_Ortho:
     m_Target: 1
     speed: 2

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhaseAOrbitalMovement : MonoBehaviour
+public class OrbitalMoviement : MonoBehaviour
 {
     [SerializeField] Transform start;
     [SerializeField] Transform middle;

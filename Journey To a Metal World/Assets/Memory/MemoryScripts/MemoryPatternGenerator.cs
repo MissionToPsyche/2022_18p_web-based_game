@@ -76,9 +76,13 @@ public class MemoryPatternGenerator : MonoBehaviour
             // add this to an array to verify if the player chooses the correct one.
             pattern_storage.Enqueue(solar_component);
             
-            solar_component.GetComponent<Image>().color = Color.black;
+            Sprite original_image = solar_component.GetComponent<Image>().sprite;
+            solar_component.GetComponent<Image>().sprite = controller.getSolarSpriteArray()[random_index];
+
             yield return new WaitForSeconds(highlight_object_speed);
-            solar_component.GetComponent<Image>().color = Color.white;
+
+            solar_component.GetComponent<Image>().sprite = original_image;
+            
             yield return new WaitForSeconds(return_to_original_color_speed);
             Debug.Log("object: " + solar_component);
 

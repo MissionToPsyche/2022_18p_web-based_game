@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 public class MemoryPlayerController : MonoBehaviour
 {
     [SerializeField] GameObject score_text;
+    [SerializeField] TextMeshProUGUI time_text;
     [SerializeField] MemoryGameOverScreen game_over_screen;
     [SerializeField] MemoryGameStartScreen game_start_screen;
     private MemoryPatternGenerator pattern_generator;
@@ -21,6 +22,8 @@ public class MemoryPlayerController : MonoBehaviour
     private int player_score = 0;
     private bool complete_pattern = false;
     private bool generated_pattern = false;
+    private bool time_on = false;
+    private float time = 80f;
     
 
     /// <summary> Finds the MemoryPatternGenerator and MemoryGameController objects to use later on. </summary>
@@ -29,6 +32,12 @@ public class MemoryPlayerController : MonoBehaviour
         pattern_generator = FindObjectOfType<MemoryPatternGenerator>();
         controller = FindObjectOfType<MemoryGameController>();
         game_start_screen = FindObjectOfType<MemoryGameStartScreen>();
+    }
+
+
+    private void Start()
+    {
+        time_on = true;
     }
 
     
@@ -99,7 +108,22 @@ public class MemoryPlayerController : MonoBehaviour
             controller.changePatternPermissions(false);
         }
 
-        // TODO: setup timer
+        if (time_on)
+        {
+            if (time > 0)
+            {
+                time -= Time.deltaTime;
+                int time_str = (int)time;
+                time_text.text = "Time: " + time_str;
+                // the time starts while the pattern is being generated fix this
+            }
+            else
+            {
+                Debug.Log("time up");
+                time = 0;
+                time_on = false;
+            }
+        }
 
         
         if (player_selection.Count != 0)
@@ -148,6 +172,10 @@ public class MemoryPlayerController : MonoBehaviour
             // if the player successfully repeats the pattern then we increase the difficulty
             Debug.Log("\niteration: " + controller.getDifficultyGauge());
             controller.addToDifficultyGauge(1);
+
+            // for now we will lower the time as the round increases
+            time = 80f;
+            time_on = true;
         }
     }
 

@@ -14,6 +14,7 @@ using UnityEngine.SceneManagement;
 
 public class MemoryGameController : MonoBehaviour
 {
+    [SerializeField] Sprite[] solar_comp_sprites;
     [SerializeField] GameObject[] solar_components;
     private int difficulty_gauge = 1; // caps out at 20
     private int high_score = 0;
@@ -47,6 +48,12 @@ public class MemoryGameController : MonoBehaviour
     public GameObject[] getSolarComponentArray()
     {
         return solar_components;
+    }
+
+
+    public Sprite[] getSolarSpriteArray()
+    {
+        return solar_comp_sprites;
     }
 
 

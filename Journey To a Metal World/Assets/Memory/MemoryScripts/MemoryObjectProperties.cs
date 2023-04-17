@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class MemoryObjectProperties : MonoBehaviour
 {
     [SerializeField] GameObject solar_object;
+    [SerializeField] Sprite highlight_image;
     private MemoryPlayerController player_controller;
     private MemoryGameController controller;
 
@@ -26,7 +27,7 @@ public class MemoryObjectProperties : MonoBehaviour
     /// <returns> IEnumerator, which delays the button press color before changing back to the original color </returns>
     private IEnumerator makeSelection()
     {
-        solar_object.GetComponent<Image>().color = Color.magenta;
+        solar_object.GetComponent<Image>().color = Color.black;
         solar_object.GetComponent<Button>().interactable = false;
         yield return new WaitForSeconds(1f);
         solar_object.GetComponent<Button>().interactable = true;

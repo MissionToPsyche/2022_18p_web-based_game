@@ -154,6 +154,10 @@ public class RunnerOrbital : MonoBehaviour
     */
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.tag == "CollisionIgnore")
+        {
+            return;
+        }
         this.current_collisions++;
         other.gameObject.transform.BroadcastMessage("SetPointTotalToZero");
         stage.ResetSpeed();
@@ -167,6 +171,10 @@ public class RunnerOrbital : MonoBehaviour
     */
     void OnCollisionExit2D(Collision2D other) 
     {
+        if (other.gameObject.tag == "CollisionIgnore")
+        {
+            return;
+        }
         this.current_collisions--;    
         
     }

@@ -15,7 +15,6 @@ public class RunnerFinishMove : MonoBehaviour
     float SPEED_DENOMINATOR = 2;
     
      // Start is called before the first frame update
-
     void Start()
     {
         meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();

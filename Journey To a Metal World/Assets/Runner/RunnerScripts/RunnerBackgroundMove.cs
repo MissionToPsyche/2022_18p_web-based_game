@@ -48,5 +48,13 @@ public class RunnerBackgroundMove : MonoBehaviour
         Debug.Log("Background movement should be stopped");
     }
 
+// ok will need to make sometthing individually for the last background to stop it or keep spawning it
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "StopBackground")
+        {
+            StopBackgroundMovement();
+        }
+    }
    
 }

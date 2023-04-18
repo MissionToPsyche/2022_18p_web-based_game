@@ -53,6 +53,7 @@ public class MemoryPlayerController : MonoBehaviour
             {
                 controller.disableSolarComponentClick();
                 StartCoroutine(generatePatternWithPause());
+                time_on = false;
             }
             roundController();
             
@@ -92,6 +93,19 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    public void showGameOver()
+    {
+        player_selection.Clear();
+                
+        // once you set a possible high score, you must also save it so that it won't be wiped on the restart
+        controller.setHighScore(player_score);
+        controller.saveHighScore();
+                
+        // for now it restarts the game whenever the player makees an invalid selection
+        game_over_screen.setup(player_score, controller.getHighScore());
+    }
+
+
     /// <summary> Our main game logic that checks whether or not the player correctly selects the GameObject that was generated.
     /// It will award players with points when the selection is correct, and trigger a game over when the selection is incorrect. </summary> 
     public void roundController()
@@ -106,6 +120,7 @@ public class MemoryPlayerController : MonoBehaviour
         {
             controller.enableSolarComponentClick();
             controller.changePatternPermissions(false);
+            time_on = true;
         }
 
         if (time_on)
@@ -119,9 +134,10 @@ public class MemoryPlayerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("time up");
+                showGameOver();
                 time = 0;
                 time_on = false;
+                return;
             }
         }
 
@@ -131,14 +147,8 @@ public class MemoryPlayerController : MonoBehaviour
             if (pattern_generator.getPatternStorage().Peek() != player_selection.Peek())
             {
                 Debug.Log("Invalid Selection");
-                player_selection.Clear();
-                
-                // once you set a possible high score, you must also save it so that it won't be wiped on the restart
-                controller.setHighScore(player_score);
-                controller.saveHighScore();
-                
-                // for now it restarts the game whenever the player makees an invalid selection
-                game_over_screen.setup(player_score, controller.getHighScore());
+                time_on = false;
+                showGameOver();
 
                 return;
             }
@@ -174,8 +184,14 @@ public class MemoryPlayerController : MonoBehaviour
             controller.addToDifficultyGauge(1);
 
             // for now we will lower the time as the round increases
-            time = 80f;
-            time_on = true;
+            // they can get time back if they repeat the pattern
+            time += controller.getDifficultyGauge() / 2;
+            if (time > 80)
+            {
+                time = 80f;
+            }
+            time = (int)time;
+            time_text.text = "Time: " + time.ToString();
         }
     }
 

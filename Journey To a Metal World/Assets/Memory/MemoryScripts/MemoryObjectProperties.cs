@@ -27,11 +27,13 @@ public class MemoryObjectProperties : MonoBehaviour
     /// <returns> IEnumerator, which delays the button press color before changing back to the original color </returns>
     private IEnumerator makeSelection()
     {
-        solar_object.GetComponent<Image>().color = Color.black;
+        Sprite original = solar_object.GetComponent<Image>().sprite;
+
+        solar_object.GetComponent<Image>().sprite = highlight_image;
         solar_object.GetComponent<Button>().interactable = false;
         yield return new WaitForSeconds(1f);
         solar_object.GetComponent<Button>().interactable = true;
-        solar_object.GetComponent<Image>().color = Color.white;
+        solar_object.GetComponent<Image>().sprite = original;
     }
 
 

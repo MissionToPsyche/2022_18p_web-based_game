@@ -194,5 +194,4 @@ public class MemoryPlayerController : MonoBehaviour
             time_text.text = "Time: " + time.ToString();
         }
     }
-
 }

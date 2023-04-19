@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 74302}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: 21300000, guid: b1bbf516b8e360740a8607500475fa54, type: 3}
 --- !u!1 &79150489
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 124196310}
-  highlight_image: {fileID: 898887888, guid: b8fbe16b903244945a996c5998a97171, type: 3}
+  highlight_image: {fileID: 1667979995, guid: fe2d4c162f9230c488f4c2c14b7843b7, type: 3}
 --- !u!1 &222605187
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1916800212, guid: 7942d33cb6a365a47b81b2e530c4a017, type: 3}
+  m_Sprite: {fileID: 797154445, guid: c32753faa3c211943a7ab88f8bc70b77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -879,14 +879,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.92941177}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1453282447, guid: 7942d33cb6a365a47b81b2e530c4a017, type: 3}
+  m_Sprite: {fileID: 1499780361, guid: c32753faa3c211943a7ab88f8bc70b77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 243189718}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: 1456391157, guid: fe2d4c162f9230c488f4c2c14b7843b7, type: 3}
 --- !u!1 &264393644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,19 +1591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5066c39468de44196e8fe0eb3a355f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solar_comp_sprites:
-  - {fileID: 0}
-  - {fileID: 1753870, guid: b8fbe16b903244945a996c5998a97171, type: 3}
-  - {fileID: 339230458, guid: b8fbe16b903244945a996c5998a97171, type: 3}
-  - {fileID: 898887888, guid: b8fbe16b903244945a996c5998a97171, type: 3}
-  - {fileID: 0}
-  - {fileID: 749002473, guid: b8fbe16b903244945a996c5998a97171, type: 3}
-  - {fileID: 1976158411, guid: b8fbe16b903244945a996c5998a97171, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   solar_components:
   - {fileID: 241393456}
   - {fileID: 645121226}
@@ -2123,7 +2110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 645121226}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: 1120144887, guid: fe2d4c162f9230c488f4c2c14b7843b7, type: 3}
 --- !u!1 &823468687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,7 +2186,7 @@ RectTransform:
   m_GameObject: {fileID: 847511511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.5, y: 0.6, z: 1}
+  m_LocalScale: {x: 4.5, y: 0.58, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 363632743}
@@ -3968,7 +3955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 1742573978}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: -1422437496, guid: fe2d4c162f9230c488f4c2c14b7843b7, type: 3}
 --- !u!1 &1861420418
 GameObject:
   m_ObjectHideFlags: 0
@@ -4752,7 +4739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 2023364580}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: -1125614856, guid: fe2d4c162f9230c488f4c2c14b7843b7, type: 3}
 --- !u!1 &2046716655
 GameObject:
   m_ObjectHideFlags: 0
@@ -4912,7 +4899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 2046716655}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: 21300000, guid: 59ebc3bfb514ee14ea92b072b415c332, type: 3}
 --- !u!1 &2143837106
 GameObject:
   m_ObjectHideFlags: 0

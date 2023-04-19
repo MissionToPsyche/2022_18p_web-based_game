@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 222605187}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: -1935512209, guid: 041f8496dd7b7cf48ad22faf1b6950de, type: 3}
 --- !u!1 &241393456
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 241393456}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: -1368506782, guid: 041f8496dd7b7cf48ad22faf1b6950de, type: 3}
 --- !u!114 &241393462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1465,7 +1465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 424162228}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: 21300000, guid: a109166347dda604f91005f30de35778, type: 3}
 --- !u!1 &483830099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,7 +2754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 1149350347}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: 21300000, guid: a109166347dda604f91005f30de35778, type: 3}
 --- !u!1 &1152083883
 GameObject:
   m_ObjectHideFlags: 0
@@ -3795,7 +3795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 1722207377}
-  highlight_image: {fileID: 0}
+  highlight_image: {fileID: 21300000, guid: ece3fa86c8382394fa2f5943e9dae2ed, type: 3}
 --- !u!1 &1742573978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4899,7 +4899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solar_object: {fileID: 2046716655}
-  highlight_image: {fileID: 21300000, guid: 59ebc3bfb514ee14ea92b072b415c332, type: 3}
+  highlight_image: {fileID: 21300000, guid: 4910efdebcc5e924cb1244c9d7563338, type: 3}
 --- !u!1 &2143837106
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameCarousel : MonoBehaviour
 {
@@ -13,12 +14,14 @@ public class GameCarousel : MonoBehaviour
     [SerializeField] GameObject time_attack_animation;
     [SerializeField] GameObject memory_animation;
     [SerializeField] GameObject runner_animation;
+    [SerializeField] TextMeshProUGUI game_name_and_score;
 
     private SpriteRenderer rend;
     private LinkedList<GameObject> carousel;
 
     // creates a mapping of the games array to the animated game objects
     private Dictionary<GameObject, GameObject> animation_order = new Dictionary<GameObject, GameObject>();
+    private Dictionary<GameObject, string> game_name = new Dictionary<GameObject, string>();
 
 
     // Start is called before the first frame update
@@ -38,8 +41,14 @@ public class GameCarousel : MonoBehaviour
         // GameObject game = carousel.First.Value;
         // rend.color = game.GetComponent<SpriteRenderer>().color;
 
+        game_name[games[0]] = "Score Attack";
+        game_name[games[1]] = "Mechanical Madness";
+        game_name[games[2]] = "Among the Stars";
+        game_name[games[3]] = "A Pebble in the Way";
+
         // enables the score attack animation
         animation_order[games[0]].SetActive(true);
+        game_name_and_score.text = game_name[games[0]] + "\nScore: ";
         
         printCarousel();        
     }
@@ -58,6 +67,8 @@ public class GameCarousel : MonoBehaviour
         GameObject game = carousel.First.Value;
 
         animation_order[game].SetActive(true);
+        // shows the name of the game and score on score monitor
+        game_name_and_score.text = game_name[game] + "\nScore: ";
 
         // rend.color = game.GetComponent<SpriteRenderer>().color;
         printCarousel();
@@ -78,6 +89,7 @@ public class GameCarousel : MonoBehaviour
         GameObject game = carousel.First.Value;
 
         animation_order[game].SetActive(true);
+        game_name_and_score.text = game_name[game] + "\nScore: ";
         
         //rend.color = game.GetComponent<SpriteRenderer>().color;
         printCarousel();

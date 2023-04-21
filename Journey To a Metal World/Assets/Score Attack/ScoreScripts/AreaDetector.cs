@@ -39,6 +39,13 @@ public class AreaDetector : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) 
     {
         Debug.Log(gameObject.transform.position);
+        foreach (GameObject area in AreaGenerator.research_areas)
+        {
+            if(gameObject.transform.position == area.transform.position){
+                AreaGenerator.research_areas.Remove(area);
+                break;
+            }
+        }
         Destroy(gameObject);
         Destroy(other);
         Score.total_score += 10;

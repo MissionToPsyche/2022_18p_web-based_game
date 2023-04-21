@@ -7,7 +7,8 @@ public class RunnerScore : MonoBehaviour
 {
 
     // [SerializeField] public Text score_text;
-
+    // combo it. make it the more you pass straight the more points you get each time
+    
     int current_high_score = 0;
     int score = 0;
     

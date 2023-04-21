@@ -23,7 +23,6 @@ public class RunnerFinishMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (this.moving == false)
         {
             return;
@@ -37,6 +36,9 @@ public class RunnerFinishMove : MonoBehaviour
         this.moving = true;
     }
 
+    /*
+        sets member variable moving to false to stop further movement
+    */
     public void StopMoving()
     {
         this.moving = false;

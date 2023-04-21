@@ -15,7 +15,7 @@ using UnityEngine.SceneManagement;
 public class MemoryGameController : MonoBehaviour
 {
     [SerializeField] GameObject[] solar_components;
-    private int difficulty_gauge = 1; // caps out at 15 or maybe 20
+    private int difficulty_gauge = 1; // caps out at 20
     private int high_score = 0;
 
     private bool finish_pattern_once = false;
@@ -52,8 +52,15 @@ public class MemoryGameController : MonoBehaviour
 
     public IEnumerator restartMemoryGame()
     {
+        yield return new WaitForSeconds(0.3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        yield return new WaitForSeconds(1f);
+    }
+
+
+    public IEnumerator returnToMainMenu()
+    {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene("Main Menu");
     }
 
 

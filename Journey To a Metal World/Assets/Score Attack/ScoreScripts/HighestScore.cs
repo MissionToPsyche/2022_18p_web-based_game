@@ -14,6 +14,6 @@ public class HighestScore : MonoBehaviour
         if(Score.total_score > highest_score){
             highest_score = Score.total_score;
         }
-        TextMeshPro.text = "High Score:\n" + highest_score.ToString();
+        TextMeshPro.text = "Highest Score:\n" + highest_score.ToString();
     }
 }

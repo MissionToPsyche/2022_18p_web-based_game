@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mercury
+      name: mercury
       rect:
         serializedVersion: 2
         x: 15
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41f6ebc659773894d81311c47741c278
-      internalID: 2142439527
+      spriteID: 3ab5d3451c06489489f3492b76fe0039
+      internalID: -1210205767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Venus
+      name: venus
       rect:
         serializedVersion: 2
         x: 82
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 456845c1ebdb05a459ed4f2d79b6dbda
-      internalID: -853570068
+      spriteID: d0f0cfa45de96f548b8aaca358271da3
+      internalID: -1976182687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Earth
+      name: earth
       rect:
         serializedVersion: 2
         x: 145
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec1f5938825ab8445852d1784f0f13e4
-      internalID: 866455059
+      spriteID: fa2d6d5eb6fb2fa409c89840ec0d02a5
+      internalID: -792490410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mars
+      name: mars
       rect:
         serializedVersion: 2
         x: 5
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43afb42efd3334b4f9254c623ea7f855
-      internalID: 1332673603
+      spriteID: afde25aa3d0fb174f8bbb58fca455f0d
+      internalID: -1140279338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jupiter
+      name: jupiter
       rect:
         serializedVersion: 2
         x: 62
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15ba2c79ba899f6489c075b5cc5cb024
-      internalID: 746437666
+      spriteID: ee4af2b2d0eef1f4688bc68d90e79f7c
+      internalID: -916909044
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Saturn
+      name: saturn
       rect:
         serializedVersion: 2
         x: 140
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a16d3138f1da294b8ff5da6ae414c81
-      internalID: -2014076805
+      spriteID: 69c545a60338a0b43b0226663a449be7
+      internalID: -234745854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Uranus
+      name: uranus
       rect:
         serializedVersion: 2
         x: 6
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a194b08312f61b41b0e72f78db58391
-      internalID: -2084104729
+      spriteID: 9556811b81d56bf49bfe6a05abe7ceab
+      internalID: -117073158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Neptune
+      name: neptune
       rect:
         serializedVersion: 2
         x: 74
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f90dbaa505ddd4d4dba5b792ccc973eb
-      internalID: 102851038
+      spriteID: 8649ec85706289a4ab8de06e62c88ece
+      internalID: -10096317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pluto
+      name: pluto
       rect:
         serializedVersion: 2
         x: 161
@@ -287,8 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54ed8b266f19f16498bc503fb10a0cb8
-      internalID: 1484795265
+      spriteID: 5d04c65d8c9a64a4187585a67871c703
+      internalID: -980442765
       vertices: []
       indices: 
       edges: []
@@ -296,7 +296,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2bc9bc28fb1b2f946b25f5919624bae6
+    spriteID: f938501b62bcb71419e9d9424c613d37
     internalID: 0
     vertices: []
     indices: 
@@ -304,15 +304,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Earth: 866455059
-      Venus: -853570068
-      Neptune: 102851038
-      Mars: 1332673603
-      Saturn: -2014076805
-      Pluto: 1484795265
-      Mercury: 2142439527
-      Jupiter: 746437666
-      Uranus: -2084104729
+      jupiter: -916909044
+      earth: -792490410
+      venus: -1976182687
+      mercury: -1210205767
+      uranus: -117073158
+      saturn: -234745854
+      neptune: -10096317
+      mars: -1140279338
+      pluto: -980442765
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

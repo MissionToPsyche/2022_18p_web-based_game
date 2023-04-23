@@ -23,6 +23,7 @@ public class RunnerOrbital : MonoBehaviour
     int invinciblity_frames_left = 0;
     int current_collisions = 0; // because we can theoretically hit multiple things at once
     bool damage_effect_on = false;
+    bool movement_allowed= false;
 
     Vector2 raw_input;
     SpriteRenderer sprite;
@@ -34,12 +35,13 @@ public class RunnerOrbital : MonoBehaviour
     RunnerMeteoroidMove stage; 
     RunnerEnemySpawner enemy_spawner;
 
+
     Vector2 min_bounds;
     Vector2 max_bounds;
-    [SerializeField] float padding_left = 1.5f;
+    [SerializeField] float padding_left = 1f;
     [SerializeField] float padding_right = 1.5f;
-    [SerializeField] float padding_top = 2.1f;
-    [SerializeField] float padding_bottom = 0.9f;
+    [SerializeField] float padding_top = 1.9f;
+    [SerializeField] float padding_bottom = 0.7f;
     RunnerLivesFrontEndManager visual_manager;
     [SerializeField] RunnerGameOverScreen game_over_screen;
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
@@ -100,8 +102,17 @@ public class RunnerOrbital : MonoBehaviour
         max_bounds = main_camera.ViewportToWorldPoint(new Vector2(1, 1));
     }
 
+    public void AllowOrbitalMovement()
+    {
+        this.movement_allowed = true;
+    }
     void OrbitalMovement()
     {
+        if (this.movement_allowed == false)
+        {
+            return;
+        }
+
         Vector2 delta = raw_input * movement_speed * Time.deltaTime;;
         Vector2 new_position = new Vector2();
         new_position.x = Mathf.Clamp(transform.position.x + delta.x, this.min_bounds.x + this.padding_left, 

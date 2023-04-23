@@ -31,6 +31,15 @@ public class RunnerEnemySpawner : MonoBehaviour
         }     
     }
 
+    /*
+        public function to be used by an overall manager to start the spawning of waves
+        so that waves don't spawn before the game begins (ie instructions screen)
+    */
+    public void StartSpawning()
+    {
+        StartCoroutine(SpawnEnemyWaves());
+    }
+
     //coroutine
     IEnumerator SpawnEnemyWaves()
     {

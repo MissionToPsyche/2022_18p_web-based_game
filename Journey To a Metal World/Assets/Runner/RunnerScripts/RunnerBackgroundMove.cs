@@ -6,7 +6,7 @@ using UnityEngine;
 // note this cannot be the same as finish move because this one should move from the start
 public class RunnerBackgroundMove : MonoBehaviour
 {
-    bool moving = true;
+    bool moving = false;
     RunnerMeteoroidMove meteoroid_move;
     float SPEED_DENOMINATOR = 4;
     
@@ -46,6 +46,11 @@ public class RunnerBackgroundMove : MonoBehaviour
     {
         this.moving = false;
         Debug.Log("Background movement should be stopped");
+    }
+
+    public void StartBackgroundMovement()
+    {
+        this.moving = true;
     }
 
 // ok will need to make sometthing individually for the last background to stop it or keep spawning it

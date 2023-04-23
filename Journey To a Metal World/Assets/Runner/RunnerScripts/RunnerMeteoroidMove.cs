@@ -12,7 +12,7 @@ public class RunnerMeteoroidMove : MonoBehaviour
     [SerializeField] float MAX_MOVEMENT_SPEED = 20f;
     [SerializeField] float SPEED_INCREASE = 0.01f;
     bool game_over = false;
-    
+    bool game_started = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,12 @@ public class RunnerMeteoroidMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (game_over == true)
+        if (this.game_started == false)
+        {
+            return;
+        }
+        
+        if (this.game_over == true)
         {
             return;
         }
@@ -30,6 +35,11 @@ public class RunnerMeteoroidMove : MonoBehaviour
         // transform.Translate(movement, 0, 0);
         // transform.Translate(this.movement_speed, 0, 0);
         
+    }
+
+    public void StartMeteoroidMove()
+    {
+        this.game_started = true;
     }
     /**
         Increments the speed by the SPEED_INCREASE constant and keeps it within minimum and maximum bounds

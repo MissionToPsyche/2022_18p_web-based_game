@@ -74,7 +74,6 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
     {
         this.background.StopBackgroundMovement();
         Debug.Log("should have stopped moving background");
-
     }
    
 }

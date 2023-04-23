@@ -80,18 +80,18 @@ public class RunnerOrbital : MonoBehaviour
 
         if (this.game_over == true || this.game_won == true)
         {
-            BringUpScoreScreen();
-            // if (this.game_won == false)
-            // {
-            //     if (gameLostProcess() == true)
-            //     {
-            //         BringUpScoreScreen();
-            //     } 
-            // }
-            // else
-            // {
-            //     BringUpScoreScreen();
-            // }
+            // BringUpScoreScreen();
+            if (this.game_won == false)
+            {
+                if (gameLostProcess() == true)
+                {
+                    BringUpScoreScreen();
+                } 
+            }
+            else
+            {
+                BringUpScoreScreen();
+            }
         }
 
     }

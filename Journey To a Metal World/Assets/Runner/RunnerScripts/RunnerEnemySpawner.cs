@@ -6,11 +6,14 @@ public class RunnerEnemySpawner : MonoBehaviour
 {
     WaveConfigSO current_wave;
     [SerializeField] List<WaveConfigSO> wave_configs;
+    [SerializeField] List<WaveConfigSO> random_waves;
+    [SerializeField] int MAX_WAVES = 60;
     // [SerializeField] List<Transform> 
     [SerializeField] float wave_delay = 1f;
     bool continue_spawning = true;
     bool finished_all_waves = false;
     bool send_finishline = true;
+    int waves_launched = 0;
     RunnerFinishMove finishline;
 
     void Start() 
@@ -37,8 +40,49 @@ public class RunnerEnemySpawner : MonoBehaviour
     */
     public void StartSpawning()
     {
-        StartCoroutine(SpawnEnemyWaves());
+        // StartCoroutine(SpawnEnemyWaves());
+        StartCoroutine(SpawnEnemyWavesRandomly());
     }
+
+    // noticed bug. upon death does not stop spawning. 
+    // 
+    IEnumerator SpawnEnemyWavesRandomly()
+    {
+        // System.Random rnd = new System.Random();
+
+        // this.wave_configs.Count()
+        while (this.waves_launched < this.MAX_WAVES)
+        {
+            int index = Random.Range(0, this.random_waves.Count);
+            this.current_wave = this.random_waves[index];
+            for (int i = 0; i < this.current_wave.GetEnemyCount(); i++)
+            {
+                if (this.continue_spawning == false)
+                {
+                    break;
+                }
+                Instantiate(current_wave.GetEnemyPrefab(i),
+                    current_wave.GetStartingWaypoint().position, 
+                    Quaternion.identity, transform);
+                // break out and wait for something
+                // as of right now there will only be one thing in each wave so
+                //that I can not have a stream of all meteoroids in one line. will
+                // need the following line if more than 1 meteoroid in a wave
+                // yield return new WaitForSeconds(current_wave.GetRandomSpawnTime());
+            }
+            this.waves_launched++;
+            // rnd.next should give us a intger between the lower bound 1st parameter
+            // in this case 0 (inclusive) and the upper bound 2nd parameter (exclusive)
+            yield return new WaitForSeconds(this.wave_delay);
+        }
+        if (this.send_finishline == true)
+        {
+            this.finishline.StartMoving();
+        }
+
+        
+    }
+
 
     //coroutine
     IEnumerator SpawnEnemyWaves()

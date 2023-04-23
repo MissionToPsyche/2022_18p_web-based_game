@@ -51,7 +51,7 @@ public class RunnerEnemySpawner : MonoBehaviour
         // System.Random rnd = new System.Random();
 
         // this.wave_configs.Count()
-        while (this.waves_launched < this.MAX_WAVES)
+        while (this.waves_launched < this.MAX_WAVES && this.continue_spawning == true)
         {
             int index = Random.Range(0, this.random_waves.Count);
             this.current_wave = this.random_waves[index];

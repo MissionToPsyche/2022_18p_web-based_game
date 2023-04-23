@@ -26,6 +26,8 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
 
     }
 
+
+    
     // void StartMoving()
     // {
     //     this.moving = true;

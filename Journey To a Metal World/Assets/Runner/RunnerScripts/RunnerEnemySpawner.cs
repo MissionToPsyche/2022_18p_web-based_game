@@ -16,7 +16,7 @@ public class RunnerEnemySpawner : MonoBehaviour
     void Start() 
     {
         this.finishline = FindObjectOfType<RunnerFinishMove>();
-        StartCoroutine(SpawnEnemyWaves());    
+        // StartCoroutine(SpawnEnemyWaves());    // this is what makes the waves start
     }
 
     /**

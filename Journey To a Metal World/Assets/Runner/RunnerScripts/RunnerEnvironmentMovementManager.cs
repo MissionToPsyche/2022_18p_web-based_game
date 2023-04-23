@@ -13,6 +13,7 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
     RunnerFinishMove finishline;
     RunnerEnemySpawner spawner;
     RunnerMeteoroidMove meteoroid_move;
+    bool isWin = false;
      // Start is called before the first frame update
 
     void Start()
@@ -50,22 +51,30 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
         // that last option may be the best because otherwise update will be even more crazy and consuming
     }
 
-    // void StartMoving()
-    // {
-    //     this.moving = true;
-    // }
-
      void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Finish")
         {
             this.finishline.StopMoving();
-            Debug.Log("should have activated stop moving finishline");
+            Debug.Log("should have stopped moving finish");
+            this.isWin = true;
         }   
         else if (other.tag == "StopBackground")
         {
             this.background.StopBackgroundMovement();
-            Debug.Log("should have activated stop moving background");
+            Debug.Log("should have stopped moving background");
         }
+    }
+
+    public bool GetIsWin()
+    {
+        return this.isWin;
+    }    
+
+    public void StopBackgroundMovement()
+    {
+        this.background.StopBackgroundMovement();
+        Debug.Log("should have stopped moving background");
+
     }
    
 }

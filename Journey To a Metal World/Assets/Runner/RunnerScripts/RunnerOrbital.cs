@@ -44,6 +44,7 @@ public class RunnerOrbital : MonoBehaviour
     [SerializeField] float padding_bottom = 0.7f;
     RunnerLivesFrontEndManager visual_manager;
     [SerializeField] RunnerGameOverScreen game_over_screen;
+    RunnerEnvironmentMovementManager environment_manager;
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
     // flash.
 
@@ -57,6 +58,7 @@ public class RunnerOrbital : MonoBehaviour
         this.stage = FindObjectOfType<RunnerMeteoroidMove>();
         this.visual_manager = FindObjectOfType<RunnerLivesFrontEndManager>();
         this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
+        this.environment_manager = FindObjectOfType<RunnerEnvironmentMovementManager>();
         this.lives = MAX_LIVES;
         // this.game_over_screen = FindObjectOfType<RunnerGameOverScreen>();
         InitBounds();
@@ -68,6 +70,7 @@ public class RunnerOrbital : MonoBehaviour
     {
         // moving the orbital
         // need to 
+        this.game_won = environment_manager.GetIsWin(); 
         OrbitalMovement();
         DamageApplied(this.current_collisions);
         if (this.invinciblity_frames_left > 0)
@@ -75,19 +78,20 @@ public class RunnerOrbital : MonoBehaviour
             this.invinciblity_frames_left--; 
         }
 
-        if (this.game_over == true)
+        if (this.game_over == true || this.game_won == true)
         {
-            if (this.game_won == false)
-            {
-                if (gameLostProcess() == true)
-                {
-                    BringUpScoreScreen();
-                } 
-            }
-            else
-            {
-                BringUpScoreScreen();
-            }
+            BringUpScoreScreen();
+            // if (this.game_won == false)
+            // {
+            //     if (gameLostProcess() == true)
+            //     {
+            //         BringUpScoreScreen();
+            //     } 
+            // }
+            // else
+            // {
+            //     BringUpScoreScreen();
+            // }
         }
 
     }
@@ -145,14 +149,15 @@ public class RunnerOrbital : MonoBehaviour
             RunnerMeteoroidPoints pointManager = other.GetComponent<RunnerMeteoroidPoints>();
             pointManager.ReachedPointsArea();   
         }
-        else if (other.tag == "Finish" && this.game_over == false) 
-        // game_over == false is to make sure this triggers only once
-        {
-            this.game_over = true;
-            this.game_won = true;
-            stage.StopMeteoroidMovement();
-            Debug.Log("Finish Line passed");
-        }    
+        // else if (other.tag == "Finish" && this.game_over == false) 
+        // // game_over == false is to make sure this triggers only once
+        // {
+        //     this.game_over = true;
+        //     this.game_won = true;
+        //     environment_manager.StopBackgroundMovement();
+        //     // stage.StopMeteoroidMovement();
+        //     // Debug.Log("Meteoroid Movement Stopp");
+        // }    
 
     }
 

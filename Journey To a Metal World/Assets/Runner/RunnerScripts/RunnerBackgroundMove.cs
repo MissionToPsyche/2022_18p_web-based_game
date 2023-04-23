@@ -61,5 +61,10 @@ public class RunnerBackgroundMove : MonoBehaviour
             StopBackgroundMovement();
         }
     }
+
+    bool GetMovementStatus()
+    {
+        return this.moving;
+    }
    
 }

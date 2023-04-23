@@ -16,8 +16,6 @@ public class RunnerGameOverScreen : MonoBehaviour
     [SerializeField] TextMeshProUGUI high_score_text;
     [SerializeField] TextMeshProUGUI game_outcome_text;
 
-    // note that the runner game over screen is in part still 
-    // connected to the memory version at the moment
     public void SetupScreen(int score, int high_score, bool game_win)
     {
         gameObject.SetActive(true);

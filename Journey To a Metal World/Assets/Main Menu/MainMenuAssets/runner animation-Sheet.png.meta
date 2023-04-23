@@ -108,7 +108,7 @@ TextureImporter:
       name: runner animation-Sheet_0
       rect:
         serializedVersion: 2
-        x: 9
+        x: 10
         y: 759
         width: 305
         height: 171
@@ -171,13 +171,13 @@ TextureImporter:
       name: runner animation-Sheet_3
       rect:
         serializedVersion: 2
-        x: 969
-        y: 760
+        x: 970
+        y: 759
         width: 305
         height: 171
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -192,13 +192,13 @@ TextureImporter:
       name: runner animation-Sheet_4
       rect:
         serializedVersion: 2
-        x: 11
-        y: 440
+        x: 10
+        y: 439
         width: 305
         height: 171
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 2, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -214,7 +214,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 330
-        y: 440
+        y: 439
         width: 305
         height: 171
       alignment: 0
@@ -235,7 +235,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 650
-        y: 440
+        y: 439
         width: 305
         height: 171
       alignment: 0
@@ -276,7 +276,7 @@ TextureImporter:
       name: runner animation-Sheet_8
       rect:
         serializedVersion: 2
-        x: 9
+        x: 10
         y: 119
         width: 305
         height: 171
@@ -298,7 +298,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 330
-        y: 120
+        y: 119
         width: 305
         height: 171
       alignment: 0

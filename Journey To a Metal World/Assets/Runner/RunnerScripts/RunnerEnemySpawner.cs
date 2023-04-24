@@ -44,8 +44,7 @@ public class RunnerEnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemyWavesRandomly());
     }
 
-    // noticed bug. upon death does not stop spawning. 
-    // 
+
     IEnumerator SpawnEnemyWavesRandomly()
     {
         // System.Random rnd = new System.Random();

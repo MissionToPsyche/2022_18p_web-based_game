@@ -14,7 +14,7 @@ public class Score : MonoBehaviour
 
     void Update()
     {
-        TextMeshPro.text = "Score: " + total_score.ToString();
+        TextMeshPro.text = "Score:" + total_score.ToString();
     }
 
 }

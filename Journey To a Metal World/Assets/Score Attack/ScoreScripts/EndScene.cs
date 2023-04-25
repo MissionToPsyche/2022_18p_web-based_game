@@ -29,8 +29,10 @@ public class EndScene : MonoBehaviour
     {
         if(Timer.total_time <= 0){
             timeout = true;
+            StartScene.game_start = false;
             // scene_mask.enabled = true;
             end_canvas.enabled = true;
+            
         }
     }
 }

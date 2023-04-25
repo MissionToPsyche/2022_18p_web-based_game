@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class RunnerBackgroundSpawner : MonoBehaviour
 {
     [SerializeField] WaveConfigSO current_wave;
-    // [SerializeField] List<BackgroundWaveConfigSO> wave_configs;
+    [SerializeField] List<BackgroundWaveConfigSO> wave_configs;
     [SerializeField] List<GameObject> background_list;
     int index = 0;
     // [SerializeField] List<Transform> 

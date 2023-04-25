@@ -8,7 +8,7 @@ public class RunnerBackgroundMove : MonoBehaviour
 {
     bool moving = false;
     RunnerMeteoroidMove meteoroid_move;
-    float SPEED_DENOMINATOR = 2;
+    float SPEED_DENOMINATOR = 2f;
     
      // Start is called before the first frame update
 
@@ -67,12 +67,12 @@ public class RunnerBackgroundMove : MonoBehaviour
         return this.moving;
     }
    
-   public float GetMovementSpeed()
+   public float GetRawMovementSpeed()
    {
         // double check this. am i getting their raw or fractional speed. if thelatter that explains why it's so so slow;
         float speed = this.meteoroid_move.GetCurrentSpeed() / this.SPEED_DENOMINATOR ;
-        float x_movement = speed * Time.deltaTime;
+        // float x_movement = speed * Time.deltaTime;
         // we're directly transforming this one so it'll need to move left, so let's make it negative
-        return x_movement;
+        return speed;
    }
 }

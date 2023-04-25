@@ -44,12 +44,12 @@ public class RunnerBackgroundPathFinder : MonoBehaviour
         {
             Vector3 target_position = waypoints[waypoint_index].position;
             // float delta = wave_config.GetMoveSpeed() * Time.deltaTime;
-            float delta = background_move.GetMovementSpeed() * Time.deltaTime;  // somehow this
+            float delta = background_move.GetRawMovementSpeed() * Time.deltaTime;  // somehow this
             //doesn't seem to impact the speed?
             transform.position = Vector2.MoveTowards(transform.position, 
                 target_position, delta);
             this.speed = delta; // for testing purposes, trying to figure out speed...
-            this.rawSpeed = background_move.GetMovementSpeed();
+            this.rawSpeed = background_move.GetRawMovementSpeed();
             if (transform.position == target_position)
             {
                 waypoint_index++;

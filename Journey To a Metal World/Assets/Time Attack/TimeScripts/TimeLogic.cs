@@ -8,20 +8,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TimeLogic : MonoBehaviour
 {
-    [SerializeField] public Text timeText;
-    [SerializeField] public GameObject gameOver;
+    [SerializeField] public TextMeshProUGUI timeText;
+    [SerializeField] public float totalTime;
+    [SerializeField] public GameObject gameOverDisplay;
 
     private float timer;
     private bool isGameOver;
+    private ScoreLogic scoreLogic;
 
 
     void Start() 
     {
-        timer = 30;
+        timer = totalTime;
         isGameOver = false;
+        scoreLogic = GetComponent<ScoreLogic>();
     }
 
 
@@ -32,7 +36,9 @@ public class TimeLogic : MonoBehaviour
                 timer -= Time.deltaTime;
                 updateTime();
             } else {
-                gameOver.SetActive(true);
+                scoreLogic.setHighScore();
+                scoreLogic.saveHighScore();
+                gameOverDisplay.GetComponent<GameOverDisplay>().setup(scoreLogic.getScore(), scoreLogic.getHighScore());
                 isGameOver = true;
             }
         }
@@ -42,13 +48,19 @@ public class TimeLogic : MonoBehaviour
 
     void updateTime()
     {
-        timeText.text = "Time Left: " + ((int) timer).ToString();
+        timeText.text = "Time: " + ((int) timer).ToString();
     }
 
 
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+
+    public void exitGame()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 
 

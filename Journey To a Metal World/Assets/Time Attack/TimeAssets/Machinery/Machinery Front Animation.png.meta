@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d71e989d3f7e1804eb258d697db7bee2
+guid: f39613c8159ae4f629db940aedf31fb2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,17 +101,29 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mercury
+      name: Machinery Front Animation_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 161
-        width: 28
-        height: 29
+        x: 0
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ab5d3451c06489489f3492b76fe0039
-      internalID: -1210205767
+      spriteID: d080f9204670d4ffe940a343e3314080
+      internalID: 838998581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: venus
+      name: Machinery Front Animation_1
       rect:
         serializedVersion: 2
-        x: 82
-        y: 157
-        width: 35
-        height: 36
+        x: 320
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0f0cfa45de96f548b8aaca358271da3
-      internalID: -1976182687
+      spriteID: 1a8ebc956b32542f9aae8a83e4160e7e
+      internalID: -468612432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: earth
+      name: Machinery Front Animation_2
       rect:
         serializedVersion: 2
-        x: 145
-        y: 149
-        width: 47
-        height: 46
+        x: 640
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa2d6d5eb6fb2fa409c89840ec0d02a5
-      internalID: -792490410
+      spriteID: 440cf80aef08f415a8e690de8826a2aa
+      internalID: -701599392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mars
+      name: Machinery Front Animation_3
       rect:
         serializedVersion: 2
-        x: 5
-        y: 86
-        width: 47
-        height: 49
+        x: 960
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afde25aa3d0fb174f8bbb58fca455f0d
-      internalID: -1140279338
+      spriteID: b924956c453c1448b9c76759594e91d6
+      internalID: -2048232687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jupiter
+      name: Machinery Front Animation_4
       rect:
         serializedVersion: 2
-        x: 62
-        y: 72
-        width: 75
-        height: 77
+        x: 1280
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee4af2b2d0eef1f4688bc68d90e79f7c
-      internalID: -916909044
+      spriteID: 59666a45a7aaa4bc2a507e5cf793602e
+      internalID: 1521289494
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: saturn
+      name: Machinery Front Animation_5
       rect:
         serializedVersion: 2
-        x: 140
-        y: 91
-        width: 56
-        height: 39
+        x: 1600
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69c545a60338a0b43b0226663a449be7
-      internalID: -234745854
+      spriteID: 1338f2dad07924851a1462d441037614
+      internalID: 2024838345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: uranus
+      name: Machinery Front Animation_6
       rect:
         serializedVersion: 2
-        x: 6
-        y: 14
-        width: 42
-        height: 42
+        x: 1920
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9556811b81d56bf49bfe6a05abe7ceab
-      internalID: -117073158
+      spriteID: 6f285b1e0d21e4eed99d6e2d85045669
+      internalID: -647143657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: neptune
+      name: Machinery Front Animation_7
       rect:
         serializedVersion: 2
-        x: 74
-        y: 14
-        width: 51
-        height: 38
+        x: 2240
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,20 +278,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8649ec85706289a4ab8de06e62c88ece
-      internalID: -10096317
+      spriteID: 221359290601645e2816510116fb21e0
+      internalID: -1049634255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pluto
+      name: Machinery Front Animation_8
       rect:
         serializedVersion: 2
-        x: 161
-        y: 21
-        width: 23
-        height: 23
+        x: 2560
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,8 +299,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d04c65d8c9a64a4187585a67871c703
-      internalID: -980442765
+      spriteID: a0e653a57404b43c4a53b19d7ce26256
+      internalID: -819668314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Machinery Front Animation_9
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c5b404666ecc489cb9afeb73d7f1674
+      internalID: 1389041544
       vertices: []
       indices: 
       edges: []
@@ -296,7 +329,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f938501b62bcb71419e9d9424c613d37
+    spriteID: 5bded61836f3249428f1f0b42aab7d0f
     internalID: 0
     vertices: []
     indices: 
@@ -304,15 +337,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      jupiter: -916909044
-      earth: -792490410
-      venus: -1976182687
-      mercury: -1210205767
-      uranus: -117073158
-      saturn: -234745854
-      neptune: -10096317
-      mars: -1140279338
-      pluto: -980442765
+      Machinery Front Animation_9: 1389041544
+      Machinery Front Animation_0: 838998581
+      Machinery Front Animation_5: 2024838345
+      Machinery Front Animation_8: -819668314
+      Machinery Front Animation_1: -468612432
+      Machinery Front Animation_2: -701599392
+      Machinery Front Animation_3: -2048232687
+      Machinery Front Animation_4: 1521289494
+      Machinery Front Animation_7: -1049634255
+      Machinery Front Animation_6: -647143657
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

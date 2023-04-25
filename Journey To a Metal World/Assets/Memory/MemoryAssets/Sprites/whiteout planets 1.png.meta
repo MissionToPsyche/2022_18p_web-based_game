@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d71e989d3f7e1804eb258d697db7bee2
+guid: fe2d4c162f9230c488f4c2c14b7843b7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mercury
+      name: white mercury
       rect:
         serializedVersion: 2
-        x: 15
-        y: 161
-        width: 28
-        height: 29
+        x: 75
+        y: 805
+        width: 140
+        height: 145
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ab5d3451c06489489f3492b76fe0039
-      internalID: -1210205767
+      spriteID: 2cf4ca949b3ac0d4cadbd10b8572250c
+      internalID: 1120144887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: venus
+      name: white venus
       rect:
         serializedVersion: 2
-        x: 82
-        y: 157
-        width: 35
-        height: 36
+        x: 410
+        y: 785
+        width: 175
+        height: 180
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0f0cfa45de96f548b8aaca358271da3
-      internalID: -1976182687
+      spriteID: 6028ead6116deff4b965def4dd3a8392
+      internalID: 1456391157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: earth
+      name: white earth
       rect:
         serializedVersion: 2
-        x: 145
-        y: 149
-        width: 47
-        height: 46
+        x: 725
+        y: 745
+        width: 235
+        height: 230
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa2d6d5eb6fb2fa409c89840ec0d02a5
-      internalID: -792490410
+      spriteID: 80d555bb29f55b84a94852f73d18ecd1
+      internalID: 1667979995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mars
+      name: white mars
       rect:
         serializedVersion: 2
-        x: 5
-        y: 86
-        width: 47
-        height: 49
+        x: 25
+        y: 430
+        width: 235
+        height: 245
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +182,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afde25aa3d0fb174f8bbb58fca455f0d
-      internalID: -1140279338
+      spriteID: 963f8869f548c404eb3db88f47594eb5
+      internalID: -1125614856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jupiter
+      name: white jupiter
       rect:
         serializedVersion: 2
-        x: 62
-        y: 72
-        width: 75
-        height: 77
+        x: 310
+        y: 360
+        width: 375
+        height: 385
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee4af2b2d0eef1f4688bc68d90e79f7c
-      internalID: -916909044
+      spriteID: ce5f855bd65ad544baff21816754ffbb
+      internalID: -1422437496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: saturn
+      name: whiteout planets 1_5
       rect:
         serializedVersion: 2
-        x: 140
-        y: 91
-        width: 56
-        height: 39
+        x: 700
+        y: 455
+        width: 280
+        height: 195
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +224,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69c545a60338a0b43b0226663a449be7
-      internalID: -234745854
+      spriteID: ce1c95f4bf714de4d9d9f196d6fcb74d
+      internalID: -474862109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: uranus
+      name: whiteout planets 1_6
       rect:
         serializedVersion: 2
-        x: 6
-        y: 14
-        width: 42
-        height: 42
+        x: 30
+        y: 70
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,20 +245,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9556811b81d56bf49bfe6a05abe7ceab
-      internalID: -117073158
+      spriteID: b08943d8afc1acb49b75999c1a1c6608
+      internalID: 1797721865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: neptune
+      name: whiteout planets 1_7
       rect:
         serializedVersion: 2
-        x: 74
-        y: 14
-        width: 51
-        height: 38
+        x: 370
+        y: 70
+        width: 255
+        height: 190
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,20 +266,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8649ec85706289a4ab8de06e62c88ece
-      internalID: -10096317
+      spriteID: 8142f70dedb8004459896069e020bc6a
+      internalID: 135240561
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pluto
+      name: whiteout planets 1_8
       rect:
         serializedVersion: 2
-        x: 161
-        y: 21
-        width: 23
-        height: 23
+        x: 805
+        y: 105
+        width: 115
+        height: 115
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,8 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d04c65d8c9a64a4187585a67871c703
-      internalID: -980442765
+      spriteID: edd391e49e3b33141a3d41a33d1947ca
+      internalID: 1075515145
       vertices: []
       indices: 
       edges: []
@@ -296,7 +296,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f938501b62bcb71419e9d9424c613d37
+    spriteID: f1efa6ea402ff70499d8d7284555c5e3
     internalID: 0
     vertices: []
     indices: 
@@ -304,15 +304,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      jupiter: -916909044
-      earth: -792490410
-      venus: -1976182687
-      mercury: -1210205767
-      uranus: -117073158
-      saturn: -234745854
-      neptune: -10096317
-      mars: -1140279338
-      pluto: -980442765
+      white earth: 1667979995
+      white mars: -1125614856
+      white venus: 1456391157
+      whiteout planets 1_5: -474862109
+      whiteout planets 1_8: 1075515145
+      whiteout planets 1_7: 135240561
+      white jupiter: -1422437496
+      white mercury: 1120144887
+      whiteout planets 1_6: 1797721865
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 public class MemoryPlayerController : MonoBehaviour
 {
     [SerializeField] GameObject score_text;
+    [SerializeField] TextMeshProUGUI time_text;
     [SerializeField] MemoryGameOverScreen game_over_screen;
     [SerializeField] MemoryGameStartScreen game_start_screen;
     private MemoryPatternGenerator pattern_generator;
@@ -21,6 +22,8 @@ public class MemoryPlayerController : MonoBehaviour
     private int player_score = 0;
     private bool complete_pattern = false;
     private bool generated_pattern = false;
+    private bool time_on = false;
+    private float time = 80f;
     
 
     /// <summary> Finds the MemoryPatternGenerator and MemoryGameController objects to use later on. </summary>
@@ -29,6 +32,12 @@ public class MemoryPlayerController : MonoBehaviour
         pattern_generator = FindObjectOfType<MemoryPatternGenerator>();
         controller = FindObjectOfType<MemoryGameController>();
         game_start_screen = FindObjectOfType<MemoryGameStartScreen>();
+    }
+
+
+    private void Start()
+    {
+        time_on = true;
     }
 
     
@@ -44,6 +53,7 @@ public class MemoryPlayerController : MonoBehaviour
             {
                 controller.disableSolarComponentClick();
                 StartCoroutine(generatePatternWithPause());
+                time_on = false;
             }
             roundController();
             
@@ -83,6 +93,19 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    public void showGameOver()
+    {
+        player_selection.Clear();
+                
+        // once you set a possible high score, you must also save it so that it won't be wiped on the restart
+        controller.setHighScore(player_score);
+        controller.saveHighScore();
+                
+        // for now it restarts the game whenever the player makees an invalid selection
+        game_over_screen.setup(player_score, controller.getHighScore());
+    }
+
+
     /// <summary> Our main game logic that checks whether or not the player correctly selects the GameObject that was generated.
     /// It will award players with points when the selection is correct, and trigger a game over when the selection is incorrect. </summary> 
     public void roundController()
@@ -97,9 +120,26 @@ public class MemoryPlayerController : MonoBehaviour
         {
             controller.enableSolarComponentClick();
             controller.changePatternPermissions(false);
+            time_on = true;
         }
 
-        // TODO: setup timer
+        if (time_on)
+        {
+            if (time > 0)
+            {
+                time -= Time.deltaTime;
+                int time_str = (int)time;
+                time_text.text = "Time: " + time_str;
+                // the time starts while the pattern is being generated fix this
+            }
+            else
+            {
+                showGameOver();
+                time = 0;
+                time_on = false;
+                return;
+            }
+        }
 
         
         if (player_selection.Count != 0)
@@ -107,14 +147,8 @@ public class MemoryPlayerController : MonoBehaviour
             if (pattern_generator.getPatternStorage().Peek() != player_selection.Peek())
             {
                 Debug.Log("Invalid Selection");
-                player_selection.Clear();
-                
-                // once you set a possible high score, you must also save it so that it won't be wiped on the restart
-                controller.setHighScore(player_score);
-                controller.saveHighScore();
-                
-                // for now it restarts the game whenever the player makees an invalid selection
-                game_over_screen.setup(player_score, controller.getHighScore());
+                time_on = false;
+                showGameOver();
 
                 return;
             }
@@ -148,7 +182,16 @@ public class MemoryPlayerController : MonoBehaviour
             // if the player successfully repeats the pattern then we increase the difficulty
             Debug.Log("\niteration: " + controller.getDifficultyGauge());
             controller.addToDifficultyGauge(1);
+
+            // for now we will lower the time as the round increases
+            // they can get time back if they repeat the pattern
+            time += controller.getDifficultyGauge() / 2;
+            if (time > 80)
+            {
+                time = 80f;
+            }
+            time = (int)time;
+            time_text.text = "Time: " + time.ToString();
         }
     }
-
 }

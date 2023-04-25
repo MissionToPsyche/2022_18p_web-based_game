@@ -8,6 +8,10 @@ TagManager:
   - research area
   - Part Location
   - Logic
+  - PointBox
+  - Orbital
+  - StopBackground
+  - CollisionIgnore
   layers:
   - Default
   - TransparentFX

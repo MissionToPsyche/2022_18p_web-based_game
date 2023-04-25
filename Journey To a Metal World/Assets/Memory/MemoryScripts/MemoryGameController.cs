@@ -23,9 +23,9 @@ public class MemoryGameController : MonoBehaviour
 
     void Awake()
     {
-        if (PlayerPrefs.HasKey("high_score"))
+        if (PlayerPrefs.HasKey("memory_high_score"))
         {
-            high_score = PlayerPrefs.GetInt("high_score");
+            high_score = PlayerPrefs.GetInt("memory_high_score");
         }
         else
         {
@@ -90,7 +90,7 @@ public class MemoryGameController : MonoBehaviour
 
     public void saveHighScore()
     {
-        PlayerPrefs.SetInt("high_score", high_score);
+        PlayerPrefs.SetInt("memory_high_score", high_score);
     }
 
 

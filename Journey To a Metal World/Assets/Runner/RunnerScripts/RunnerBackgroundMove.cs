@@ -6,9 +6,9 @@ using UnityEngine;
 // note this cannot be the same as finish move because this one should move from the start
 public class RunnerBackgroundMove : MonoBehaviour
 {
-    bool moving = true;
+    bool moving = false;
     RunnerMeteoroidMove meteoroid_move;
-    float SPEED_DENOMINATOR = 4;
+    float SPEED_DENOMINATOR = 2f;
     
      // Start is called before the first frame update
 
@@ -42,6 +42,37 @@ public class RunnerBackgroundMove : MonoBehaviour
         transform.Translate(x_movement, 0, 0);
     }
 
+    public void StopBackgroundMovement()
+    {
+        this.moving = false;
+        Debug.Log("Background movement should be stopped");
+    }
 
+    public void StartBackgroundMovement()
+    {
+        this.moving = true;
+    }
+
+// ok will need to make sometthing individually for the last background to stop it or keep spawning it
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "StopBackground")
+        {
+            StopBackgroundMovement();
+        }
+    }
+
+    bool GetMovementStatus()
+    {
+        return this.moving;
+    }
    
+   public float GetRawMovementSpeed()
+   {
+        // double check this. am i getting their raw or fractional speed. if thelatter that explains why it's so so slow;
+        float speed = this.meteoroid_move.GetCurrentSpeed() / this.SPEED_DENOMINATOR ;
+        // float x_movement = speed * Time.deltaTime;
+        // we're directly transforming this one so it'll need to move left, so let's make it negative
+        return speed;
+   }
 }

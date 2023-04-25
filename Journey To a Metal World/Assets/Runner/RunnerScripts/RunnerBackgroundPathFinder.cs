@@ -4,35 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 // brainstorming note:
 
-// note, needed to add this to the literal meteoroid component to get it to move. 
-// may produce problems with multiple paths, check more later
+// need to test and make sure everything transfers over right. 
+// may just do the same manual style as before?
 
-// changing the speed in this file so that it increases could work... the thing is, 
-// I need to find out if it can in fact take another object
-// also making this comment because the merge didn't get all the files I need
-// but otherwise the merge thinks everything is up to date
-public class RunnerPathFinder : MonoBehaviour
+public class RunnerBackgroundPathFinder : MonoBehaviour
 {
-    WaveConfigSO wave_config;
-    RunnerEnemySpawner enemy_spawner;
+    [SerializeField] BackgroundWaveConfigSO wave_config;
+    RunnerBackgroundSpawner background_spawner;
     List<Transform> waypoints;
-    RunnerMeteoroidMove meteoroid_move;
+    RunnerBackgroundMove background_move;
     [SerializeField] float speed;
     [SerializeField] float rawSpeed;
     int waypoint_index = 0; // so that we start at the first waypoint    
 
     void Awake() 
     {
-        this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
+        this.background_spawner = FindObjectOfType<RunnerBackgroundSpawner>();
+        this.background_move = FindObjectOfType<RunnerBackgroundMove>();
 
     }
 
     void Start() 
     {
-        wave_config = enemy_spawner.GetCurrentWave();
+        // wave_config = this.background_spawner.GetCurrentWave();
         waypoints = wave_config.GetWaypoints();
         transform.position = waypoints[waypoint_index].position; 
-        this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
 
     }
 
@@ -48,12 +44,12 @@ public class RunnerPathFinder : MonoBehaviour
         {
             Vector3 target_position = waypoints[waypoint_index].position;
             // float delta = wave_config.GetMoveSpeed() * Time.deltaTime;
-            float delta = meteoroid_move.GetCurrentSpeed() * Time.deltaTime;  // somehow this
+            float delta = background_move.GetRawMovementSpeed() * Time.deltaTime;  // somehow this
             //doesn't seem to impact the speed?
             transform.position = Vector2.MoveTowards(transform.position, 
                 target_position, delta);
             this.speed = delta; // for testing purposes, trying to figure out speed...
-            this.rawSpeed = meteoroid_move.GetCurrentSpeed();
+            this.rawSpeed = background_move.GetRawMovementSpeed();
             if (transform.position == target_position)
             {
                 waypoint_index++;

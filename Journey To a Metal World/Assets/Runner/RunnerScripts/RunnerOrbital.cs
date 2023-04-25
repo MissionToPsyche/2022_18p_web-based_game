@@ -23,6 +23,7 @@ public class RunnerOrbital : MonoBehaviour
     int invinciblity_frames_left = 0;
     int current_collisions = 0; // because we can theoretically hit multiple things at once
     bool damage_effect_on = false;
+    bool movement_allowed= false;
 
     Vector2 raw_input;
     SpriteRenderer sprite;
@@ -32,15 +33,18 @@ public class RunnerOrbital : MonoBehaviour
     bool game_won = false;
     int COLLISION_MINUS_POINT = -1;
     RunnerMeteoroidMove stage; 
+    RunnerEnemySpawner enemy_spawner;
+
 
     Vector2 min_bounds;
     Vector2 max_bounds;
-    [SerializeField] float padding_left = 1.5f;
+    [SerializeField] float padding_left = 1f;
     [SerializeField] float padding_right = 1.5f;
-    [SerializeField] float padding_top = 2.1f;
-    [SerializeField] float padding_bottom = 0.9f;
+    [SerializeField] float padding_top = 1.9f;
+    [SerializeField] float padding_bottom = 0.7f;
     RunnerLivesFrontEndManager visual_manager;
-    
+    [SerializeField] RunnerGameOverScreen game_over_screen;
+    RunnerEnvironmentMovementManager environment_manager;
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
     // flash.
 
@@ -53,7 +57,10 @@ public class RunnerOrbital : MonoBehaviour
         this.score_keeper = FindObjectOfType<RunnerScore>();
         this.stage = FindObjectOfType<RunnerMeteoroidMove>();
         this.visual_manager = FindObjectOfType<RunnerLivesFrontEndManager>();
+        this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
+        this.environment_manager = FindObjectOfType<RunnerEnvironmentMovementManager>();
         this.lives = MAX_LIVES;
+        // this.game_over_screen = FindObjectOfType<RunnerGameOverScreen>();
         InitBounds();
 
     }
@@ -63,6 +70,7 @@ public class RunnerOrbital : MonoBehaviour
     {
         // moving the orbital
         // need to 
+        this.game_won = environment_manager.GetIsWin(); 
         OrbitalMovement();
         DamageApplied(this.current_collisions);
         if (this.invinciblity_frames_left > 0)
@@ -70,15 +78,19 @@ public class RunnerOrbital : MonoBehaviour
             this.invinciblity_frames_left--; 
         }
 
-        if (this.game_over == true)
+        if (this.game_over == true || this.game_won == true)
         {
+            // BringUpScoreScreen();
             if (this.game_won == false)
             {
-                gameLostProcess(); 
+                if (gameLostProcess() == true)
+                {
+                    BringUpScoreScreen();
+                } 
             }
             else
             {
-                
+                BringUpScoreScreen();
             }
         }
 
@@ -94,8 +106,17 @@ public class RunnerOrbital : MonoBehaviour
         max_bounds = main_camera.ViewportToWorldPoint(new Vector2(1, 1));
     }
 
+    public void AllowOrbitalMovement()
+    {
+        this.movement_allowed = true;
+    }
     void OrbitalMovement()
     {
+        if (this.movement_allowed == false)
+        {
+            return;
+        }
+
         Vector2 delta = raw_input * movement_speed * Time.deltaTime;;
         Vector2 new_position = new Vector2();
         new_position.x = Mathf.Clamp(transform.position.x + delta.x, this.min_bounds.x + this.padding_left, 
@@ -111,7 +132,7 @@ public class RunnerOrbital : MonoBehaviour
     {
         //should be getting the result from the input to w and s keys
         this.raw_input = value.Get<Vector2>();
-        Debug.Log("move value is " + this.raw_input);
+        // Debug.Log("move value is " + this.raw_input);
     }
 
     /**
@@ -123,17 +144,20 @@ public class RunnerOrbital : MonoBehaviour
         {
             return;
         }
-        if (other.tag == "Finish" && this.game_over == false)
-        {
-            this.game_over = true;
-            this.game_won = true;
-            Debug.Log("Finish Line passed");
-        }    
         else if (other.tag == "PointBox")
         {
             RunnerMeteoroidPoints pointManager = other.GetComponent<RunnerMeteoroidPoints>();
             pointManager.ReachedPointsArea();   
         }
+        // else if (other.tag == "Finish" && this.game_over == false) 
+        // // game_over == false is to make sure this triggers only once
+        // {
+        //     this.game_over = true;
+        //     this.game_won = true;
+        //     environment_manager.StopBackgroundMovement();
+        //     // stage.StopMeteoroidMovement();
+        //     // Debug.Log("Meteoroid Movement Stopp");
+        // }    
 
     }
 
@@ -146,30 +170,14 @@ public class RunnerOrbital : MonoBehaviour
     */
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.tag == "CollisionIgnore")
+        {
+            return;
+        }
         this.current_collisions++;
         other.gameObject.transform.BroadcastMessage("SetPointTotalToZero");
         stage.ResetSpeed();
-        //note by default. it's per collision. also not exit collision. 
-        // use enter and exit to bound the invincibility? 
-        // include a timer of some sort otherwise explot. push meteroid to end
-        // if ((other.gameObject.CompareTag("Finish") == true) && this.game_over == false)
-        // if (this.game_over == false)
-        // {
-        //     this.game_over = true;
-        //     this.game_won = true;
-        //     Debug.Log("Finish Line passed");
-        // }
-        // else
-        // {
-            // this.current_collisions++;
 
-        // }
-        // if (this.invinciblity_frames_left = 0)
-        // {
-        //     this.lives--;
-        //     this.invinciblity_frames_left = INVINCIBILITY_FRAME_LENGTH;
-        //     Debug.Log("Took a hit. number of lives left is: " + this.lives);
-        // }
     }
 
     /**
@@ -179,11 +187,10 @@ public class RunnerOrbital : MonoBehaviour
     */
     void OnCollisionExit2D(Collision2D other) 
     {
-        // if (other.gameObject.CompareTag("Finish") == false)
-        // if (other.tag != "Finish")
-        // {
-        //     this.current_collisions--;    
-        // }
+        if (other.gameObject.tag == "CollisionIgnore")
+        {
+            return;
+        }
         this.current_collisions--;    
         
     }
@@ -264,11 +271,42 @@ public class RunnerOrbital : MonoBehaviour
     {
         this.orbital_color.a--;
         this.sprite.color = orbital_color;
+        // this.stage.StopMeteoroidMovement();
+        // this would stop movement. but for the more interesting and nicer view, 
+        // let's instead just let any existing meteoroids keep going but not spawn any more
+        this.enemy_spawner.StopSpawningMeteoroids();
         if (orbital_color.a == 0)
         {
+            
             return true;
         }
         return false;
+    }
+
+    void BringUpScoreScreen()
+    {
+        int current_score = this.score_keeper.GetScore();
+        if (this.score_keeper.IsLargerThanCurrentHighScore(current_score) == true)
+        {
+            this.score_keeper.SetRunnerHighScore(current_score);
+        }
+        this.game_over_screen.SetupScreen(current_score, this.score_keeper.GetRunnerHighScore(), this.game_won);
+        Debug.Log("game Over screen method finished");
+        // int result = score_keeper.UpdateHighScore(current_score);
+
+        // int last_high_score = 
+        // this.game_over_screen.SetupScreen();
+    }
+
+    /**
+        if we want a different screen for success I'll need this
+        that said, the runner game is the only one that doesn't operate on a timer so...
+        we'll see if we want it
+    */
+    void gameWinProcess()
+    {
+        // this.movement_speed = 0;
+        
     }
 
     void DecreaseLives()

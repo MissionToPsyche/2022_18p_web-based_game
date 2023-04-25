@@ -9,9 +9,10 @@ using TMPro;
 
 public class RunnerUI : MonoBehaviour
 {
-    [Header("Lives")]
-    [SerializeField] Slider lives_slider;
-    [SerializeField] RunnerOrbital player_lives;
+    string MAIN_MENU_SCENE_NAME = "Main Menu";
+    // [Header("Lives")]
+    // [SerializeField] Slider lives_slider;
+    // [SerializeField] RunnerOrbital player_lives;
 
     [Header("Score")]
     [SerializeField] TextMeshProUGUI score_text;
@@ -19,7 +20,7 @@ public class RunnerUI : MonoBehaviour
 
     void Awake() 
     {
-        score_keeper = FindObjectOfType<RunnerScore>();    
+        this.score_keeper = FindObjectOfType<RunnerScore>();    
     }
 
      void Start() 
@@ -30,30 +31,27 @@ public class RunnerUI : MonoBehaviour
 
     void Update()
     {
-        lives_slider.value = player_lives.GetLives();
-
-        score_text.text = (score_keeper.GetScore()).ToString();
+        this.score_text.text = this.score_keeper.GetScore().ToString();
+        // Debug.Log(this.score_keeper);
+        // Debug.Log(this.score_
     }
 
     /**
-    Called by the restart button to restart the game by reloading the scene
+    Called by the restart button (looks like a circular arrow) to restart the game by reloading the scene
     */
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
         Debug.Log("Restarted the Game");
-        Debug.Log("Theoretically works but may apparently be issues if there is anything marked don't destroy on load");
     }
-    // Start is called before the first frame update
-    // void Start()
-    // {
-        
-    // }
 
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
+    /**
+        Called by the Main Menu button (looks like a house) to exit the runner game and go to the main menu
+    */
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(this.MAIN_MENU_SCENE_NAME);
+        Debug.Log("Goes to main menu scene");
+    }
 }

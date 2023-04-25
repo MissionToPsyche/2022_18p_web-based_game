@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     public TMP_Text TextMeshPro;
     void Start()
     {
-        total_time = 60;
+        total_time = 30;
     }
 
     void Update()

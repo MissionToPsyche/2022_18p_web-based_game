@@ -1266,9 +1266,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TimeLogic, Assembly-CSharp
-        m_MethodName: exitGame
+      - m_Target: {fileID: 534443080}
+        m_TargetAssemblyTypeName: PhaseLogic, Assembly-CSharp
+        m_MethodName: exitPhase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

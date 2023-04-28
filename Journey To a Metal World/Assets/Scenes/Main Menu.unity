@@ -1692,7 +1692,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 926248251}
         m_TargetAssemblyTypeName: DeskLinks, Assembly-CSharp
-        m_MethodName: goAboutScene
+        m_MethodName: goCreditsScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

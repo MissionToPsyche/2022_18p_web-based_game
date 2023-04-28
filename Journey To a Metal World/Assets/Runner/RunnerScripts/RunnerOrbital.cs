@@ -51,7 +51,8 @@ public class RunnerOrbital : MonoBehaviour
     void Start()
     {
         this.frames_per_second = 1/Time.deltaTime;
-        this.INVINCIBILITY_FRAME_LENGTH = (int)frames_per_second * 2;
+        // this.INVINCIBILITY_FRAME_LENGTH = (int)frames_per_second * 2;
+        this.INVINCIBILITY_FRAME_LENGTH = 48;
         this.sprite = GetComponent<SpriteRenderer>();
         this.orbital_color = sprite.color;
         this.score_keeper = FindObjectOfType<RunnerScore>();
@@ -220,17 +221,28 @@ public class RunnerOrbital : MonoBehaviour
                 if (damage_effect_on == true)
                 {
                     this.damage_effect_on = false;
-                    orbital_color.a = 0;
-                    sprite.color = orbital_color;
+                    // orbital_color.g = 255;
+                    // orbital_color.b = 255;
+
+                    // orbital_color.a = 0;
+                    // sprite.color = orbital_color;
+                    sprite.color = Color.red;
+                    // sprite.color.g = 0;
+                    
                     // sprite.color.a = 0;
-                    Debug.Log("orbital should be invisible");
+                    Debug.Log("orbital should be red");
                 }
                 else if (damage_effect_on == false)
                 {
                     this.damage_effect_on = true;
-                    orbital_color.a = 255;    
-                    sprite.color = orbital_color;
-                    Debug.Log("orbital is visible");
+                    // orbital_color.a = 255;    
+                    // orbital_color.g = 0;
+                    // orbital_color.b = 0;
+
+                    // sprite.color = orbital_color;
+
+                    sprite.color = Color.white;
+                    Debug.Log("orbital is normal color");
 
                 }
             }
@@ -239,7 +251,7 @@ public class RunnerOrbital : MonoBehaviour
         //so if it's here then there was 0 invincibility frames
         this.damage_effect_on = false;
         
-        orbital_color.a = 255;
+        // orbital_color.a = 255;
         sprite.color = orbital_color;
         if (collision_count > 0)
         {
@@ -253,7 +265,9 @@ public class RunnerOrbital : MonoBehaviour
             {
                 this.game_over = true;
                 this.game_won = false;
-                orbital_color.a = 255;
+                // orbital_color.a = 255;
+                orbital_color.g = 0;
+                orbital_color.b = 0;
                 sprite.color = orbital_color;
                 this.invinciblity_frames_left = 0;
             }
@@ -269,18 +283,22 @@ public class RunnerOrbital : MonoBehaviour
     */
     bool gameLostProcess()
     {
-        this.orbital_color.a--;
-        this.sprite.color = orbital_color;
+        // this.orbital_color.a--;
+        // this.sprite.color = orbital_color;
+        orbital_color.g = 0;
+        orbital_color.b = 0;
+        sprite.color = orbital_color;
+
         // this.stage.StopMeteoroidMovement();
         // this would stop movement. but for the more interesting and nicer view, 
         // let's instead just let any existing meteoroids keep going but not spawn any more
         this.enemy_spawner.StopSpawningMeteoroids();
-        if (orbital_color.a == 0)
-        {
-            
-            return true;
-        }
-        return false;
+        // if (orbital_color.a == 0)
+        // {
+        //     return true;
+        // }
+        // return false;
+        return true;
     }
 
     void BringUpScoreScreen()

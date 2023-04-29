@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 
-public class Orbitting : MonoBehaviour
+public class Orbit : MonoBehaviour
 {
     double radius = 5;
     [SerializeField] double degree;

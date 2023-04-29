@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 
 public class Rotating : MonoBehaviour
 {
-    public float speed = Orbitting.speed;
+    public float speed = Orbit.speed;
     void Update()
     {
         if(StartScene.game_start == true){
-            speed = Orbitting.speed;
+            speed = Orbit.speed;
             transform.Rotate(new Vector3(0, 0, speed));
         }
     }

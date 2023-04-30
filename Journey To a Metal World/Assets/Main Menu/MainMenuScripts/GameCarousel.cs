@@ -50,7 +50,7 @@ public class GameCarousel : MonoBehaviour
         game_name_dict[games[3]] = "A Pebble in the Way";
 
         // conditional operators that checks whether the player prefs key exists or not
-        game_scores[games[0]] = 0;
+        game_scores[games[0]] = PlayerPrefs.HasKey("score_attack_high_score") ? PlayerPrefs.GetInt("score_attack_high_score") : 0;
         game_scores[games[1]] = PlayerPrefs.HasKey("time_attack_high_score") ? PlayerPrefs.GetInt("time_attack_high_score") : 0;
         game_scores[games[2]] = PlayerPrefs.HasKey("memory_high_score") ? PlayerPrefs.GetInt("memory_high_score") : 0;
         game_scores[games[3]] = PlayerPrefs.HasKey("Runner_high_score") ? PlayerPrefs.GetInt("Runner_high_score") : 0;

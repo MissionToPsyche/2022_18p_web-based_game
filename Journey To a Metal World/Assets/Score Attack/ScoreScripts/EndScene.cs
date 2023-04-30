@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class EndScene : MonoBehaviour
 {
     private Canvas end_canvas;
     private SpriteRenderer scene_mask;
     public static bool timeout = false;
+    private TextMeshPro score_text;
     
 
     void Start()

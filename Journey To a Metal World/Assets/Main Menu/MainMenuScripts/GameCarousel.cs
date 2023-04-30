@@ -14,14 +14,17 @@ public class GameCarousel : MonoBehaviour
     [SerializeField] GameObject time_attack_animation;
     [SerializeField] GameObject memory_animation;
     [SerializeField] GameObject runner_animation;
-    [SerializeField] TextMeshProUGUI game_name_and_score;
+    [SerializeField] TextMeshProUGUI game_names;
+    [SerializeField] TextMeshProUGUI game_score;
+    [SerializeField] TextMeshProUGUI high_score;
 
     private SpriteRenderer rend;
     private LinkedList<GameObject> carousel;
 
     // creates a mapping of the games array to the animated game objects
     private Dictionary<GameObject, GameObject> animation_order = new Dictionary<GameObject, GameObject>();
-    private Dictionary<GameObject, string> game_name = new Dictionary<GameObject, string>();
+    private Dictionary<GameObject, string> game_name_dict = new Dictionary<GameObject, string>();
+    private Dictionary<GameObject, int> game_scores = new Dictionary<GameObject, int>();
 
 
     // Start is called before the first frame update
@@ -41,16 +44,28 @@ public class GameCarousel : MonoBehaviour
         // GameObject game = carousel.First.Value;
         // rend.color = game.GetComponent<SpriteRenderer>().color;
 
-        game_name[games[0]] = "Score Attack";
-        game_name[games[1]] = "Mechanical Madness";
-        game_name[games[2]] = "Among the Stars";
-        game_name[games[3]] = "A Pebble in the Way";
+        game_name_dict[games[0]] = "Scan at Will!";
+        game_name_dict[games[1]] = "Mechanical Madness";
+        game_name_dict[games[2]] = "Among the Stars";
+        game_name_dict[games[3]] = "A Pebble in the Way";
+
+        // conditional operators that checks whether the player prefs key exists or not
+        game_scores[games[0]] = 0;
+        game_scores[games[1]] = PlayerPrefs.HasKey("time_attack_high_score") ? PlayerPrefs.GetInt("time_attack_high_score") : 0;
+        game_scores[games[2]] = PlayerPrefs.HasKey("memory_high_score") ? PlayerPrefs.GetInt("memory_high_score") : 0;
+        game_scores[games[3]] = PlayerPrefs.HasKey("Runner_high_score") ? PlayerPrefs.GetInt("Runner_high_score") : 0;
 
         // enables the score attack animation
         animation_order[games[0]].SetActive(true);
-        game_name_and_score.text = game_name[games[0]] + "\nScore: ";
+        game_names.text = game_name_dict[games[0]];
         
         printCarousel();        
+    }
+
+
+    void Update()
+    {
+        updateHighScore();
     }
 
 
@@ -68,7 +83,8 @@ public class GameCarousel : MonoBehaviour
 
         animation_order[game].SetActive(true);
         // shows the name of the game and score on score monitor
-        game_name_and_score.text = game_name[game] + "\nScore: ";
+        game_names.text = game_name_dict[game];
+        game_score.text = game_scores[game].ToString();
 
         // rend.color = game.GetComponent<SpriteRenderer>().color;
         printCarousel();
@@ -89,7 +105,8 @@ public class GameCarousel : MonoBehaviour
         GameObject game = carousel.First.Value;
 
         animation_order[game].SetActive(true);
-        game_name_and_score.text = game_name[game] + "\nScore: ";
+        game_names.text = game_name_dict[game];
+        game_score.text = game_scores[game].ToString();
         
         //rend.color = game.GetComponent<SpriteRenderer>().color;
         printCarousel();
@@ -101,6 +118,15 @@ public class GameCarousel : MonoBehaviour
         GameObject game = carousel.First.Value;
         SceneManager.LoadScene(game.name);
     }
+
+
+    private void updateHighScore()
+    {
+        GameObject[] games = {scoreAttackGame, timeAttackGame, memoryGame, runnerGame};
+        int score = game_scores[games[0]] + game_scores[games[1]] + game_scores[games[2]] + game_scores[games[3]];
+        high_score.text = score.ToString();
+    }
+
 
     void printCarousel()
     {

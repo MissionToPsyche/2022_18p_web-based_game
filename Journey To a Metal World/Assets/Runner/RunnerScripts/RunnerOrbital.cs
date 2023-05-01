@@ -19,7 +19,7 @@ public class RunnerOrbital : MonoBehaviour
     // float power_bank = 100f;
     float movement_speed = 2f;
     float frames_per_second;
-    int INVINCIBILITY_FRAME_LENGTH;
+    int INVINCIBILITY_FRAME_LENGTH = 72;
     int invinciblity_frames_left = 0;
     int current_collisions = 0; // because we can theoretically hit multiple things at once
     bool damage_effect_on = false;
@@ -52,7 +52,7 @@ public class RunnerOrbital : MonoBehaviour
     {
         this.frames_per_second = 1/Time.deltaTime;
         // this.INVINCIBILITY_FRAME_LENGTH = (int)frames_per_second * 2;
-        this.INVINCIBILITY_FRAME_LENGTH = 48;
+        
         this.sprite = GetComponent<SpriteRenderer>();
         this.orbital_color = sprite.color;
         this.score_keeper = FindObjectOfType<RunnerScore>();
@@ -111,6 +111,10 @@ public class RunnerOrbital : MonoBehaviour
     {
         this.movement_allowed = true;
     }
+
+    /*
+        Takes care of calculating orbital movement whiel also keeping it within bounds
+    */
     void OrbitalMovement()
     {
         if (this.movement_allowed == false)
@@ -118,13 +122,14 @@ public class RunnerOrbital : MonoBehaviour
             return;
         }
 
-        Vector2 delta = raw_input * movement_speed * Time.deltaTime;;
+        Vector2 delta = this.raw_input * movement_speed * Time.deltaTime;;
         Vector2 new_position = new Vector2();
         new_position.x = Mathf.Clamp(transform.position.x + delta.x, this.min_bounds.x + this.padding_left, 
             this.max_bounds.x - this.padding_right);
         new_position.y = Mathf.Clamp(transform.position.y + delta.y, this.min_bounds.y + this.padding_bottom, 
             this.max_bounds.y - this.padding_top);
         transform.position = new_position;
+        transform.localRotation = Quaternion.Euler(0,0,0); // keep no rotation even after impact
     }
 
 
@@ -309,7 +314,10 @@ public class RunnerOrbital : MonoBehaviour
             this.score_keeper.SetRunnerHighScore(current_score);
         }
         this.game_over_screen.SetupScreen(current_score, this.score_keeper.GetRunnerHighScore(), this.game_won);
+        this.movement_allowed = false;
+        // disable movement after all lives lost /  game over screen thrown up
         Debug.Log("game Over screen method finished");
+
         // int result = score_keeper.UpdateHighScore(current_score);
 
         // int last_high_score = 

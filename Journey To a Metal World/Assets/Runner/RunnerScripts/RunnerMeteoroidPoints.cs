@@ -6,11 +6,13 @@ using UnityEngine;
 public class RunnerMeteoroidPoints : MonoBehaviour
 {
     // Start is called before the first frame update
+    static int combo = 1;
     int point = 1;
     RunnerScore score_keeper;
     void Start()
     {
-        score_keeper = FindObjectOfType<RunnerScore>();    
+        score_keeper = FindObjectOfType<RunnerScore>();
+            
        
     }
     public void SetPointTotalToZero()
@@ -32,10 +34,12 @@ public class RunnerMeteoroidPoints : MonoBehaviour
     */
     public int ReachedPointsArea()
     {
-        int added = this.point;
-        score_keeper.AddToScore(this.point);
+        int added = (int) (this.point * (System.Math.Pow(2, combo)));
+        
+        score_keeper.AddToScore(added);
+        combo++;
         this.point  = 0;
-        Debug.Log(added + "points added to score");
+        Debug.Log(added + "points added to score, combo is " + combo);
         return added;
         
     }

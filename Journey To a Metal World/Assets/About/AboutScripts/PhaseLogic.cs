@@ -23,4 +23,9 @@ public class PhaseLogic : MonoBehaviour
             SceneManager.LoadScene(prevPhaseName);
         }
     }
+
+    public void exitPhase()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }

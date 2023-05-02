@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class DeskLinks : MonoBehaviour
 {
-    public void goOptionsScene()
-    {
-        SceneManager.LoadScene("Phase A");
-    }
-
-
     public void goAboutScene()
     {
         SceneManager.LoadScene("Phase A");
@@ -19,6 +13,6 @@ public class DeskLinks : MonoBehaviour
 
     public void goCreditsScene()
     {
-        SceneManager.LoadScene("Phase A");
+        SceneManager.LoadScene("Credits");
     }
 }

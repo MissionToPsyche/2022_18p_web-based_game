@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 
-public class FinalScore : MonoBehaviour
+public class FinalPlayerScore : MonoBehaviour
 {
     public TMP_Text TextMeshPro;
 
@@ -13,3 +13,4 @@ public class FinalScore : MonoBehaviour
         TextMeshPro.text = "Your Score:\n" + Score.total_score.ToString();
     }
 }
+

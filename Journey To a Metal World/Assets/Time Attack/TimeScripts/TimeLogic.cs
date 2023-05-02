@@ -15,8 +15,10 @@ public class TimeLogic : MonoBehaviour
     [SerializeField] public TextMeshProUGUI timeText;
     [SerializeField] public float totalTime;
     [SerializeField] public GameObject gameOverDisplay;
+    [SerializeField] public GameObject gameStartDisplay;
 
     private float timer;
+    private bool isGameStart;
     private bool isGameOver;
     private ScoreLogic scoreLogic;
 
@@ -24,14 +26,16 @@ public class TimeLogic : MonoBehaviour
     void Start() 
     {
         timer = totalTime;
+        isGameStart = false;
         isGameOver = false;
         scoreLogic = GetComponent<ScoreLogic>();
+        Time.timeScale = 0;
     }
 
 
     void Update() 
     {
-        if (!isGameOver) {
+        if (isGameStart && !isGameOver) {
             if (timer > 0) {
                 timer -= Time.deltaTime;
                 updateTime();
@@ -58,11 +62,23 @@ public class TimeLogic : MonoBehaviour
     }
 
 
+    public void startGame()
+    {
+        gameStartDisplay.SetActive(false);
+        isGameStart = true;
+        Time.timeScale = 1;
+    }
+
+
     public void exitGame()
     {
         SceneManager.LoadScene("Main Menu");
     }
 
+    public bool getIsGameStart()
+    {
+        return isGameStart;
+    }
 
     public bool getIsGameOver()
     {

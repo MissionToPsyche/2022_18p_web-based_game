@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class RunnerBackgroundSpawner : MonoBehaviour
 {
-    [SerializeField] WaveConfigSO current_wave;
-    [SerializeField] List<BackgroundWaveConfigSO> wave_configs;
+    [SerializeField] BackgroundWaveConfigSO current_wave;
+    // [SerializeField] List<BackgroundWaveConfigSO> wave_configs;
     [SerializeField] List<GameObject> background_list;
     int index = 0;
     // [SerializeField] List<Transform> 
@@ -36,8 +36,12 @@ public class RunnerBackgroundSpawner : MonoBehaviour
         }
     }
 
-    void SpawnBackground()
+    /*
+    Spawns a single background off screen. this background should already be prepped to move itself
+    */
+    public void SpawnBackground()
     {
+        
         if (this.continue_spawning == false)
         {
             return;            
@@ -56,7 +60,7 @@ public class RunnerBackgroundSpawner : MonoBehaviour
     /**
         returns the current wave that is being spawned
     */
-    public WaveConfigSO GetCurrentWave()
+    public BackgroundWaveConfigSO GetCurrentWave()
     {
         return this.current_wave;
     }

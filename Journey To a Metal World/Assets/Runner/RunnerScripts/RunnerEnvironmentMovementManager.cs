@@ -12,6 +12,7 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
     RunnerBackgroundMove background;
     RunnerFinishMove finishline;
     RunnerEnemySpawner spawner;
+    RunnerBackgroundSpawner background_spawner;
     RunnerMeteoroidMove meteoroid_move;
     bool isWin = false;
      // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
         this.background = FindObjectOfType<RunnerBackgroundMove>();
         this.finishline = FindObjectOfType<RunnerFinishMove>();
         this.spawner = FindObjectOfType<RunnerEnemySpawner>();
+        this.background_spawner = FindObjectOfType<RunnerBackgroundSpawner>();
         this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
     }
 
@@ -35,6 +37,9 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
     */
     public void BeginGame()
     {
+        this.background_spawner.SpawnBackground();
+        Debug.Log("background should be spawned");
+
         this.background.StartBackgroundMovement();
         Debug.Log("background Movement should be enabled");
         this.meteoroid_move.StartMeteoroidMove();
@@ -42,6 +47,7 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
 
         this.spawner.StartSpawning();
         Debug.Log("Meteoroid spawning enabled");
+
 
 
         

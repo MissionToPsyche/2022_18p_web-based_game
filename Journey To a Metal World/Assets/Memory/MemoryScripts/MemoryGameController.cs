@@ -50,20 +50,6 @@ public class MemoryGameController : MonoBehaviour
     }
 
 
-    public IEnumerator restartMemoryGame()
-    {
-        yield return new WaitForSeconds(0.3f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-
-    public IEnumerator returnToMainMenu()
-    {
-        yield return new WaitForSeconds(0.3f);
-        SceneManager.LoadScene("Main Menu");
-    }
-
-
     /// <summary> Returns the difficulty level of the current game which is useful for pattern generation or points. </summary>
     /// <returns> A 32-bit positive integer, representing the difficulty level. </returns>
     public int getDifficultyGauge()

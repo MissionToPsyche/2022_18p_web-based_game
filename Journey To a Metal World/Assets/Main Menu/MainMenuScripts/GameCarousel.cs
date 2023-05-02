@@ -27,7 +27,6 @@ public class GameCarousel : MonoBehaviour
     private Dictionary<GameObject, int> game_scores = new Dictionary<GameObject, int>();
 
 
-    // Start is called before the first frame update
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
@@ -57,7 +56,10 @@ public class GameCarousel : MonoBehaviour
 
         // enables the score attack animation
         animation_order[games[0]].SetActive(true);
+        // displays "Scan at Will! on startup
         game_names.text = game_name_dict[games[0]];
+        // displays Scan at Will!'s high score on startup
+        game_score.text = "Best: " + game_scores[games[0]].ToString();
         
         printCarousel();        
     }
@@ -84,7 +86,7 @@ public class GameCarousel : MonoBehaviour
         animation_order[game].SetActive(true);
         // shows the name of the game and score on score monitor
         game_names.text = game_name_dict[game];
-        game_score.text = game_scores[game].ToString();
+        game_score.text = "Best: " + game_scores[game].ToString();
 
         // rend.color = game.GetComponent<SpriteRenderer>().color;
         printCarousel();
@@ -106,7 +108,7 @@ public class GameCarousel : MonoBehaviour
 
         animation_order[game].SetActive(true);
         game_names.text = game_name_dict[game];
-        game_score.text = game_scores[game].ToString();
+        game_score.text = "Best: " + game_scores[game].ToString();
         
         //rend.color = game.GetComponent<SpriteRenderer>().color;
         printCarousel();

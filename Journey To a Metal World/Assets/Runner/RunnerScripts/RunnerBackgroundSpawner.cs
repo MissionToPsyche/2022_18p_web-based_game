@@ -28,10 +28,19 @@ public class RunnerBackgroundSpawner : MonoBehaviour
     //         Debug.Log("Meteoroids should stop spawning");
     //     }     
     // }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("hit trigger");
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("\nexit trigger");
+        Debug.Log(other.tag);
+
         if (other.tag == "Respawn")
         {
+
             SpawnBackground();
         }
     }
@@ -48,11 +57,12 @@ public class RunnerBackgroundSpawner : MonoBehaviour
         }
         GameObject background_choice = this.background_list[this.index];
         this.index++;
+        // GameObject background_choice = this.background_list[0];
+
         // well or I could randomize it. 
         // more viable if I rotate the backgrounds to get more of them
         this.index = index % background_list.Count;
-        Instantiate(background_choice, current_wave.GetStartingWaypoint().position, 
-            Quaternion.identity, transform);
+        Instantiate(background_choice, current_wave.GetStartingWaypoint().position, Quaternion.identity, transform);
 
     }
 

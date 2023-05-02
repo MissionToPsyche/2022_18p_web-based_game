@@ -405,6 +405,7 @@ GameObject:
   - component: {fileID: 174704643}
   - component: {fileID: 174704642}
   - component: {fileID: 174704641}
+  - component: {fileID: 174704644}
   m_Layer: 5
   m_Name: Restart Button
   m_TagString: Untagged
@@ -429,7 +430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -494.79987, y: -32.319977}
+  m_AnchoredPosition: {x: -494.79984, y: -32.319977}
   m_SizeDelta: {x: -1017.6398, y: 58.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &174704641
@@ -476,9 +477,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 775451545}
-        m_TargetAssemblyTypeName: RunnerUI, Assembly-CSharp
-        m_MethodName: RestartGame
+      - m_Target: {fileID: 174704644}
+        m_TargetAssemblyTypeName: MainMenuGameButtons, Assembly-CSharp
+        m_MethodName: restartMiniGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -526,6 +527,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174704639}
   m_CullTransparentMesh: 1
+--- !u!114 &174704644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174704639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa806c8f5730d95468d970da1b64fdff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &209366013
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +827,7 @@ GameObject:
   - component: {fileID: 263127379}
   - component: {fileID: 263127378}
   - component: {fileID: 263127377}
+  - component: {fileID: 263127380}
   m_Layer: 5
   m_Name: Home Button
   m_TagString: Untagged
@@ -838,7 +852,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -432.79987, y: -32.320007}
+  m_AnchoredPosition: {x: -432.79984, y: -32.320007}
   m_SizeDelta: {x: -1017.64, y: 58.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &263127377
@@ -885,9 +899,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 775451545}
-        m_TargetAssemblyTypeName: RunnerUI, Assembly-CSharp
-        m_MethodName: GoToMainMenu
+      - m_Target: {fileID: 263127380}
+        m_TargetAssemblyTypeName: MainMenuGameButtons, Assembly-CSharp
+        m_MethodName: returnToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -935,6 +949,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 263127375}
   m_CullTransparentMesh: 1
+--- !u!114 &263127380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263127375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa806c8f5730d95468d970da1b64fdff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &467007815
 GameObject:
   m_ObjectHideFlags: 0

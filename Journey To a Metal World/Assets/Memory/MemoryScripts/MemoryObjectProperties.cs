@@ -51,16 +51,4 @@ public class MemoryObjectProperties : MonoBehaviour
         Debug.Log(solar_object + " added");
         player_controller.getPlayerSelection().Enqueue(solar_object);
     }
-
-
-    public void restart()
-    {
-        StartCoroutine(controller.restartMemoryGame());
-    }
-
-
-    public void mainMenu()
-    {
-        StartCoroutine(controller.returnToMainMenu());
-    }
 }

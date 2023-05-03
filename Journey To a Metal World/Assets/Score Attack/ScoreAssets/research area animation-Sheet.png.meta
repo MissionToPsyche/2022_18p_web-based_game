@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -93,7 +93,7 @@ TextureImporter:
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 12
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -115,7 +115,322 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: research area animation-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 9
+        width: 143
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9dc7213290ced0448b0c196a743df23
+      internalID: -780359053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 13
+        width: 132
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e997c226b16ab4ea29e1422334a078
+      internalID: 403917848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 33
+        width: 93
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f72ba971bb7f48647bc7fd205d0c1950
+      internalID: -331581242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 33
+        width: 92
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec49cd6863bb4154897d908578be9b6a
+      internalID: 1126228351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 33
+        width: 93
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2be2766a92875ed469a810b828a69a87
+      internalID: -2088858465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 39
+        width: 84
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44ac0f24bfddcea4781b3f0a53ecc7a8
+      internalID: -19987135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 53
+        width: 53
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ce8ceee280b0c4793fd8943a9ec2e7
+      internalID: 660532147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1174
+        y: 53
+        width: 52
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3fff554874b0634bae6889c03f7a6d2
+      internalID: 1588723748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1334
+        y: 53
+        width: 53
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc64bfc75c4f1bb409c107d6924a5742
+      internalID: -2138221885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1494
+        y: 53
+        width: 52
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c9fbe355620dfd4593fdbd398410c44
+      internalID: -1890624187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1659
+        y: 59
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2fc8729ba369dc4ca2698526a2e650c
+      internalID: 855908349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 64
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 833b86caa4936f344b928a63f3a418e8
+      internalID: -85044871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1988
+        y: 68
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94afe13b340aa74296e3deb8205e498
+      internalID: 181345805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 2153
+        y: 74
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d48480cfe4970b4ebfcc60aeefe8215
+      internalID: -543659638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: research area animation-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 69
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f5055241664154ea0f724e13f9eb89
+      internalID: 621292187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +441,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      research area animation-Sheet_14: 621292187
+      research area animation-Sheet_8: -2138221885
+      research area animation-Sheet_5: -19987135
+      research area animation-Sheet_12: 181345805
+      research area animation-Sheet_10: 855908349
+      research area animation-Sheet_1: 403917848
+      research area animation-Sheet_3: 1126228351
+      research area animation-Sheet_4: -2088858465
+      research area animation-Sheet_2: -331581242
+      research area animation-Sheet_13: -543659638
+      research area animation-Sheet_0: -780359053
+      research area animation-Sheet_7: 1588723748
+      research area animation-Sheet_6: 660532147
+      research area animation-Sheet_9: -1890624187
+      research area animation-Sheet_11: -85044871
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

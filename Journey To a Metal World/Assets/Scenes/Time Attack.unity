@@ -1704,7 +1704,7 @@ GameObject:
   - component: {fileID: 437663733}
   - component: {fileID: 437663732}
   - component: {fileID: 437663731}
-  - component: {fileID: 437663730}
+  - component: {fileID: 437663734}
   m_Layer: 5
   m_Name: Restart Button
   m_TagString: Untagged
@@ -1732,20 +1732,6 @@ RectTransform:
   m_AnchoredPosition: {x: -358.19998, y: 171.4}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &437663730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437663728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f17cc5ef2f9d6a4aa52db275d408188, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  solar_object: {fileID: 437663728}
-  highlight_image: {fileID: 0}
 --- !u!114 &437663731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1790,9 +1776,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 44699910}
-        m_TargetAssemblyTypeName: TimeLogic, Assembly-CSharp
-        m_MethodName: restartGame
+      - m_Target: {fileID: 437663734}
+        m_TargetAssemblyTypeName: MainMenuGameButtons, Assembly-CSharp
+        m_MethodName: restartMiniGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1840,6 +1826,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437663728}
   m_CullTransparentMesh: 1
+--- !u!114 &437663734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437663728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa806c8f5730d95468d970da1b64fdff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &600408906
 GameObject:
   m_ObjectHideFlags: 0
@@ -5924,6 +5922,7 @@ GameObject:
   - component: {fileID: 2090395640}
   - component: {fileID: 2090395639}
   - component: {fileID: 2090395638}
+  - component: {fileID: 2090395641}
   m_Layer: 5
   m_Name: Main Menu Button
   m_TagString: Untagged
@@ -5995,9 +5994,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 44699910}
-        m_TargetAssemblyTypeName: TimeLogic, Assembly-CSharp
-        m_MethodName: exitGame
+      - m_Target: {fileID: 2090395641}
+        m_TargetAssemblyTypeName: MainMenuGameButtons, Assembly-CSharp
+        m_MethodName: returnToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6045,3 +6044,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090395636}
   m_CullTransparentMesh: 1
+--- !u!114 &2090395641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090395636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa806c8f5730d95468d970da1b64fdff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

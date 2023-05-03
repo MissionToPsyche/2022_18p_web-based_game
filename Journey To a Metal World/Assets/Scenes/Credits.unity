@@ -655,6 +655,7 @@ GameObject:
   - component: {fileID: 488057023}
   - component: {fileID: 488057022}
   - component: {fileID: 488057021}
+  - component: {fileID: 488057024}
   m_Layer: 5
   m_Name: Main Menu Button
   m_TagString: Untagged
@@ -726,9 +727,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1851724724}
-        m_TargetAssemblyTypeName: PhaseLogic, Assembly-CSharp
-        m_MethodName: exitPhase
+      - m_Target: {fileID: 488057024}
+        m_TargetAssemblyTypeName: MainMenuGameButtons, Assembly-CSharp
+        m_MethodName: returnToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -776,6 +777,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488057019}
   m_CullTransparentMesh: 1
+--- !u!114 &488057024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488057019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa806c8f5730d95468d970da1b64fdff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2485,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 366027119}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.36239508
+  m_Size: 0.3623951
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

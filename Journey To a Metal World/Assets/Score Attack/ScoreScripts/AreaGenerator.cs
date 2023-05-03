@@ -18,23 +18,6 @@ public class AreaGenerator : MonoBehaviour
         research_areas = new List<GameObject>();
     }
 
-
-    // /* Generate a new research area if one gets detected and removed */
-    // void Update()
-    // {
-    //     if(StartScene.game_start == true && cur_area_count < max_area_count)
-    //     {
-    //         var x = Random.Range(-1 * radius, radius);
-    //         var sign = GetRandomSign();
-    //         var y = Mathf.Sqrt(radius * radius - x * x) * sign;
-    //         var position = new Vector3(x, y, 0);
-    //         Debug.Log(position);
-    //         GameObject new_research_area = Instantiate(this.prefab, position, transform.rotation) as GameObject;
-    //         // research_areas.Add(new_research_area);
-    //         cur_area_count++;
-    //     }
-    // }
-
     void Update()
     {
         if(StartScene.game_start == true && cur_area_count < max_area_count)
@@ -46,7 +29,6 @@ public class AreaGenerator : MonoBehaviour
             sign = GetRandomSign();
             new_area_y = Mathf.Sqrt(radius * radius - new_area_x * new_area_x) * sign;
             var redo = isOverlap(new_area_x, new_area_y);
-            Debug.Log("overlap: " + redo);
             if(redo == false){
                 var position = new Vector3(new_area_x, new_area_y, 0);
                 GameObject new_research_area = Instantiate(this.prefab, position, transform.rotation) as GameObject;
@@ -75,7 +57,6 @@ public class AreaGenerator : MonoBehaviour
             exist_area_y = area.transform.position.y;
             distance = Mathf.Sqrt(Mathf.Pow((exist_area_x - new_area_x), 2) + Mathf.Pow((exist_area_y - new_area_y), 2));
             if(distance < research_area_radius){
-                Debug.Log("new area x: "+new_area_x+"new area y: "+new_area_y + "distance: " + distance);
                 return true;
             }
         }

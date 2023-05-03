@@ -19,7 +19,7 @@ public class RunnerOrbital : MonoBehaviour
     // float power_bank = 100f;
     float movement_speed = 2f;
     float frames_per_second;
-    int INVINCIBILITY_FRAME_LENGTH;
+    int INVINCIBILITY_FRAME_LENGTH = 72;
     int invinciblity_frames_left = 0;
     int current_collisions = 0; // because we can theoretically hit multiple things at once
     bool damage_effect_on = false;
@@ -51,7 +51,8 @@ public class RunnerOrbital : MonoBehaviour
     void Start()
     {
         this.frames_per_second = 1/Time.deltaTime;
-        this.INVINCIBILITY_FRAME_LENGTH = (int)frames_per_second * 2;
+        // this.INVINCIBILITY_FRAME_LENGTH = (int)frames_per_second * 2;
+        
         this.sprite = GetComponent<SpriteRenderer>();
         this.orbital_color = sprite.color;
         this.score_keeper = FindObjectOfType<RunnerScore>();
@@ -110,6 +111,10 @@ public class RunnerOrbital : MonoBehaviour
     {
         this.movement_allowed = true;
     }
+
+    /*
+        Takes care of calculating orbital movement whiel also keeping it within bounds
+    */
     void OrbitalMovement()
     {
         if (this.movement_allowed == false)
@@ -117,13 +122,14 @@ public class RunnerOrbital : MonoBehaviour
             return;
         }
 
-        Vector2 delta = raw_input * movement_speed * Time.deltaTime;;
+        Vector2 delta = this.raw_input * movement_speed * Time.deltaTime;;
         Vector2 new_position = new Vector2();
         new_position.x = Mathf.Clamp(transform.position.x + delta.x, this.min_bounds.x + this.padding_left, 
             this.max_bounds.x - this.padding_right);
         new_position.y = Mathf.Clamp(transform.position.y + delta.y, this.min_bounds.y + this.padding_bottom, 
             this.max_bounds.y - this.padding_top);
         transform.position = new_position;
+        transform.localRotation = Quaternion.Euler(0,0,0); // keep no rotation even after impact
     }
 
 
@@ -220,17 +226,28 @@ public class RunnerOrbital : MonoBehaviour
                 if (damage_effect_on == true)
                 {
                     this.damage_effect_on = false;
-                    orbital_color.a = 0;
-                    sprite.color = orbital_color;
+                    // orbital_color.g = 255;
+                    // orbital_color.b = 255;
+
+                    // orbital_color.a = 0;
+                    // sprite.color = orbital_color;
+                    sprite.color = Color.red;
+                    // sprite.color.g = 0;
+                    
                     // sprite.color.a = 0;
-                    Debug.Log("orbital should be invisible");
+                    Debug.Log("orbital should be red");
                 }
                 else if (damage_effect_on == false)
                 {
                     this.damage_effect_on = true;
-                    orbital_color.a = 255;    
-                    sprite.color = orbital_color;
-                    Debug.Log("orbital is visible");
+                    // orbital_color.a = 255;    
+                    // orbital_color.g = 0;
+                    // orbital_color.b = 0;
+
+                    // sprite.color = orbital_color;
+
+                    sprite.color = Color.white;
+                    Debug.Log("orbital is normal color");
 
                 }
             }
@@ -239,7 +256,7 @@ public class RunnerOrbital : MonoBehaviour
         //so if it's here then there was 0 invincibility frames
         this.damage_effect_on = false;
         
-        orbital_color.a = 255;
+        // orbital_color.a = 255;
         sprite.color = orbital_color;
         if (collision_count > 0)
         {
@@ -253,7 +270,9 @@ public class RunnerOrbital : MonoBehaviour
             {
                 this.game_over = true;
                 this.game_won = false;
-                orbital_color.a = 255;
+                // orbital_color.a = 255;
+                orbital_color.g = 0;
+                orbital_color.b = 0;
                 sprite.color = orbital_color;
                 this.invinciblity_frames_left = 0;
             }
@@ -269,18 +288,22 @@ public class RunnerOrbital : MonoBehaviour
     */
     bool gameLostProcess()
     {
-        this.orbital_color.a--;
-        this.sprite.color = orbital_color;
+        // this.orbital_color.a--;
+        // this.sprite.color = orbital_color;
+        orbital_color.g = 0;
+        orbital_color.b = 0;
+        sprite.color = orbital_color;
+
         // this.stage.StopMeteoroidMovement();
         // this would stop movement. but for the more interesting and nicer view, 
         // let's instead just let any existing meteoroids keep going but not spawn any more
         this.enemy_spawner.StopSpawningMeteoroids();
-        if (orbital_color.a == 0)
-        {
-            
-            return true;
-        }
-        return false;
+        // if (orbital_color.a == 0)
+        // {
+        //     return true;
+        // }
+        // return false;
+        return true;
     }
 
     void BringUpScoreScreen()
@@ -291,7 +314,10 @@ public class RunnerOrbital : MonoBehaviour
             this.score_keeper.SetRunnerHighScore(current_score);
         }
         this.game_over_screen.SetupScreen(current_score, this.score_keeper.GetRunnerHighScore(), this.game_won);
+        this.movement_allowed = false;
+        // disable movement after all lives lost /  game over screen thrown up
         Debug.Log("game Over screen method finished");
+
         // int result = score_keeper.UpdateHighScore(current_score);
 
         // int last_high_score = 

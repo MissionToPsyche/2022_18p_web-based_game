@@ -24,6 +24,7 @@ public class MemoryPlayerController : MonoBehaviour
     private bool generated_pattern = false;
     private bool time_on = false;
     private float time = 80f;
+    private int three_count = 0;
     
 
     /// <summary> Finds the MemoryPatternGenerator and MemoryGameController objects to use later on. </summary>
@@ -146,7 +147,7 @@ public class MemoryPlayerController : MonoBehaviour
         {
             if (pattern_generator.getPatternStorage().Peek() != player_selection.Peek())
             {
-                Debug.Log("Invalid Selection");
+                // Debug.Log("Invalid Selection");
                 time_on = false;
                 showGameOver();
 
@@ -154,7 +155,7 @@ public class MemoryPlayerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Correct!");
+                // Debug.Log("Correct!");
 
                 // if the pattern is complete then you add one to the score
                 player_score += 10 * controller.getDifficultyGauge();
@@ -180,8 +181,15 @@ public class MemoryPlayerController : MonoBehaviour
             generated_pattern = false;
 
             // if the player successfully repeats the pattern then we increase the difficulty
-            Debug.Log("\niteration: " + controller.getDifficultyGauge());
-            controller.addToDifficultyGauge(1);
+            // Debug.Log("\niteration: " + controller.getDifficultyGauge());
+
+            // you will have 3 rounds before moving up to the next difficulty
+            if (three_count == 2)
+            {
+                controller.addToDifficultyGauge(1);
+                three_count = 0;
+            }
+            ++three_count;
 
             // for now we will lower the time as the round increases
             // they can get time back if they repeat the pattern

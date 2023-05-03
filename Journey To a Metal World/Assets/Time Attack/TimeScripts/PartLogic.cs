@@ -62,11 +62,6 @@ public class PartLogic : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (!isDragging && isOverPartLocation) {
-            scoreLogic.incrementScore();
-            Destroy(gameObject);
-        }
-
         if (!timeLogic.getIsGameOver() && isDragging) {
             movePart();
         }
@@ -99,6 +94,11 @@ public class PartLogic : MonoBehaviour
     void OnMouseUp() 
     {
         isDragging = false;
+
+        if (isOverPartLocation) {
+            scoreLogic.incrementScore();
+            Destroy(gameObject);
+        }
     }
 
 
@@ -126,7 +126,7 @@ public class PartLogic : MonoBehaviour
         }
     }
 
-    void movePart() {
+    public void movePart() {
         Vector2 mousePosition = Input.mousePosition;
         Vector2 mousePositionRelative = Camera.main.ScreenToWorldPoint(mousePosition);
 

@@ -147,4 +147,10 @@ public class PartLogic : MonoBehaviour
 
         transform.Translate(newPositionX, newPositionY, 0);
     }
+
+
+    public bool getIsDragging() 
+    {
+        return isDragging;
+    }
 }

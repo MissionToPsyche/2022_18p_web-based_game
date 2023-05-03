@@ -78,7 +78,6 @@ public class PartLogic : MonoBehaviour
 
     private void loadSprite()
     {
-
         GetComponent<SpriteRenderer>().sprite = PART_SPRITES[partType];
     }
 
@@ -95,6 +94,10 @@ public class PartLogic : MonoBehaviour
     {
         isDragging = false;
 
+        // Reset momentum
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+        // Check if dropped part scores a point
         if (isOverPartLocation) {
             scoreLogic.incrementScore();
             Destroy(gameObject);
@@ -125,6 +128,7 @@ public class PartLogic : MonoBehaviour
             }
         }
     }
+
 
     public void movePart() {
         Vector2 mousePosition = Input.mousePosition;

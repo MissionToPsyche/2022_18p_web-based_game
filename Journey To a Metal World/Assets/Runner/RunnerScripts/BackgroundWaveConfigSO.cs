@@ -7,17 +7,6 @@ public class BackgroundWaveConfigSO : ScriptableObject
 {
     [SerializeField] List<GameObject> background_prefabs;
     [SerializeField] Transform pathPrefab;
-    // [SerializeField] float move_speed = 3f;
-    // note, this is positive because it is being used
-    // with a path and so if it were negative it would actually go
-    // the opposite direction of the next path point rather than simply to the left
-    // Start is called before the first frame update
-
-    // [SerializeField] float time_between_enemy_spawns = 2f;
-    // [SerializeField] float spawn_time_variance = 0f;
-    // [SerializeField] float minimum_spawn_time = 1f;
-    // RunnerMeteoroidMove meteoroid_move;
-
 
     /**
     Creates a random number that is based at the time_between_enemy_spawns variable with variance of

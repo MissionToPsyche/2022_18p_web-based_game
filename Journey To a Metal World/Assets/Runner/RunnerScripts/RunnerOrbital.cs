@@ -18,7 +18,6 @@ public class RunnerOrbital : MonoBehaviour
     int lives;
     // float power_bank = 100f;
     float movement_speed = 2f;
-    float frames_per_second;
     int INVINCIBILITY_FRAME_LENGTH = 72;
     int invinciblity_frames_left = 0;
     int current_collisions = 0; // because we can theoretically hit multiple things at once
@@ -50,9 +49,6 @@ public class RunnerOrbital : MonoBehaviour
 
     void Start()
     {
-        this.frames_per_second = 1/Time.deltaTime;
-        // this.INVINCIBILITY_FRAME_LENGTH = (int)frames_per_second * 2;
-        
         this.sprite = GetComponent<SpriteRenderer>();
         this.orbital_color = sprite.color;
         this.score_keeper = FindObjectOfType<RunnerScore>();
@@ -318,6 +314,9 @@ public class RunnerOrbital : MonoBehaviour
         // disable movement after all lives lost /  game over screen thrown up
         Debug.Log("game Over screen method finished");
 
+
+        this.environment_manager.StopBackgroundMovement();
+        Debug.Log("background movement turn off function called from orbital");
         // int result = score_keeper.UpdateHighScore(current_score);
 
         // int last_high_score = 

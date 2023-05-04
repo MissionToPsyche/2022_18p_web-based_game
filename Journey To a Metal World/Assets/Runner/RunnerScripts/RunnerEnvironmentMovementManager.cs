@@ -64,9 +64,13 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
             Debug.Log("should have stopped moving finish");
             this.isWin = true;
         }   
+        // this tag won't arrive
         else if (other.tag == "StopBackground")
         {
-            this.background.StopBackgroundMovement();
+            this.background.StopBackgroundMovement(); // unless I start using the background move script again
+            // this specific line is pointless. 
+            // as currently it is a fraction of meteoroid move speed
+            this.meteoroid_move.StopMeteoroidMovement();
             Debug.Log("should have stopped moving background");
         }
     }
@@ -79,7 +83,10 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
     public void StopBackgroundMovement()
     {
         this.background.StopBackgroundMovement();
+        this.meteoroid_move.StopMeteoroidMovement();
         Debug.Log("should have stopped moving background");
     }
+
+    
    
 }

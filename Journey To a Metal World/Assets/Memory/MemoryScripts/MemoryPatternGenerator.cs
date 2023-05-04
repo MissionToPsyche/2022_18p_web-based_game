@@ -11,6 +11,7 @@ public class MemoryPatternGenerator : MonoBehaviour
 {
     [SerializeField] float highlight_object_speed = 1.5f;
     [SerializeField] float return_to_original_color_speed = 0.5f;
+    [SerializeField] ParticleSystem[] particles;
     private MemoryGameController controller;
     private Queue<GameObject> pattern_storage = new Queue<GameObject>();
 
@@ -77,6 +78,7 @@ public class MemoryPatternGenerator : MonoBehaviour
             pattern_storage.Enqueue(solar_component);
             
             solar_component.GetComponent<Image>().color = Color.black;
+            particles[random_index].Play();
 
             yield return new WaitForSeconds(highlight_object_speed);
 

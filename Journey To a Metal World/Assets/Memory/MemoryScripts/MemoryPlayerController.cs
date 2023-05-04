@@ -16,6 +16,7 @@ public class MemoryPlayerController : MonoBehaviour
     [SerializeField] TextMeshProUGUI time_text;
     [SerializeField] MemoryGameOverScreen game_over_screen;
     [SerializeField] MemoryGameStartScreen game_start_screen;
+    [SerializeField] TextMeshProUGUI round_text;
     private MemoryPatternGenerator pattern_generator;
     private MemoryGameController controller;
     private Queue<GameObject> player_selection = new Queue<GameObject>();
@@ -94,6 +95,14 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    private IEnumerator showRoundText()
+    {
+        round_text.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        round_text.gameObject.SetActive(false);
+    }
+
+
     public void showGameOver()
     {
         player_selection.Clear();
@@ -122,16 +131,18 @@ public class MemoryPlayerController : MonoBehaviour
             controller.enableSolarComponentClick();
             controller.changePatternPermissions(false);
             time_on = true;
+
+            StartCoroutine(showRoundText());
         }
 
         if (time_on)
         {
             if (time > 0)
             {
+
                 time -= Time.deltaTime;
                 int time_str = (int)time;
                 time_text.text = "Time: " + time_str;
-                // the time starts while the pattern is being generated fix this
             }
             else
             {

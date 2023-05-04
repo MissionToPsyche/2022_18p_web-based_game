@@ -15,9 +15,10 @@ public class RunnerOrbital : MonoBehaviour
     // start having increasing speed with longer no collisions. probably want to cap it somwhere though
     
     [SerializeField] int MAX_LIVES = 3;
+    [SerializeField] float show_speed;
     int lives;
     // float power_bank = 100f;
-    float movement_speed = 2f;
+    float movement_speed = 5f;
     int INVINCIBILITY_FRAME_LENGTH = 72;
     int invinciblity_frames_left = 0;
     int current_collisions = 0; // because we can theoretically hit multiple things at once
@@ -119,6 +120,7 @@ public class RunnerOrbital : MonoBehaviour
         }
 
         Vector2 delta = this.raw_input * movement_speed * Time.deltaTime;;
+        this.show_speed = movement_speed * Time.deltaTime;
         Vector2 new_position = new Vector2();
         new_position.x = Mathf.Clamp(transform.position.x + delta.x, this.min_bounds.x + this.padding_left, 
             this.max_bounds.x - this.padding_right);

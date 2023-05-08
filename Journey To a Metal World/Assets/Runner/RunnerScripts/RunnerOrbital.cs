@@ -24,6 +24,7 @@ public class RunnerOrbital : MonoBehaviour
     int current_collisions = 0; // because we can theoretically hit multiple things at once
     bool damage_effect_on = false;
     bool movement_allowed= false;
+    List<GameObject> collision_list = new List<GameObject>();
 
     Vector2 raw_input;
     SpriteRenderer sprite;
@@ -179,10 +180,42 @@ public class RunnerOrbital : MonoBehaviour
             return;
         }
         this.current_collisions++;
+        this.collision_list.Add(other.gameObject);
         other.gameObject.transform.BroadcastMessage("SetPointTotalToZero");
+        // other.gameObject.transform.BroadcastMessage()
         stage.ResetSpeed();
 
     }
+
+    /**
+    Attempt to include only allowing being hit once per object
+    */
+    // https://answers.unity.com/questions/305614/get-script-variable-from-collider.html
+    // try this. set the other to be ... hit count?
+    // then need another for damage applied boolean
+    // then ... do I need a queue to keep track of these so I can keep checking if necessary
+    // just keep the script that can check the damage/points so that that is necessary?
+    // queue should work because this is fast and we're just adding and dropping things off of it. 
+    // ... also doing 1 function to it. to measure hit count and later on we'll have to manage damamge applied
+    // count. 
+
+    // go simpler? once the damamge has been applied once we can just change the damage total to 0 and let it "apply"
+    // it again later? 
+    // skips needing the if statements 
+    // void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     if (other.gameObject.tag == "CollisionIgnore")
+    //     {
+    //         return;
+    //     }
+    //     this.current_collisions++;
+    //     other.gameObject.transform.BroadcastMessage("SetPointTotalToZero");
+    //     // other.gameObject.transform.BroadcastMessage()
+    //     stage.ResetSpeed();
+
+    // }
+
+
 
     /**
     when we stop colliding with something we decrease the count of how many things we are currently
@@ -195,8 +228,9 @@ public class RunnerOrbital : MonoBehaviour
         {
             return;
         }
+        this.collision_list.Remove(other.gameObject);
         this.current_collisions--;    
-        
+
     }
 
     /**
@@ -215,37 +249,25 @@ public class RunnerOrbital : MonoBehaviour
             this.game_won = false;
             return 0;
         }
+
         if (this.invinciblity_frames_left > 0)
         {
-            Debug.Log("has " + this.invinciblity_frames_left + " invinciblity frames left. no lives lost. \n Lives left = " + this.lives);
+            // Debug.Log("has " + this.invinciblity_frames_left + " invinciblity frames left. no lives lost. \n Lives left = " + this.lives);
             if (this.invinciblity_frames_left % ((int)(this.INVINCIBILITY_FRAME_LENGTH/2)) == 0)
             {
                 // orbital_color.a = 0;
                 if (damage_effect_on == true)
                 {
                     this.damage_effect_on = false;
-                    // orbital_color.g = 255;
-                    // orbital_color.b = 255;
-
-                    // orbital_color.a = 0;
-                    // sprite.color = orbital_color;
                     sprite.color = Color.red;
-                    // sprite.color.g = 0;
-                    
-                    // sprite.color.a = 0;
                     Debug.Log("orbital should be red");
                 }
                 else if (damage_effect_on == false)
                 {
                     this.damage_effect_on = true;
-                    // orbital_color.a = 255;    
-                    // orbital_color.g = 0;
-                    // orbital_color.b = 0;
-
-                    // sprite.color = orbital_color;
-
                     sprite.color = Color.white;
                     Debug.Log("orbital is normal color");
+                    // because this is more the tint than the actual color
 
                 }
             }
@@ -259,7 +281,8 @@ public class RunnerOrbital : MonoBehaviour
         if (collision_count > 0)
         {
             this.damage_effect_on = true;
-            DecreaseLives();
+
+            DecreaseLives(CalculateDamage());
             score_keeper.AddToScore(this.COLLISION_MINUS_POINT);
 
             Debug.Log("No invincibility frames left. -1 life. \n Lives left = " + this.lives);
@@ -279,6 +302,8 @@ public class RunnerOrbital : MonoBehaviour
         return 0; // no things currently colliding with object
 
     }
+
+    
 
     /**
     upon 0 lives left, fade out the player orbital. may integrate restart into this or turn it into separate
@@ -325,6 +350,30 @@ public class RunnerOrbital : MonoBehaviour
         // this.game_over_screen.SetupScreen();
     }
 
+    
+
+    /**
+    The target needs to me a meteoroid for this function to work 
+    */
+    // void FindAndDropMeteoroidFromList(GameObject target)
+    // {
+        // int drop_index;
+        // target_script = target.GetComponent<RunnerMeteoroidPoints>();
+        // target_id = target_script.GetUniqueId();
+
+        // for (int i = 0; i < this.collision_list.Count; i++)
+        // {
+        //     list_scipt = collision_list[i].GetComponent<RunnerMeteoroidPoints>();
+        //     if (target_id == list_script.GetUniqueId())
+        //     {
+        //         drop_index = i;
+        //         break;
+        //     }
+        // }
+
+    // }
+
+
     /**
         if we want a different screen for success I'll need this
         that said, the runner game is the only one that doesn't operate on a timer so...
@@ -336,10 +385,45 @@ public class RunnerOrbital : MonoBehaviour
         
     }
 
-    void DecreaseLives()
+    /**
+    Go through the collision list (note this is a currently colliding with list)
+     and check for a meteoroid that hasn't had damage applied yet
+    */
+    int CalculateDamage()
     {
-        this.lives--;
-        this.visual_manager.DecreaseLifeSprite();
+        for (int i = 0; i < this.collision_list.Count; i++)
+        {
+            //the problem is, the collision is on the main object but it is the child of the object that has the game script
+            // that takes care of points and my added blurb about collisions with the script I need to figure out the damage
+            // so threfore I need to take the collision's 1's child (it only has 1 hence index 0)'s component (script) named
+            // RunnerMeteoroidPoints
+            RunnerMeteoroidPoints list_script = collision_list[i].transform.GetChild(0).gameObject.GetComponent<RunnerMeteoroidPoints>();
+            int damage = list_script.GetDamageAmount();
+            if (damage > 0)
+            {
+                return damage;
+            }
+
+        }
+        return 0;
+
+    }
+    void DecreaseLives(int amount)
+    {
+        int decrease_by = amount;
+        if (this.lives < amount)
+        {
+            decrease_by = this.lives;
+            this.lives = 0;
+        }
+        else
+        {
+            this.lives-= amount;
+        }
+        for (int i = 0; i < decrease_by; i++)
+        {
+            this.visual_manager.DecreaseLifeSprite();
+        }
     }
     
 

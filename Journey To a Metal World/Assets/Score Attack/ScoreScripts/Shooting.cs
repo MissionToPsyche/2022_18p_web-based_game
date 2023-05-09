@@ -30,36 +30,4 @@ public class Shooting : MonoBehaviour
         this.canFire = true; 
     }
 
-    // void Fire()
-    // {
-    //     if(this.isFire && this.canFire && StartScene.game_start == true){
-    //         Rigidbody2D clone;
-    //         clone = Instantiate(projectile, transform.position, transform.rotation);
-    //         clone.velocity = transform.up * 12;
-    //         StartCoroutine(DelayCoroutine());
-    //     }
-    // }
-
-    // void Fire()
-    // {
-    //     if(this.isFire && StartScene.game_start == true){
-    //         this.coroutine = this.FireContinuously();
-    //         StartCoroutine(this.coroutine);
-    //     }
-    //     else{
-    //         StopCoroutine(this.coroutine);
-    //     }
-    // }
-
-    // public IEnumerator FireContinuously()
-    // {
-    //     while(true)
-    //     {
-    //         Rigidbody2D clone;
-    //         clone = Instantiate(projectile, transform.position, transform.rotation);
-    //         clone.velocity = transform.up * 12;
-    //         yield return new WaitForSeconds(10000000);
-    //     }
-    // }
-
 }

@@ -5,19 +5,23 @@ using UnityEngine;
 public class AreaDetector : MonoBehaviour
 {
     private SpriteRenderer research_area;
-    private float shrink_speed;
+    private float shrink_speed = 0.0001f;
 
     public GameObject ripple;
-    private Animator ripple_animator;
-    private SpriteRenderer ripple_sprite;
+    private Animator ripple_animator = null;
+    private SpriteRenderer ripple_sprite = null;
 
     void Start()
     {
         research_area = gameObject.GetComponent<SpriteRenderer>();
         shrink_speed = Random.Range(0.0001f, 0.000005f);
         ripple = GameObject.Find("Ripple Animation");
-        ripple_animator = ripple.GetComponent<Animator>();
-        ripple_sprite = ripple.GetComponent<SpriteRenderer>();
+        if(ripple != null)
+        {
+            ripple_animator = ripple.GetComponent<Animator>();
+            ripple_sprite = ripple.GetComponent<SpriteRenderer>();
+        }
+        
     }
 
     void Update()
@@ -52,6 +56,11 @@ public class AreaDetector : MonoBehaviour
     bool ResearchAreaExist()
     {
         return research_area;
+    }
+
+    public float GetShrinkSpeed()
+    {
+        return this.shrink_speed;
     }
 
     /* Destroy the research area and update score when it is triggered by the ray */

@@ -18,7 +18,7 @@ public class Orbit : MonoBehaviour
         transform.position = new Vector3(0f, 0f, 0);
         degree = 0.0;
         speed = 0.15f;
-        iter_count = 0;        
+        iter_count = 0;       
     }
 
     void Update()

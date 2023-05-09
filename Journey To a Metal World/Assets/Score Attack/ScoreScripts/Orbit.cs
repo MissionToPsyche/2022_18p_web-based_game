@@ -8,12 +8,13 @@ public class Orbit : MonoBehaviour
 {
     double radius = 5;
     [SerializeField] double degree;
+    [SerializeField] float delta_radius = 0.005f;
+    [SerializeField] float delta_speed = 0.04f;
     int iter_count = 0;
-    public static float speed = 0.15f;
+    public static float speed = 0.1f;
     
     void Start()
     {
-        
         transform.position = new Vector3(0f, 0f, 0);
         degree = 0.0;
         speed = 0.15f;
@@ -45,12 +46,12 @@ public class Orbit : MonoBehaviour
     {
         if(iter_count % 100 == 0 && radius >= 3)
         {
-            radius -= 0.005;
+            radius -= delta_radius;
         }
 
         if(iter_count % 4000 == 0 && radius >= 3)
         {
-            speed += 0.04f;
+            speed += delta_speed;
             // Debug.Log("speed up");
 
         }

@@ -33,7 +33,7 @@ public class AreaGenerator : MonoBehaviour
                 var position = new Vector3(new_area_x, new_area_y, 0);
                 GameObject new_research_area = Instantiate(this.prefab, position, transform.rotation) as GameObject;
                 research_areas.Add(new_research_area);
-                cur_area_count++;   
+                cur_area_count++;
             }    
         }
     }

@@ -16,7 +16,7 @@ public class Shooting : MonoBehaviour
         if(this.canFire && StartScene.game_start == true){
             Rigidbody2D clone;
             clone = Instantiate(projectile, transform.position, transform.rotation);
-            clone.velocity = transform.up * 12;
+            clone.velocity = transform.up * 13;
             StartCoroutine(DelayCoroutine());
         }
     }

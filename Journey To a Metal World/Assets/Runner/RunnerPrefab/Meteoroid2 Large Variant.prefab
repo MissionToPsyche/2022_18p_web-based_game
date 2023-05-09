@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1169412167477228986, guid: 96f3f6da15bcf614ca1065de2b00d1fc, type: 3}
       propertyPath: m_Name
-      value: Meteoroid2Large Variant
+      value: Meteoroid2 Large Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1169412167477228987, guid: 96f3f6da15bcf614ca1065de2b00d1fc, type: 3}
       propertyPath: m_RootOrder
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1169412168166992166, guid: 96f3f6da15bcf614ca1065de2b00d1fc, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1169412168166992167, guid: 96f3f6da15bcf614ca1065de2b00d1fc, type: 3}
       propertyPath: m_LocalScale.x

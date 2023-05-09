@@ -11,6 +11,10 @@ using UnityEngine;
 public class PartLogic : MonoBehaviour
 {
     private static int END_X = -15;
+    private static float RIGHT_BORDER = 12.5f;
+    private static float LEFT_BORDER = -12.5f;
+    private static float TOP_BORDER = 7f;
+    private static float BOTTOM_BORDER = -5f;
     private static ScoreLogic scoreLogic;
     private static TimeLogic timeLogic;
 
@@ -58,19 +62,8 @@ public class PartLogic : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (!isDragging && isOverPartLocation) {
-            scoreLogic.incrementScore();
-            Destroy(gameObject);
-        }
-
         if (!timeLogic.getIsGameOver() && isDragging) {
-            Vector2 mousePosition = Input.mousePosition;
-            Vector2 mousePositionRelative = Camera.main.ScreenToWorldPoint(mousePosition);
-
-            float newPositionX = mousePositionRelative.x - transform.position.x;
-            float newPositionY = mousePositionRelative.y - transform.position.y;
-
-            transform.Translate(newPositionX, newPositionY, 0);
+            movePart();
         }
     }
 
@@ -85,7 +78,6 @@ public class PartLogic : MonoBehaviour
 
     private void loadSprite()
     {
-
         GetComponent<SpriteRenderer>().sprite = PART_SPRITES[partType];
     }
 
@@ -101,6 +93,15 @@ public class PartLogic : MonoBehaviour
     void OnMouseUp() 
     {
         isDragging = false;
+
+        // Reset momentum
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+        // Check if dropped part scores a point
+        if (isOverPartLocation) {
+            scoreLogic.incrementScore();
+            Destroy(gameObject);
+        }
     }
 
 
@@ -126,5 +127,34 @@ public class PartLogic : MonoBehaviour
                 isOverPartLocation = false;
             }
         }
+    }
+
+
+    public void movePart() {
+        Vector2 mousePosition = Input.mousePosition;
+        Vector2 mousePositionRelative = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        if (mousePositionRelative.x > RIGHT_BORDER) {
+            mousePositionRelative.x = RIGHT_BORDER;
+        } else if (mousePositionRelative.x < LEFT_BORDER) {
+            mousePositionRelative.x = LEFT_BORDER;
+        }
+
+        if (mousePositionRelative.y > TOP_BORDER) {
+            mousePositionRelative.y = TOP_BORDER;
+        } else if (mousePositionRelative.y < BOTTOM_BORDER) {
+            mousePositionRelative.y = BOTTOM_BORDER;
+        }
+
+        float newPositionX = mousePositionRelative.x - transform.position.x;
+        float newPositionY = mousePositionRelative.y - transform.position.y;
+
+        transform.Translate(newPositionX, newPositionY, 0);
+    }
+
+
+    public bool getIsDragging() 
+    {
+        return isDragging;
     }
 }

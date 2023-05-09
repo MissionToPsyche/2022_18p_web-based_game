@@ -2201,7 +2201,7 @@ GameObject:
   - component: {fileID: 777460630}
   - component: {fileID: 777460629}
   m_Layer: 0
-  m_Name: Conveyor Belt 4
+  m_Name: Conveyor Belt 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2450,7 +2450,7 @@ GameObject:
   - component: {fileID: 806183520}
   - component: {fileID: 806183519}
   m_Layer: 0
-  m_Name: Conveyor Belt 2
+  m_Name: Conveyor Belt 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5240,7 +5240,7 @@ GameObject:
   - component: {fileID: 1725082964}
   - component: {fileID: 1725082963}
   m_Layer: 0
-  m_Name: Conveyor Belt 1
+  m_Name: Conveyor Belt 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5752,7 +5752,7 @@ GameObject:
   - component: {fileID: 2080916202}
   - component: {fileID: 2080916201}
   m_Layer: 0
-  m_Name: Conveyor Belt 5
+  m_Name: Conveyor Belt 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

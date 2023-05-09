@@ -12,6 +12,7 @@ TagManager:
   - Orbital
   - StopBackground
   - CollisionIgnore
+  - Part
   layers:
   - Default
   - TransparentFX

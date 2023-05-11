@@ -79,13 +79,14 @@ public class MemoryPatternGenerator : MonoBehaviour
             
             solar_component.GetComponent<Image>().color = Color.black;
             particles[random_index].Play();
+            solar_component.GetComponent<MemoryObjectProperties>().getNote().Play();
 
             yield return new WaitForSeconds(highlight_object_speed);
 
             solar_component.GetComponent<Image>().color = Color.white;
             
             yield return new WaitForSeconds(return_to_original_color_speed);
-            Debug.Log("object: " + solar_component);
+            // Debug.Log("object: " + solar_component);
 
             ++difficulty_index;
         }

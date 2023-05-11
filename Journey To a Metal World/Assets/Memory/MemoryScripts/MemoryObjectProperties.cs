@@ -11,6 +11,7 @@ public class MemoryObjectProperties : MonoBehaviour
 {
     [SerializeField] GameObject solar_object;
     [SerializeField] Sprite highlight_image;
+    [SerializeField] AudioSource note;
     private MemoryPlayerController player_controller;
     private MemoryGameController controller;
 
@@ -50,5 +51,11 @@ public class MemoryObjectProperties : MonoBehaviour
     {
         Debug.Log(solar_object + " added");
         player_controller.getPlayerSelection().Enqueue(solar_object);
+    }
+
+
+    public AudioSource getNote()
+    {
+        return note;
     }
 }

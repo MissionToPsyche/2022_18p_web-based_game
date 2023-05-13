@@ -6,37 +6,56 @@ using System;
 
 public class Orbit : MonoBehaviour
 {
-    double radius = 5;
-    [SerializeField] double degree;
+    [SerializeField] float degree;
+    [SerializeField] float delta_radius = 0.005f;
+    [SerializeField] float delta_speed = 0.04f;
     int iter_count = 0;
-    public static float speed = 0.15f;
+    float RADIAN = (Mathf.PI / 180);
+    public static float speed = 0.1f;
+    private Transform transform_object;
+    float radius = 5.0f;
+
     
     void Start()
     {
-        
-        transform.position = new Vector3(0f, 0f, 0);
-        degree = 0.0;
+        transform_object = transform;
+        transform_object.position = new Vector3(0f, 0f, 0);
+        degree = 0.0f;
         speed = 0.15f;
-        iter_count = 0;        
+        iter_count = 0;   
+        StartCoroutine(UpdateOrbitMove());
     }
 
-    void Update()
+
+    private IEnumerator UpdateOrbitMove()
     {
-        if(StartScene.game_start == true){
-            UpdatePosition();
-            SpeedUp();
-            StopOrbit();
+        while(true){
+            if(StartScene.game_start == true){
+                UpdatePosition();
+                SpeedUp();
+                StopOrbit();
+            }
+            yield return null;
         }
     }
 
+    // void Update()
+    // {
+    //     if(StartScene.game_start == true){
+    //         UpdatePosition();
+    //         SpeedUp();
+    //         StopOrbit();
+    //     }
+    // }
+
     void UpdatePosition()
     {
-        double angle = degree * (Math.PI / 180);
-        float y = (float) (radius * Math.Sin(angle));
-        float x = (float) (radius * Math.Cos(angle));
-        float delta_x = x - transform.position.x;
-        float delta_y = y - transform.position.y;
-        transform.Translate(delta_x, delta_y, 0);
+        float angle_radian = degree * RADIAN;
+        float y = radius * Mathf.Sin(angle_radian);
+        float x = radius * Mathf.Cos(angle_radian);
+        float delta_x = x - transform_object.position.x;
+        float delta_y = y - transform_object.position.y;
+        transform_object.Translate(delta_x, delta_y, 0);
         degree += speed;
         iter_count += 1;
     }
@@ -45,12 +64,12 @@ public class Orbit : MonoBehaviour
     {
         if(iter_count % 100 == 0 && radius >= 3)
         {
-            radius -= 0.005;
+            radius -= delta_radius;
         }
 
         if(iter_count % 4000 == 0 && radius >= 3)
         {
-            speed += 0.04f;
+            speed += delta_speed;
             // Debug.Log("speed up");
 
         }

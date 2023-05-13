@@ -5,18 +5,31 @@ using UnityEngine;
 public class AreaDetector : MonoBehaviour
 {
     private SpriteRenderer research_area;
-    private float shrink_speed;
+    private float shrink_speed = 0.0001f;
+
+    public GameObject ripple;
+    private Animator ripple_animator = null;
+    private SpriteRenderer ripple_sprite = null;
 
     void Start()
     {
         research_area = gameObject.GetComponent<SpriteRenderer>();
         shrink_speed = Random.Range(0.0001f, 0.000005f);
+        ripple = GameObject.Find("Ripple Animation");
+        if(ripple != null)
+        {
+            ripple_animator = ripple.GetComponent<Animator>();
+            ripple_sprite = ripple.GetComponent<SpriteRenderer>();
+        }
+        
     }
 
     void Update()
     {
         if(StartScene.game_start == true){
             UpdatePosition();
+            UpdateRippleOrder();
+            
         }
     }
 
@@ -30,9 +43,24 @@ public class AreaDetector : MonoBehaviour
         }
     }
 
+    void UpdateRippleOrder()
+    {
+        if(ripple_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1){
+            ripple_sprite.sortingOrder = 0;
+        }
+        else{
+            ripple_sprite.sortingOrder = 5;
+        }
+    }
+
     bool ResearchAreaExist()
     {
         return research_area;
+    }
+
+    public float GetShrinkSpeed()
+    {
+        return this.shrink_speed;
     }
 
     /* Destroy the research area and update score when it is triggered by the ray */
@@ -41,6 +69,11 @@ public class AreaDetector : MonoBehaviour
         foreach (GameObject area in AreaGenerator.research_areas)
         {
             if(gameObject.transform.position == area.transform.position){
+                if(ripple){
+                    ripple_sprite.sortingOrder = 5;
+                    ripple_animator.transform.position = area.transform.position;
+                    ripple_animator.Play("Animation", 0, 0f);
+                }
                 AreaGenerator.research_areas.Remove(area);
                 break;
             }

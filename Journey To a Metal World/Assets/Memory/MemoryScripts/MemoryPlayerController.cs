@@ -16,6 +16,8 @@ public class MemoryPlayerController : MonoBehaviour
     [SerializeField] TextMeshProUGUI time_text;
     [SerializeField] MemoryGameOverScreen game_over_screen;
     [SerializeField] MemoryGameStartScreen game_start_screen;
+    [SerializeField] TextMeshProUGUI round_text;
+    [SerializeField] AudioSource round_win;
     private MemoryPatternGenerator pattern_generator;
     private MemoryGameController controller;
     private Queue<GameObject> player_selection = new Queue<GameObject>();
@@ -94,6 +96,22 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    private IEnumerator showRoundText()
+    {
+        round_text.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        round_text.gameObject.SetActive(false);
+    }
+
+
+    private IEnumerator playRoundWinSound()
+    {
+        yield return new WaitForSeconds(0.4f);
+        round_win.Play();
+        yield return new WaitForSeconds(5f);
+    }
+
+
     public void showGameOver()
     {
         player_selection.Clear();
@@ -122,16 +140,18 @@ public class MemoryPlayerController : MonoBehaviour
             controller.enableSolarComponentClick();
             controller.changePatternPermissions(false);
             time_on = true;
+
+            StartCoroutine(showRoundText());
         }
 
         if (time_on)
         {
             if (time > 0)
             {
+
                 time -= Time.deltaTime;
                 int time_str = (int)time;
                 time_text.text = "Time: " + time_str;
-                // the time starts while the pattern is being generated fix this
             }
             else
             {
@@ -149,6 +169,9 @@ public class MemoryPlayerController : MonoBehaviour
             {
                 // Debug.Log("Invalid Selection");
                 time_on = false;
+
+                // play invalid select sound
+
                 showGameOver();
 
                 return;
@@ -161,7 +184,8 @@ public class MemoryPlayerController : MonoBehaviour
                 player_score += 10 * controller.getDifficultyGauge();
 
                 pattern_generator.getPatternStorage().Dequeue();
-                player_selection.Dequeue();
+                GameObject solar_component = player_selection.Dequeue();
+                solar_component.GetComponent<MemoryObjectProperties>().getNote().Play();
                     
                 if (pattern_generator.getPatternStorage().Count == 0)
                 {
@@ -179,6 +203,8 @@ public class MemoryPlayerController : MonoBehaviour
             complete_pattern = false;
             // if we complete the pattern then we need to generate a new pattern (that is harder)
             generated_pattern = false;
+
+            StartCoroutine(playRoundWinSound());
 
             // if the player successfully repeats the pattern then we increase the difficulty
             // Debug.Log("\niteration: " + controller.getDifficultyGauge());

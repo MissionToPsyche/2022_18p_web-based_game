@@ -16,7 +16,7 @@ public class Shooting : MonoBehaviour
         if(this.canFire && StartScene.game_start == true){
             Rigidbody2D clone;
             clone = Instantiate(projectile, transform.position, transform.rotation);
-            clone.velocity = transform.up * 12;
+            clone.velocity = transform.up * 13;
             StartCoroutine(DelayCoroutine());
         }
     }
@@ -29,37 +29,5 @@ public class Shooting : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         this.canFire = true; 
     }
-
-    // void Fire()
-    // {
-    //     if(this.isFire && this.canFire && StartScene.game_start == true){
-    //         Rigidbody2D clone;
-    //         clone = Instantiate(projectile, transform.position, transform.rotation);
-    //         clone.velocity = transform.up * 12;
-    //         StartCoroutine(DelayCoroutine());
-    //     }
-    // }
-
-    // void Fire()
-    // {
-    //     if(this.isFire && StartScene.game_start == true){
-    //         this.coroutine = this.FireContinuously();
-    //         StartCoroutine(this.coroutine);
-    //     }
-    //     else{
-    //         StopCoroutine(this.coroutine);
-    //     }
-    // }
-
-    // public IEnumerator FireContinuously()
-    // {
-    //     while(true)
-    //     {
-    //         Rigidbody2D clone;
-    //         clone = Instantiate(projectile, transform.position, transform.rotation);
-    //         clone.velocity = transform.up * 12;
-    //         yield return new WaitForSeconds(10000000);
-    //     }
-    // }
 
 }

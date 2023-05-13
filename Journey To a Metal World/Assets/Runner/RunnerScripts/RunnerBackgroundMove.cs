@@ -25,7 +25,7 @@ public class RunnerBackgroundMove : MonoBehaviour
         {
             return;
         }
-        DoMovement();
+        // DoMovement();
 
     }
 

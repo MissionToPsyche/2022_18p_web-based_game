@@ -7,9 +7,13 @@ public class RunnerEnemySpawner : MonoBehaviour
     WaveConfigSO current_wave;
     [SerializeField] List<WaveConfigSO> wave_configs;
     [SerializeField] List<WaveConfigSO> random_waves;
+    // [SerializeField] List<WaveConfigSO> random_waves_order_2;
     [SerializeField] int MAX_WAVES = 60;
     // [SerializeField] List<Transform> 
     [SerializeField] float wave_delay = 1f;
+    int last_sent_lane = -1;
+    int LANES_TOTAL = 5;
+    int METEOROID_VARIANTS_TOTAL = 9;
     bool continue_spawning = true;
     bool finished_all_waves = false;
     bool send_finishline = true;
@@ -44,6 +48,41 @@ public class RunnerEnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemyWavesRandomly());
     }
 
+    
+    /**
+        function to take care of randomly picking a meteoroid to spawn but making 
+        sure to not allow for repeatedly spawning in the same lane
+        lane 0 is at the bottom. as of right now lane 4 is at the top.
+
+    */
+    int GetAdjustedRandomSpawn(int last_sent_lane)
+    {
+        int lane = Random.Range(0, this.LANES_TOTAL);
+        if (lane == last_sent_lane)
+        {
+            int coinFlip = Random.Range(0, 2);
+            if (coinFlip == 0)
+            {
+                lane -= 1;
+                lane = Mathf.Clamp(lane, this.LANES_TOTAL - 1, 0);
+            }
+            else
+            {
+                lane += 1;
+                lane = lane % this.LANES_TOTAL;
+            }            
+        }
+        int meteoroid_index = Random.Range(0, this.METEOROID_VARIANTS_TOTAL);
+        int index = lane * this.METEOROID_VARIANTS_TOTAL + meteoroid_index;
+        // 1D List but we can treat it almost like travelling around a 2D List
+        // lane # multiplied by how many in each row
+        // + the meteoroid index so we know where 
+        // in that row we should be (as in column)
+        
+        return index;
+
+    }
+
 
     IEnumerator SpawnEnemyWavesRandomly()
     {
@@ -52,7 +91,9 @@ public class RunnerEnemySpawner : MonoBehaviour
         // this.wave_configs.Count()
         while (this.waves_launched < this.MAX_WAVES && this.continue_spawning == true)
         {
-            int index = Random.Range(0, this.random_waves.Count);
+            // int index = Random.Range(0, this.random_waves.Count);
+            int index = GetAdjustedRandomSpawn(this.last_sent_lane);
+            this.last_sent_lane = index;
             this.current_wave = this.random_waves[index];
             for (int i = 0; i < this.current_wave.GetEnemyCount(); i++)
             {

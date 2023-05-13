@@ -12,6 +12,8 @@ TagManager:
   - Orbital
   - StopBackground
   - CollisionIgnore
+  - Muted Sound
+  - Unmuted Sound
   layers:
   - Default
   - TransparentFX

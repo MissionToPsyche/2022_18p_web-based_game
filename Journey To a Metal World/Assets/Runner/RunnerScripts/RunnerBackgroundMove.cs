@@ -8,7 +8,7 @@ public class RunnerBackgroundMove : MonoBehaviour
 {
     bool moving = false;
     RunnerMeteoroidMove meteoroid_move;
-    float SPEED_DENOMINATOR = 2f;
+    float SPEED_DENOMINATOR = 4f;
     
      // Start is called before the first frame update
 

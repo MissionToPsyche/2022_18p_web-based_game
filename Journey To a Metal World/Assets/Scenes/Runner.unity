@@ -2650,9 +2650,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_wave: {fileID: 11400000, guid: b921aebfd380da147a127569e2691c99, type: 2}
   background_list:
-  - {fileID: 5741182110900954111, guid: 9ed695caf00a0ff4c83f72f41fc21a7b, type: 3}
-  - {fileID: 7807001369136779911, guid: 43308274ed89c61459fae9afc8c2c843, type: 3}
   - {fileID: 951086962000581101, guid: 244dee3bdece4e849a8a773de9b460a8, type: 3}
+  - {fileID: 7807001369136779911, guid: 43308274ed89c61459fae9afc8c2c843, type: 3}
+  - {fileID: 5741182110900954111, guid: 9ed695caf00a0ff4c83f72f41fc21a7b, type: 3}
 --- !u!61 &1130331605
 BoxCollider2D:
   m_ObjectHideFlags: 0

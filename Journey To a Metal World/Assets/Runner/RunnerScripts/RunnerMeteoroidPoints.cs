@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// 120 meteoroids with doubling points per pass every 10 passed, no hit run will get: 45045
 /**
 The entire class is really also including damage but because damamge is so short and to avoid messing with the 
 already created prefabs for meteoroids late in the project it is being added here

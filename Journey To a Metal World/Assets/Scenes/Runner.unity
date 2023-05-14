@@ -2475,7 +2475,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0168fe0d8486c064fa14dbb49ee84d52, type: 2}
   - {fileID: 11400000, guid: 61f792e51c45f2848ae8567983f65cfd, type: 2}
   - {fileID: 11400000, guid: bf0036d35701d6247b861c1915f43c07, type: 2}
-  MAX_WAVES: 60
+  MAX_WAVES: 120
   wave_delay: 1
 --- !u!4 &1066441455
 Transform:

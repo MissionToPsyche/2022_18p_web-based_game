@@ -21,21 +21,22 @@ public class SoundButton : MonoBehaviour
         soundMutedPressedState.pressedSprite = soundMutedPressedButton;
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
         musicManagerLogic = GameObject.FindWithTag("Music").GetComponent<MusicManagerLogic>();
-
-        if (PlayerPrefs.GetInt("Muted", 0) == 0) {
-            GetComponent<Image>().sprite = soundUnmutedButton;
-        } else {
-            GetComponent<Image>().sprite = soundMutedButton;
-        }
+        updateMusic();
     }
 
-    public void updateMusic() {
-        musicManagerLogic.toggleMusic();
 
+    public void toggleMusic() {
+        musicManagerLogic.toggleMusic();
+        updateMusic();
+    }
+
+
+    public void updateMusic() {
         if (PlayerPrefs.GetInt("Muted", 0) == 0) {
             GetComponent<Image>().sprite = soundUnmutedButton;
             GetComponent<Button>().spriteState = soundUnmutedPressedState;

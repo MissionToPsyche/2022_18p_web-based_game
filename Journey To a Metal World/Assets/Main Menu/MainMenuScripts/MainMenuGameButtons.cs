@@ -10,8 +10,15 @@ public class MainMenuGameButtons : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
+
     public void restartMiniGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
+    public void sceneTransition()
+    {
+        SceneManager.LoadSceneAsync("Main Menu");
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class RunnerBackgroundSpawner : MonoBehaviour
 {
-    [SerializeField] WaveConfigSO current_wave;
-    [SerializeField] List<BackgroundWaveConfigSO> wave_configs;
+    [SerializeField] BackgroundWaveConfigSO current_wave;
+    // [SerializeField] List<BackgroundWaveConfigSO> wave_configs;
     [SerializeField] List<GameObject> background_list;
     int index = 0;
     // [SerializeField] List<Transform> 
@@ -28,27 +28,41 @@ public class RunnerBackgroundSpawner : MonoBehaviour
     //         Debug.Log("Meteoroids should stop spawning");
     //     }     
     // }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("hit trigger");
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("\nexit trigger");
+        Debug.Log(other.tag);
+
         if (other.tag == "Respawn")
         {
+
             SpawnBackground();
         }
     }
 
-    void SpawnBackground()
+    /*
+    Spawns a single background off screen. this background should already be prepped to move itself
+    */
+    public void SpawnBackground()
     {
+        
         if (this.continue_spawning == false)
         {
             return;            
         }
         GameObject background_choice = this.background_list[this.index];
         this.index++;
+        // GameObject background_choice = this.background_list[0];
+
         // well or I could randomize it. 
         // more viable if I rotate the backgrounds to get more of them
         this.index = index % background_list.Count;
-        Instantiate(background_choice, current_wave.GetStartingWaypoint().position, 
-            Quaternion.identity, transform);
+        Instantiate(background_choice, current_wave.GetStartingWaypoint().position, Quaternion.identity, transform);
 
     }
 
@@ -56,7 +70,7 @@ public class RunnerBackgroundSpawner : MonoBehaviour
     /**
         returns the current wave that is being spawned
     */
-    public WaveConfigSO GetCurrentWave()
+    public BackgroundWaveConfigSO GetCurrentWave()
     {
         return this.current_wave;
     }

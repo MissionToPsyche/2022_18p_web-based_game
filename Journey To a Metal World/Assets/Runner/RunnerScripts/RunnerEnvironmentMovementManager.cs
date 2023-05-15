@@ -12,6 +12,7 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
     RunnerBackgroundMove background;
     RunnerFinishMove finishline;
     RunnerEnemySpawner spawner;
+    RunnerBackgroundSpawner background_spawner;
     RunnerMeteoroidMove meteoroid_move;
     bool isWin = false;
      // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
         this.background = FindObjectOfType<RunnerBackgroundMove>();
         this.finishline = FindObjectOfType<RunnerFinishMove>();
         this.spawner = FindObjectOfType<RunnerEnemySpawner>();
+        this.background_spawner = FindObjectOfType<RunnerBackgroundSpawner>();
         this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
     }
 
@@ -35,6 +37,9 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
     */
     public void BeginGame()
     {
+        this.background_spawner.SpawnBackground();
+        Debug.Log("background should be spawned");
+
         this.background.StartBackgroundMovement();
         Debug.Log("background Movement should be enabled");
         this.meteoroid_move.StartMeteoroidMove();
@@ -42,6 +47,7 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
 
         this.spawner.StartSpawning();
         Debug.Log("Meteoroid spawning enabled");
+
 
 
         
@@ -58,9 +64,13 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
             Debug.Log("should have stopped moving finish");
             this.isWin = true;
         }   
+        // this tag won't arrive
         else if (other.tag == "StopBackground")
         {
-            this.background.StopBackgroundMovement();
+            this.background.StopBackgroundMovement(); // unless I start using the background move script again
+            // this specific line is pointless. 
+            // as currently it is a fraction of meteoroid move speed
+            this.meteoroid_move.StopMeteoroidMovement();
             Debug.Log("should have stopped moving background");
         }
     }
@@ -73,7 +83,10 @@ public class RunnerEnvironmentMovementManager : MonoBehaviour
     public void StopBackgroundMovement()
     {
         this.background.StopBackgroundMovement();
+        this.meteoroid_move.StopMeteoroidMovement();
         Debug.Log("should have stopped moving background");
     }
+
+    
    
 }

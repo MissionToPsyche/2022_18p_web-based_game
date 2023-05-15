@@ -37,7 +37,9 @@ public class PartLocation : MonoBehaviour
     */
     void OnTriggerEnter2D(Collider2D collision)
     {
-        rend.color = OPAQUE;
+        if (collision.gameObject.tag == "Part" && collision.gameObject.GetComponent<PartLogic>().getIsDragging()) {
+            rend.color = OPAQUE;
+        }
     }
 
 

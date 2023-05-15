@@ -15,6 +15,7 @@ TagManager:
   - Muted Sound
   - Unmuted Sound
   - Part
+  - Music
   layers:
   - Default
   - TransparentFX

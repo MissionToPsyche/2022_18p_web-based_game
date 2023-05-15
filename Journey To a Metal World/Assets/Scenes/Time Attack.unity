@@ -3782,6 +3782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start_screen_overlay: {fileID: 1354193652}
+  stars: {fileID: 0}
 --- !u!114 &1354193655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4738,7 +4739,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1541087197}
   - component: {fileID: 1541087196}
-  - component: {fileID: 1541087195}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4746,14 +4746,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1541087195
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541087194}
-  m_Enabled: 1
 --- !u!20 &1541087196
 Camera:
   m_ObjectHideFlags: 0

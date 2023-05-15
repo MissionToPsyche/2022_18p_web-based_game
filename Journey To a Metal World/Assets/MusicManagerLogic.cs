@@ -5,12 +5,10 @@ using UnityEngine;
 public class MusicManagerLogic : MonoBehaviour
 {
     private static MusicManagerLogic instance = null;
-    public static MusicManagerLogic Instance {get { return instance; } }
-    private static AudioSource audioSource;
-    private static GameObject unmutedSoundButton;
-    private static GameObject mutedSoundButton;
-
     private static bool isMuted;
+
+
+    public static MusicManagerLogic Instance {get { return instance; } }
 
 
     // Start is called before the first frame update
@@ -27,14 +25,12 @@ public class MusicManagerLogic : MonoBehaviour
     }
 
 
-    public void muteMusic()
+    public void toggleMusic()
     {
-        PlayerPrefs.SetInt("Muted", 1);
-    }
-
-
-    public void unmuteMusic()
-    {
-        PlayerPrefs.SetInt("Muted", 0);
+        if (PlayerPrefs.GetInt("Muted", 0) == 0) {
+            PlayerPrefs.SetInt("Muted", 1);
+        } else {
+            PlayerPrefs.SetInt("Muted", 0);
+        }    
     }
 }

@@ -9,7 +9,7 @@ already created prefabs for meteoroids late in the project it is being added her
 public class RunnerMeteoroidPoints : MonoBehaviour
 {
     // Start is called before the first frame update
-    static int combo = 1;
+    static int combo = 0;
     static int id = 0; // this is to keep a running unique id of the meteoroids
     int unique_id = 0;  // this is to assign the unique id to the meteoroid as the static
     // field will keep increasing with every meteoroid spawned
@@ -105,5 +105,10 @@ public class RunnerMeteoroidPoints : MonoBehaviour
     public int GetUniqueId()
     {
         return this.unique_id;
+    }
+
+    public static int GetCombo()
+    {
+        return combo;
     }
 }

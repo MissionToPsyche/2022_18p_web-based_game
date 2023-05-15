@@ -16,6 +16,7 @@ public class RunnerUI : MonoBehaviour
 
     [Header("Score")]
     [SerializeField] TextMeshProUGUI score_text;
+    [SerializeField] TextMeshProUGUI combo_text;
     RunnerScore score_keeper;
 
     void Awake() 
@@ -32,6 +33,7 @@ public class RunnerUI : MonoBehaviour
     void Update()
     {
         this.score_text.text = this.score_keeper.GetScore().ToString();
+        this.combo_text.text = RunnerMeteoroidPoints.GetCombo().ToString();
         // Debug.Log(this.score_keeper);
         // Debug.Log(this.score_
     }

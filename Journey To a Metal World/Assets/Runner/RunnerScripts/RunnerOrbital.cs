@@ -36,6 +36,7 @@ public class RunnerOrbital : MonoBehaviour
     int COLLISION_MINUS_POINT = -1;
     RunnerMeteoroidMove stage; 
     RunnerEnemySpawner enemy_spawner;
+    RunnerAudioPlayer audio_player;
 
 
     Vector2 min_bounds;
@@ -60,6 +61,7 @@ public class RunnerOrbital : MonoBehaviour
         this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
         this.environment_manager = FindObjectOfType<RunnerEnvironmentMovementManager>();
         this.lives = MAX_LIVES;
+        audio_player = FindObjectOfType<RunnerAudioPlayer>();
         // this.game_over_screen = FindObjectOfType<RunnerGameOverScreen>();
         InitBounds();
 
@@ -291,7 +293,7 @@ public class RunnerOrbital : MonoBehaviour
 
             score_keeper.AddToScore(this.COLLISION_MINUS_POINT);
 
-            Debug.Log("No invincibility frames left. -1 life. \n Lives left = " + this.lives);
+            // Debug.Log("No invincibility frames left. -1 life. \n Lives left = " + this.lives);
             this.invinciblity_frames_left = this.INVINCIBILITY_FRAME_LENGTH;
             if (this.lives == 0)
             {
@@ -303,6 +305,7 @@ public class RunnerOrbital : MonoBehaviour
                 sprite.color = orbital_color;
                 this.invinciblity_frames_left = 0;
             }
+            this.audio_player.PlayCollisionClip();
             return 1;
         }
         return 0; // no things currently colliding with object

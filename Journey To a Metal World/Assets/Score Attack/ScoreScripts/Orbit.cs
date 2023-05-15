@@ -58,7 +58,7 @@ public class Orbit : MonoBehaviour
         // float delta_y = y - transform_object.position.y;
         // transform_object.Translate(delta_x, delta_y, 0);
         degree += speed;
-        Debug.Log(degree);
+        // Debug.Log(degree);
         iter_count += 1;
     }
 

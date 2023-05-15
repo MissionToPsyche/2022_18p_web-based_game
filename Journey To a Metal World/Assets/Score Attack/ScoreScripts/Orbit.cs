@@ -51,14 +51,16 @@ public class Orbit : MonoBehaviour
     void UpdatePosition()
     {
         float angle_radian = degree * RADIAN;
-        // float y = radius * Mathf.Sin(angle_radian);
-        // float x = radius * Mathf.Cos(angle_radian);
-        transform_object.position = new Vector3(radius * Mathf.Cos(angle_radian), radius * Mathf.Sin(angle_radian), 0);
-        // float delta_x = x - transform_object.position.x;
-        // float delta_y = y - transform_object.position.y;
-        // transform_object.Translate(delta_x, delta_y, 0);
+        float y = radius * Mathf.Sin(angle_radian);
+        float x = radius * Mathf.Cos(angle_radian);
+        float delta_x = x - transform_object.position.x;
+        float delta_y = y - transform_object.position.y;
+        transform_object.Translate(delta_x, delta_y, 0);
         degree += speed;
+<<<<<<< HEAD
         // Debug.Log(degree);
+=======
+>>>>>>> parent of 98451f2 (update)
         iter_count += 1;
     }
 

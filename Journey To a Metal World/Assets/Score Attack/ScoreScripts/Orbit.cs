@@ -11,7 +11,7 @@ public class Orbit : MonoBehaviour
     [SerializeField] float delta_speed = 0.04f;
     int iter_count = 0;
     float RADIAN = (Mathf.PI / 180);
-    public static float speed = 0.1f;
+    public static float speed = 0.15f;
     private Transform transform_object;
     float radius = 5.0f;
 
@@ -21,7 +21,10 @@ public class Orbit : MonoBehaviour
         transform_object = transform;
         transform_object.position = new Vector3(0f, 0f, 0);
         degree = 0.0f;
-        speed = 0.15f;
+    // real deployment value
+        speed = 0.8f;
+        delta_radius = 0.005f;
+        delta_speed = 0.2f;
         iter_count = 0;   
         StartCoroutine(UpdateOrbitMove());
     }
@@ -39,28 +42,12 @@ public class Orbit : MonoBehaviour
         }
     }
 
-    // void Update()
-    // {
-    //     if(StartScene.game_start == true){
-    //         UpdatePosition();
-    //         SpeedUp();
-    //         StopOrbit();
-    //     }
-    // }
 
     void UpdatePosition()
     {
         float angle_radian = degree * RADIAN;
-        float y = radius * Mathf.Sin(angle_radian);
-        float x = radius * Mathf.Cos(angle_radian);
-        float delta_x = x - transform_object.position.x;
-        float delta_y = y - transform_object.position.y;
-        transform_object.Translate(delta_x, delta_y, 0);
+        transform_object.position = new Vector3(radius * Mathf.Cos(angle_radian), radius * Mathf.Sin(angle_radian), 0);
         degree += speed;
-<<<<<<< HEAD
-        // Debug.Log(degree);
-=======
->>>>>>> parent of 98451f2 (update)
         iter_count += 1;
     }
 
@@ -71,11 +58,9 @@ public class Orbit : MonoBehaviour
             radius -= delta_radius;
         }
 
-        if(iter_count % 4000 == 0 && radius >= 3)
+        if(iter_count % 1000 == 0 && radius >= 3)
         {
             speed += delta_speed;
-            // Debug.Log("speed up");
-
         }
     }
 

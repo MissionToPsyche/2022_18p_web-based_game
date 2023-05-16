@@ -7,6 +7,7 @@ public class RunnerInitialBackgroundMove : MonoBehaviour
     RunnerBackgroundMove background_move; 
     [SerializeField] GameObject target;
     Vector3 target_position;
+    bool moving = true;
     void Start()
     {
         this.background_move = FindObjectOfType<RunnerBackgroundMove>();
@@ -14,6 +15,16 @@ public class RunnerInitialBackgroundMove : MonoBehaviour
     }
 
     void Update()
+    {
+        if (true == this.moving)
+        {
+            DoMovement(); // note, since the initial background movement is set to 0, having it like this is safe at the start
+        }
+
+
+    }
+
+    void DoMovement()
     {
         // Vector2 move_left = new Vector2(-1.0f, 0f);
         // float speed = background_move.GetRawMovementSpeed() * Time.deltaTime;
@@ -24,6 +35,7 @@ public class RunnerInitialBackgroundMove : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
     // bugged in event of lives lost this will probably keep moving but for now it's a stub. 
     // Also note to self, need to figure out how to get the buttons to be the same size

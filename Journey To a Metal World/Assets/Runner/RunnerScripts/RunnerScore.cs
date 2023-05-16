@@ -69,6 +69,7 @@ public class RunnerScore : MonoBehaviour
     public void SetRunnerHighScore(int new_score)
     {
         PlayerPrefs.SetInt("Runner_high_score", new_score);
+        InformationKeeper.SetRunnerHighScore(new_score);
     }
 
     /**
@@ -77,6 +78,7 @@ public class RunnerScore : MonoBehaviour
     public int GetRunnerHighScore()
     {
         return PlayerPrefs.GetInt("Runner_high_score");
+        // InformationKeeper.GetRunnerHighScore();
     }
 
     public bool IsLargerThanCurrentHighScore(int new_score)

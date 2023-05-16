@@ -19,6 +19,7 @@ public class RunnerPathFinder : MonoBehaviour
     RunnerMeteoroidMove meteoroid_move;
     [SerializeField] float speed;
     [SerializeField] float rawSpeed;
+    Rigidbody2D rigid_body;
     int waypoint_index = 0; // so that we start at the first waypoint    
 
     void Awake() 
@@ -33,6 +34,7 @@ public class RunnerPathFinder : MonoBehaviour
         waypoints = wave_config.GetWaypoints();
         transform.position = waypoints[waypoint_index].position; 
         this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
+        rigid_body = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>(); 
 
     }
 
@@ -47,11 +49,19 @@ public class RunnerPathFinder : MonoBehaviour
         if (waypoint_index < waypoints.Count)
         {
             Vector3 target_position = waypoints[waypoint_index].position;
+            
             // float delta = wave_config.GetMoveSpeed() * Time.deltaTime;
             float delta = meteoroid_move.GetCurrentSpeed() * Time.deltaTime;  // somehow this
             //doesn't seem to impact the speed?
+
+// look into doing the movement with rigid body
             transform.position = Vector2.MoveTowards(transform.position, 
                 target_position, delta);
+            
+            // Vector3 movement_left = new Vector3(-1.0f, 0f, 0f);
+
+            // this.rigid_body.MovePosition(transform.position + movement_left * delta);
+
             this.speed = delta; // for testing purposes, trying to figure out speed...
             this.rawSpeed = meteoroid_move.GetCurrentSpeed();
             if (transform.position == target_position)

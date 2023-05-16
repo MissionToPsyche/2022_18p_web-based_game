@@ -21,10 +21,10 @@ public class RunnerBackgroundMove : MonoBehaviour
     void Update()
     {
 
-        if (this.moving == false)
-        {
-            return;
-        }
+        // if (this.moving == false)
+        // {
+        //     return;
+        // }
         // DoMovement();
 
     }

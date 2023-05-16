@@ -19,8 +19,10 @@ public class RunnerPathFinder : MonoBehaviour
     RunnerMeteoroidMove meteoroid_move;
     [SerializeField] float speed;
     [SerializeField] float rawSpeed;
-    Rigidbody2D rigid_body;
+    // Rigidbody2D rigid_body;
     int waypoint_index = 0; // so that we start at the first waypoint    
+    float percent = 0f;
+    Vector3 init_position;
 
     void Awake() 
     {
@@ -34,7 +36,8 @@ public class RunnerPathFinder : MonoBehaviour
         waypoints = wave_config.GetWaypoints();
         transform.position = waypoints[waypoint_index].position; 
         this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
-        rigid_body = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>(); 
+        this.init_position = transform.position;
+        // rigid_body = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>(); 
         // Debug.Log(rigid_body);
     }
 
@@ -47,6 +50,7 @@ public class RunnerPathFinder : MonoBehaviour
     {
         // FollowPath();
         // ApplyVelocity();
+        DoLerp();
     }
 
     void ApplyVelocity()
@@ -55,6 +59,18 @@ public class RunnerPathFinder : MonoBehaviour
         // Vector2 vector= new Vector2(-1, 0);
         // Vector2 velocity = vector* meteoroid_move.GetCurrentSpeed() * Time.deltaTime;
         // rigid_body.MovePosition(rigid_body.position + velocity);
+    }
+
+    void DoLerp()
+    {
+        Vector3 target_pos = waypoints[1].position;
+        this.percent += .001f * Time.deltaTime;
+        transform.position = Vector3.Lerp(init_position, target_pos, this.percent);
+        if (transform.position == target_pos)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     void FollowPath()

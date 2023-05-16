@@ -30,12 +30,12 @@ public class RunnerBackgroundSpawner : MonoBehaviour
     // }
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("hit trigger");
+        // Debug.Log("hit trigger");
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("\nexit trigger");
+        // Debug.Log("\nexit trigger");
         Debug.Log(other.tag);
 
         if (other.tag == "Respawn")

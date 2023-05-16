@@ -35,13 +35,26 @@ public class RunnerPathFinder : MonoBehaviour
         transform.position = waypoints[waypoint_index].position; 
         this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
         rigid_body = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>(); 
-
+        // Debug.Log(rigid_body);
     }
 
+    // void FixedUpdate()
+    // {
+    //     FollowPath();
+    // }
 
     void Update() 
     {
-        FollowPath();
+        // FollowPath();
+        // ApplyVelocity();
+    }
+
+    void ApplyVelocity()
+    {
+
+        // Vector2 vector= new Vector2(-1, 0);
+        // Vector2 velocity = vector* meteoroid_move.GetCurrentSpeed() * Time.deltaTime;
+        // rigid_body.MovePosition(rigid_body.position + velocity);
     }
 
     void FollowPath()

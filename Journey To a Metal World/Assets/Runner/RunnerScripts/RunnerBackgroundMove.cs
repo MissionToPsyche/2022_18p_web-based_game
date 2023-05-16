@@ -45,7 +45,7 @@ public class RunnerBackgroundMove : MonoBehaviour
     public void StopBackgroundMovement()
     {
         this.moving = false;
-        Debug.Log("Background movement should be stopped");
+        // Debug.Log("Background movement should be stopped");
     }
 
     public void StartBackgroundMovement()

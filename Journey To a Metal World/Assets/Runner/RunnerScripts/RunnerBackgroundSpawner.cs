@@ -36,7 +36,7 @@ public class RunnerBackgroundSpawner : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         // Debug.Log("\nexit trigger");
-        Debug.Log(other.tag);
+        // Debug.Log(other.tag);
 
         if (other.tag == "Respawn")
         {

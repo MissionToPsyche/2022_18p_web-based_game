@@ -60,7 +60,7 @@ public class RunnerMeteoroidPoints : MonoBehaviour
         score_keeper.AddToScore(added);
         combo++;
         this.point  = 0;
-        Debug.Log(added + "points added to score, combo is " + combo);
+        // Debug.Log(added + "points added to score, combo is " + combo);
         return added;
         
     }

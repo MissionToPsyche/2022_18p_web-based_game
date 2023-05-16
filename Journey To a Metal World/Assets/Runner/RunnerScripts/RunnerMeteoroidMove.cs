@@ -47,7 +47,7 @@ public class RunnerMeteoroidMove : MonoBehaviour
     public void IncreaseSpeed()
     {
         // intended to have this file control the speed calculations for all.
-        this.current_movement_speed += this.SPEED_INCREASE;
+        // this.current_movement_speed += this.SPEED_INCREASE;
         this.current_movement_speed = Mathf.Clamp(this.current_movement_speed + this.SPEED_INCREASE, this.MAX_MOVEMENT_SPEED, this.MIN_MOVEMENT_SPEED);
     }
 

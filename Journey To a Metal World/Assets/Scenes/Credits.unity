@@ -150,7 +150,7 @@ RectTransform:
   m_GameObject: {fileID: 147414896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1882775403}
@@ -181,9 +181,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1ff221c695b0248f5a56737349c86b1a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14f4132ada20d18498055ac8fbcaf85e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -594,7 +594,7 @@ RectTransform:
   m_GameObject: {fileID: 471883345}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1043470112}
@@ -625,7 +625,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1ff221c695b0248f5a56737349c86b1a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ceb83922321545f4e9dbde5341368d68, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -968,9 +968,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1ff221c695b0248f5a56737349c86b1a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ebda2d1142d7304dbb019e408cf400d, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Team Member 3
+  m_text: Ryan Sue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
   m_sharedMaterial: {fileID: 5758583266211556090, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
@@ -2037,7 +2037,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Team Member 2
+  m_text: Jonathan Chen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
   m_sharedMaterial: {fileID: 5758583266211556090, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
@@ -2217,7 +2217,7 @@ RectTransform:
   m_GameObject: {fileID: 1602344917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1887448066}
@@ -2248,9 +2248,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1ff221c695b0248f5a56737349c86b1a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 916bf29b64f09c74b99f5da5edcf777c, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2485,7 +2485,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 366027119}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.3623951
+  m_Size: 0.36239508
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3120,7 +3120,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Team Member 4
+  m_text: Ching-Ting Tsai
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
   m_sharedMaterial: {fileID: 5758583266211556090, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
@@ -3255,7 +3255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Team Member 1
+  m_text: David Nguyen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
   m_sharedMaterial: {fileID: 5758583266211556090, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
@@ -3370,7 +3370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00103, y: -0.00083542}
+  m_AnchoredPosition: {x: -0.000030518, y: -0.091736}
   m_SizeDelta: {x: 800, y: 449.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2141118247

@@ -59,9 +59,7 @@ public class GameCarousel : MonoBehaviour
         // displays "Scan at Will! on startup
         game_names.text = game_name_dict[games[0]];
         // displays Scan at Will!'s high score on startup
-        game_score.text = "Best: " + game_scores[games[0]].ToString();
-        
-        printCarousel();        
+        game_score.text = "Best: " + game_scores[games[0]].ToString(); 
     }
 
 
@@ -87,9 +85,6 @@ public class GameCarousel : MonoBehaviour
         // shows the name of the game and score on score monitor
         game_names.text = game_name_dict[game];
         game_score.text = "Best: " + game_scores[game].ToString();
-
-        // rend.color = game.GetComponent<SpriteRenderer>().color;
-        printCarousel();
     }
 
 
@@ -109,9 +104,6 @@ public class GameCarousel : MonoBehaviour
         animation_order[game].SetActive(true);
         game_names.text = game_name_dict[game];
         game_score.text = "Best: " + game_scores[game].ToString();
-        
-        //rend.color = game.GetComponent<SpriteRenderer>().color;
-        printCarousel();
     }
 
 
@@ -127,16 +119,5 @@ public class GameCarousel : MonoBehaviour
         GameObject[] games = {scoreAttackGame, timeAttackGame, memoryGame, runnerGame};
         int score = game_scores[games[0]] + game_scores[games[1]] + game_scores[games[2]] + game_scores[games[3]];
         high_score.text = score.ToString();
-    }
-
-
-    void printCarousel()
-    {
-        string s = "[head, ";
-        foreach (GameObject o in carousel) {
-            s += o.name + ", ";
-        }
-        s += "tail]";
-        Debug.Log(s);
     }
 }

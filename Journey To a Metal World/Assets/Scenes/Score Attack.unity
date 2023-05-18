@@ -1472,9 +1472,10 @@ GameObject:
   m_Component:
   - component: {fileID: 737004394}
   - component: {fileID: 737004393}
+  - component: {fileID: 737004395}
   m_Layer: 0
-  m_Name: Audio Source
-  m_TagString: Untagged
+  m_Name: Music Source
+  m_TagString: MusicSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1490,11 +1491,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 35967e8a4dfb1664e9b066939272c0a4, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
-  Mute: 0
+  Loop: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -1590,6 +1591,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &737004395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737004392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ec2d78bbd464f42ab20cf480e4cc8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &783141908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,7 +1994,7 @@ GameObject:
   - component: {fileID: 934967437}
   m_Layer: 5
   m_Name: Sound Button
-  m_TagString: Unmuted Sound
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2068,7 +2081,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 934967437}
         m_TargetAssemblyTypeName: SoundButton, Assembly-CSharp
-        m_MethodName: toggleMusic
+        m_MethodName: toggleSoundButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

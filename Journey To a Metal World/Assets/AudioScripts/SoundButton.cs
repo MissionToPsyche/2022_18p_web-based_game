@@ -11,12 +11,9 @@ public class SoundButton : MonoBehaviour
     [SerializeField] public Sprite soundMutedPressedButton;
 
 
-    private MusicManagerLogic musicManagerLogic;
-
-
+    private AudioManager audioManager;
     private static SpriteState soundUnmutedPressedState;
     private static SpriteState soundMutedPressedState;
-    private static float duration = 0.2f;
 
 
     void Awake()
@@ -29,26 +26,14 @@ public class SoundButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        musicManagerLogic = GameObject.FindWithTag("Music").GetComponent<MusicManagerLogic>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
         updateIcon();
-        initializeMusic();
     }
 
 
-    public void toggleMusic() {
-        musicManagerLogic.toggleMusic();
+    public void toggleSoundButton() {
+        audioManager.toggleAudio();
         updateIcon();
-        updateMusic();
-    }
-
-
-    private void initializeMusic()
-    {
-        AudioListener.volume = 0;
-
-        if (PlayerPrefs.GetInt("Muted", 0) == 0) {
-            StartCoroutine(fadeInMusic());
-        }
     }
 
 
@@ -61,33 +46,5 @@ public class SoundButton : MonoBehaviour
             GetComponent<Image>().sprite = soundMutedButton;
             GetComponent<Button>().spriteState = soundMutedPressedState;
         }
-    }
-
-
-    private void updateMusic() {
-        if (PlayerPrefs.GetInt("Muted", 0) == 0) {
-            AudioListener.volume = 1;
-        } else {
-            AudioListener.volume = 0;
-        }
-    }
-
-
-    private IEnumerator fadeInMusic() {
-        float currentTime = 0;
-        float start = AudioListener.volume;
-
-        yield return new WaitForSeconds(0.3f);
-
-        while (currentTime < duration) {
-            if (PlayerPrefs.GetInt("Muted", 0) == 1) {
-                yield break;
-            }
-
-            currentTime += Time.deltaTime;
-            AudioListener.volume = Mathf.Lerp(start, 1, currentTime / duration);
-            yield return null;
-        }
-        yield break;
     }
 }

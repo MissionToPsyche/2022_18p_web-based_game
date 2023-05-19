@@ -14,7 +14,7 @@ public class AreaDetector : MonoBehaviour
     void Start()
     {
         research_area = gameObject.GetComponent<SpriteRenderer>();
-        shrink_speed = Random.Range(0.0001f, 0.000005f);
+        shrink_speed = Random.Range(0.001f, 0.00005f);
         ripple = GameObject.Find("Ripple Animation");
         if(ripple != null)
         {

@@ -8,8 +8,13 @@ public class Shooting : MonoBehaviour
 {    
     private GameObject prefab;
     public Rigidbody2D projectile;
+    private AudioSource source;
     private bool canFire = true;
 
+    void Start() 
+    {
+        source = GameObject.FindWithTag("ray").GetComponent<AudioSource>();
+    }
 
     void OnFire(InputValue value)
     {
@@ -17,6 +22,11 @@ public class Shooting : MonoBehaviour
             Rigidbody2D clone;
             clone = Instantiate(projectile, transform.position, transform.rotation);
             clone.velocity = transform.up * 13;
+            if(source != null){
+                source.Play();
+                Debug.Log("not null");
+            }
+            
             StartCoroutine(DelayCoroutine());
         }
     }

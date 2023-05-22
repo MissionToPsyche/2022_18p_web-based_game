@@ -32,7 +32,7 @@ public class ScoreLogic : MonoBehaviour
     [ContextMenu("Increment Score")]
     public void incrementScore() 
     {
-        score += 1;
+        score += 150;
         scoreText.text = "Score: " + score.ToString();
     }
 

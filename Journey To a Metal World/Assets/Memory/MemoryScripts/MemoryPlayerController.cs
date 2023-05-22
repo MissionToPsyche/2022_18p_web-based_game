@@ -22,6 +22,7 @@ public class MemoryPlayerController : MonoBehaviour
     private MemoryGameController controller;
     private Queue<GameObject> player_selection = new Queue<GameObject>();
     private int player_score = 0;
+    private int combo = 5;
     private bool complete_pattern = false;
     private bool generated_pattern = false;
     private bool time_on = false;
@@ -181,7 +182,10 @@ public class MemoryPlayerController : MonoBehaviour
                 // Debug.Log("Correct!");
 
                 // if the pattern is complete then you add one to the score
-                player_score += 10 * controller.getDifficultyGauge();
+                player_score += 10 * controller.getDifficultyGauge() * combo;
+
+                // point multiplier based on how many correct you get
+                combo += 1;
 
                 pattern_generator.getPatternStorage().Dequeue();
                 GameObject solar_component = player_selection.Dequeue();

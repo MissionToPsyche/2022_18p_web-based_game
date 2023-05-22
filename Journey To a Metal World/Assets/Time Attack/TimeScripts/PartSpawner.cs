@@ -13,24 +13,27 @@ public class PartSpawner : MonoBehaviour
     [SerializeField] public GameObject part;
     [SerializeField] public float spawnRate = 1.5f;
 
+    private TimeLogic timeLogic;
     private float timer;
 
 
     void Start()
     {
-        timer = 0;
-        SpawnPart();
+        timer = spawnRate;
+        timeLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<TimeLogic>();
     }
 
 
     /// <summary> Increments the timer until a new part should be created </summary>
     void Update()
     {
-        if (timer < spawnRate) {
-            timer += Time.deltaTime;
-        } else {
-            timer = 0;
-            SpawnPart();
+        if (timeLogic.getIsGameStart() && !timeLogic.getIsGameOver()) {
+            if (timer < spawnRate) {
+                timer += Time.deltaTime;
+            } else {
+                timer = 0;
+                SpawnPart();
+            }
         }
     }
 

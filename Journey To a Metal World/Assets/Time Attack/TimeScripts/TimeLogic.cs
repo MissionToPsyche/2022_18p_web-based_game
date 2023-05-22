@@ -29,7 +29,6 @@ public class TimeLogic : MonoBehaviour
         isGameStart = false;
         isGameOver = false;
         scoreLogic = GetComponent<ScoreLogic>();
-        Time.timeScale = 0;
     }
 
 
@@ -66,7 +65,6 @@ public class TimeLogic : MonoBehaviour
     {
         gameStartDisplay.SetActive(false);
         isGameStart = true;
-        Time.timeScale = 1;
     }
 
 

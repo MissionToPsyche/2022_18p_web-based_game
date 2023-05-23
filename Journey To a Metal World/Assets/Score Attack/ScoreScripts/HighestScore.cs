@@ -11,6 +11,6 @@ public class HighestScore : MonoBehaviour
 
     void Update()
     {
-        TextMeshPro.text = "Highest Score:\n" + Score.high_score.ToString();
+        TextMeshPro.text = "High Score:\n" + Score.high_score.ToString();
     }
 }

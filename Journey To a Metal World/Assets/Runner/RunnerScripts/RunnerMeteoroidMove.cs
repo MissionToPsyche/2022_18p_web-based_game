@@ -7,9 +7,15 @@ using UnityEngine;
 public class RunnerMeteoroidMove : MonoBehaviour
 {
     // will likely need to be able to trigger the orbital
-    [SerializeField] float MIN_MOVEMENT_SPEED = 0.01f;
-    [SerializeField] float current_movement_speed = 0.01f;
+    [SerializeField] float MIN_MOVEMENT_SPEED = 5f;
+    [SerializeField] float current_movement_speed = 10f;
     [SerializeField] float MAX_MOVEMENT_SPEED = 20f;
+    // speeds attempted: 10, 20 
+    // speed increase attempted 0.01. 
+
+    // attempt: try it with changed condition so that the inspector isn't changing every frame once
+    // it hits max speed. if that doesn't work. we just make it a consistent 20 or 15. 
+    // 0.001 speed increase is slower although kinda more forgiving. s
     [SerializeField] float SPEED_INCREASE = 0.01f;
     bool game_over = false;
     bool game_started = false;
@@ -40,6 +46,7 @@ public class RunnerMeteoroidMove : MonoBehaviour
     public void StartMeteoroidMove()
     {
         this.game_started = true;
+        // this.current_movement_speed = 20;
     }
     /**
         Increments the speed by the SPEED_INCREASE constant and keeps it within minimum and maximum bounds
@@ -48,7 +55,12 @@ public class RunnerMeteoroidMove : MonoBehaviour
     {
         // intended to have this file control the speed calculations for all.
         // this.current_movement_speed += this.SPEED_INCREASE;
-        this.current_movement_speed = Mathf.Clamp(this.current_movement_speed + this.SPEED_INCREASE, this.MAX_MOVEMENT_SPEED, this.MIN_MOVEMENT_SPEED);
+        if (this.current_movement_speed >= MAX_MOVEMENT_SPEED)
+        {
+            return;
+        }
+        this.current_movement_speed += this.SPEED_INCREASE;
+        // this.current_movement_speed = Mathf.Clamp(this.current_movement_speed + this.SPEED_INCREASE, this.MAX_MOVEMENT_SPEED, this.MIN_MOVEMENT_SPEED);
     }
 
     public void ResetSpeed()

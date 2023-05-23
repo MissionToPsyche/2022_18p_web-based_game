@@ -4,13 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 // brainstorming note:
 
-// note, needed to add this to the literal meteoroid component to get it to move. 
-// may produce problems with multiple paths, check more later
 
-// changing the speed in this file so that it increases could work... the thing is, 
-// I need to find out if it can in fact take another object
-// also making this comment because the merge didn't get all the files I need
-// but otherwise the merge thinks everything is up to date
 public class RunnerPathFinder : MonoBehaviour
 {
     WaveConfigSO wave_config;
@@ -48,14 +42,14 @@ public class RunnerPathFinder : MonoBehaviour
 
     void Update() 
     {
-        // FollowPath();
+        FollowPath();
         // ApplyVelocity();
-        DoLerp();
+        // DoLerp();
     }
 
     void ApplyVelocity()
     {
-
+        // bad idea. orbital has no velocity. getting hit makes it uncontrollable
         // Vector2 vector= new Vector2(-1, 0);
         // Vector2 velocity = vector* meteoroid_move.GetCurrentSpeed() * Time.deltaTime;
         // rigid_body.MovePosition(rigid_body.position + velocity);
@@ -63,9 +57,16 @@ public class RunnerPathFinder : MonoBehaviour
 
     void DoLerp()
     {
-        Vector3 target_pos = waypoints[1].position;
-        this.percent += .001f * Time.deltaTime;
+        Vector3 target_pos = waypoints[1].position; // this is the end waypoint that is off screen
+        // float speed = 0.01f;
+        this.percent += meteoroid_move.GetCurrentSpeed()*Time.deltaTime;
+        // float speed = meteoroid_move.GetCurrentSpeed()*Time.deltaTime;
+        // this.percent += .001f * Time.deltaTime;
+        // this.percent += 0.001f;
+        // transform.position = Vector3.Lerp(init_position, target_pos, this.percent);
+        // transform.position = Vector3.Lerp(init_position, target_pos, 1f - (1f/ (speed* Time.deltaTime) + 1f));
         transform.position = Vector3.Lerp(init_position, target_pos, this.percent);
+
         if (transform.position == target_pos)
         {
             Destroy(gameObject);

@@ -7,7 +7,7 @@ public class RunnerInitialBackgroundMove : MonoBehaviour
     RunnerBackgroundMove background_move; 
     [SerializeField] GameObject target;
     Vector3 target_position;
-    bool moving = true;
+    bool moving = false;
     void Start()
     {
         this.background_move = FindObjectOfType<RunnerBackgroundMove>();
@@ -20,8 +20,16 @@ public class RunnerInitialBackgroundMove : MonoBehaviour
         {
             DoMovement(); // note, since the initial background movement is set to 0, having it like this is safe at the start
         }
+    }
 
+    public void StartMoving()
+    {
+        this.moving = true;
+    }
 
+    public void StopMoving()
+    {
+        this.moving = false;
     }
 
     void DoMovement()

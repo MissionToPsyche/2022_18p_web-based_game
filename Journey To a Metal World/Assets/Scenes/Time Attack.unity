@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 1961365099}
-  totalTime: 31
+  totalTime: 121
   gameOverDisplay: {fileID: 1361914600}
   gameStartDisplay: {fileID: 1354193652}
 --- !u!1 &76983979
@@ -5571,7 +5571,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Time: 30'
+  m_text: 'Time: 120'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
   m_sharedMaterial: {fileID: 5758583266211556090, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}

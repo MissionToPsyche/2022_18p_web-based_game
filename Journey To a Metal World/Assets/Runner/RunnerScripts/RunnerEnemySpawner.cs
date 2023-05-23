@@ -34,7 +34,7 @@ public class RunnerEnemySpawner : MonoBehaviour
         if (other.tag == "Finish")
         {
             this.continue_spawning = false;
-            Debug.Log("Meteoroids should stop spawning");
+            // Debug.Log("Meteoroids should stop spawning");
         }     
     }
 

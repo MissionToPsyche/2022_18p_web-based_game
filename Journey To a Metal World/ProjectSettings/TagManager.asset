@@ -15,6 +15,7 @@ TagManager:
   - Part
   - MusicSource
   - AudioManager
+  - Destroyer
   layers:
   - Default
   - TransparentFX

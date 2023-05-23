@@ -265,13 +265,13 @@ public class RunnerOrbital : MonoBehaviour
                 {
                     this.damage_effect_on = false;
                     sprite.color = Color.red;
-                    Debug.Log("orbital should be red");
+                    // Debug.Log("orbital should be red");
                 }
                 else if (damage_effect_on == false)
                 {
                     this.damage_effect_on = true;
                     sprite.color = Color.white;
-                    Debug.Log("orbital is normal color");
+                    // Debug.Log("orbital is normal color");
                     // because this is more the tint than the actual color
 
                 }
@@ -289,7 +289,7 @@ public class RunnerOrbital : MonoBehaviour
 
             DecreaseLives(CalculateDamage());
             sprite.color = Color.red;
-            Debug.Log("orbital should be red");
+            // Debug.Log("orbital should be red");
 
             score_keeper.AddToScore(this.COLLISION_MINUS_POINT);
 

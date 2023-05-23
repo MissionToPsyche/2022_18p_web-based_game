@@ -21,10 +21,10 @@ public class RunnerBackgroundMove : MonoBehaviour
     void Update()
     {
 
-        if (this.moving == false)
-        {
-            return;
-        }
+        // if (this.moving == false)
+        // {
+        //     return;
+        // }
         // DoMovement();
 
     }
@@ -45,7 +45,7 @@ public class RunnerBackgroundMove : MonoBehaviour
     public void StopBackgroundMovement()
     {
         this.moving = false;
-        Debug.Log("Background movement should be stopped");
+        // Debug.Log("Background movement should be stopped");
     }
 
     public void StartBackgroundMovement()

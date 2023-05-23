@@ -24,7 +24,7 @@ public class Orbit : MonoBehaviour
     // real deployment value
         speed = 0.8f;
         delta_radius = 0.005f;
-        delta_speed = 0.2f;
+        delta_speed = 0.3f;
         iter_count = 0;   
         StartCoroutine(UpdateOrbitMove());
     }

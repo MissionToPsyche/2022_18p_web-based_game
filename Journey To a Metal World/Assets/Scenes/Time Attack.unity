@@ -2039,7 +2039,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Move all parts onto their correct locations on the orbital.
+  m_text: 'Move all parts onto their correct locations on the orbiter.
 
 
     Press

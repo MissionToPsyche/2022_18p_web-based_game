@@ -2062,9 +2062,9 @@ RectTransform:
   - {fileID: 1296421684}
   - {fileID: 174704640}
   - {fileID: 263127376}
+  - {fileID: 820770922}
   - {fileID: 1494052095}
   - {fileID: 1702636114}
-  - {fileID: 820770922}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2086,7 +2086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score_text: {fileID: 1296421685}
-  combo_text: {fileID: 0}
+  combo_text: {fileID: 1794267048}
 --- !u!1 &820770921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,7 +2120,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 775451544}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -3904,7 +3904,7 @@ RectTransform:
   - {fileID: 261958882}
   - {fileID: 1390945338}
   m_Father: {fileID: 775451544}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4307,7 +4307,7 @@ RectTransform:
   - {fileID: 1794267047}
   - {fileID: 304827641}
   m_Father: {fileID: 775451544}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

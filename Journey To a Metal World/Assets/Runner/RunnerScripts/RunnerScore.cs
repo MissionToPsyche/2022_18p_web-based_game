@@ -51,7 +51,7 @@ public class RunnerScore : MonoBehaviour
         this.score += val;
         score = Mathf.Clamp(this.score, 0, int.MaxValue); // keeps score from going below 0 or higher than
         // the maximum int value
-        Debug.Log("New Score: " + this.score);
+        // Debug.Log("New Score: " + this.score);
     }
     
 

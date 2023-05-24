@@ -38,6 +38,10 @@ public class RunnerOrbital : MonoBehaviour
     RunnerEnemySpawner enemy_spawner;
     RunnerAudioPlayer audio_player;
 
+    [SerializeField] bool apply_camera_shake = true;
+    RunnerCameraShake camera_shake; 
+
+
 
     Vector2 min_bounds;
     Vector2 max_bounds;
@@ -51,6 +55,11 @@ public class RunnerOrbital : MonoBehaviour
     // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
     // flash.
 
+    void Awake() {
+    {
+        this.camera_shake = Camera.main.GetComponent<RunnerCameraShake>(); 
+    }
+    }
     void Start()
     {
         this.sprite = GetComponent<SpriteRenderer>();
@@ -288,6 +297,7 @@ public class RunnerOrbital : MonoBehaviour
             this.damage_effect_on = true;
 
             DecreaseLives(CalculateDamage());
+            activate_camera_shake();
             sprite.color = Color.red;
             // Debug.Log("orbital should be red");
 
@@ -432,6 +442,14 @@ public class RunnerOrbital : MonoBehaviour
         for (int i = 0; i < decrease_by; i++)
         {
             this.visual_manager.DecreaseLifeSprite();
+        }
+    }
+
+    void activate_camera_shake()
+    {
+        if (null != this.camera_shake && true == this.apply_camera_shake)
+        {
+            this.camera_shake.PlayCameraShake();
         }
     }
     

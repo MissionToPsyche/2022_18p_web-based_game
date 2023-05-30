@@ -430,7 +430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -494.7998, y: -39.199997}
+  m_AnchoredPosition: {x: -494.7997, y: -39.199997}
   m_SizeDelta: {x: -1017.6398, y: 58.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &174704641
@@ -922,7 +922,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -420.09998, y: -39.5}
+  m_AnchoredPosition: {x: -420.09988, y: -39.5}
   m_SizeDelta: {x: -1017.64, y: 58.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &263127377
@@ -2201,7 +2201,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -347.80005, y: 264.5}
+  m_AnchoredPosition: {x: -347.79996, y: 264.5}
   m_SizeDelta: {x: -1043.3, y: 37.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &820770923
@@ -2887,8 +2887,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0168fe0d8486c064fa14dbb49ee84d52, type: 2}
   - {fileID: 11400000, guid: 61f792e51c45f2848ae8567983f65cfd, type: 2}
   - {fileID: 11400000, guid: bf0036d35701d6247b861c1915f43c07, type: 2}
+  testing_waves:
+  - {fileID: 11400000, guid: 9d8dec6f9d477d94a9913e9ed18dc8d9, type: 2}
+  - {fileID: 11400000, guid: 5664128670c967e498ffd5e8186a7f59, type: 2}
+  - {fileID: 11400000, guid: 45225b29cf4b44b41ba85a557b92f831, type: 2}
+  - {fileID: 11400000, guid: 0168fe0d8486c064fa14dbb49ee84d52, type: 2}
+  - {fileID: 11400000, guid: 5f018e7c66e393c40b3836b9a9a4b55e, type: 2}
+  - {fileID: 11400000, guid: 9e9bb0b548e638c4a88f2eb659d1ced1, type: 2}
+  - {fileID: 11400000, guid: 7fb04d112aa85ac4fbea98394f06fe6f, type: 2}
+  - {fileID: 0}
   MAX_WAVES: 120
   wave_delay: 1
+  WITHIN_SET_DELAY: 0.4
 --- !u!4 &1066441455
 Transform:
   m_ObjectHideFlags: 0
@@ -4438,8 +4448,10 @@ MonoBehaviour:
   wave_configs:
   - {fileID: 11400000, guid: dbb11827a18510c49a01e29f7b799e6f, type: 2}
   random_waves: []
+  testing_waves: []
   MAX_WAVES: 60
   wave_delay: 1
+  WITHIN_SET_DELAY: 0.1
 --- !u!4 &1754165127
 Transform:
   m_ObjectHideFlags: 0
@@ -4861,7 +4873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15, y: -12}
+  m_AnchoredPosition: {x: 15, y: -11.9999695}
   m_SizeDelta: {x: -363.74, y: -205.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1877988609

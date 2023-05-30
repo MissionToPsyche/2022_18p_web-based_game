@@ -5,6 +5,8 @@ using UnityEngine;
 /**
 keeps track of high scores and the mute button activeness
 likely without needing cookies. 
+this script is sobsolete since we were given clearance for cookies but I'm leaving it here
+as a back up just in case
 */
 public class InformationKeeper
 {

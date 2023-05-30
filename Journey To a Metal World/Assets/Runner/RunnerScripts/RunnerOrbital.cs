@@ -18,7 +18,7 @@ public class RunnerOrbital : MonoBehaviour
     [SerializeField] float show_speed;
     int lives;
     // float power_bank = 100f;
-    float movement_speed = 5f;
+    float movement_speed = 7.5f;
     int INVINCIBILITY_FRAME_LENGTH = 72;
     int invinciblity_frames_left = 0;
     int current_collisions = 0; // because we can theoretically hit multiple things at once

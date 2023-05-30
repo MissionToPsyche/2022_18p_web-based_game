@@ -24,9 +24,13 @@ public class RunnerUI : MonoBehaviour
         this.score_keeper = FindObjectOfType<RunnerScore>();    
     }
 
+    /**
+    SetComboToZero is a static method that makes sure combos cannot be carried over restarts 
+    this edge case is due to the fact that combo was created from a static variable 
+    */
      void Start() 
      {
-
+        RunnerMeteoroidPoints.SetComboToZero();
         // player_lives.maxValue = player_lives.GetLives();    
     }
 

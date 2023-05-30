@@ -111,4 +111,9 @@ public class RunnerMeteoroidPoints : MonoBehaviour
     {
         return combo;
     }
+
+    public static void SetComboToZero()
+    {
+        combo = 0;
+    }
 }

@@ -508,7 +508,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.039996, y: -73.45}
-  m_SizeDelta: {x: 331.43, y: 347.29}
+  m_SizeDelta: {x: 600, y: 347.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &447702318
 MonoBehaviour:
@@ -536,9 +536,13 @@ MonoBehaviour:
 
     3. Chaos in Space
 
+    4.
+    Scan At Will!
 
-    By:
-    Steven Ho'
+    5. Mechanical Madness
+
+
+    By: Steven Ho'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
   m_sharedMaterial: {fileID: 5758583266211556090, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
@@ -2013,7 +2017,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 366027119}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.3343168
+  m_Size: 0.33431676
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

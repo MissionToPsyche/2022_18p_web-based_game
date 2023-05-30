@@ -5300,6 +5300,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collision_clip: {fileID: 8300000, guid: 6bb22b11c99b5aa4e986062b60e5756c, type: 3}
+  combo_up_clip: {fileID: 8300000, guid: 706d1a49857504242849e209ce3f6ac2, type: 3}
+  combo_up_volume: 1
   collision_volume: 1
 --- !u!4 &2031755895
 Transform:

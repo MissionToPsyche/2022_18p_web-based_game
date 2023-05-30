@@ -18,10 +18,13 @@ public class RunnerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI score_text;
     [SerializeField] TextMeshProUGUI combo_text;
     RunnerScore score_keeper;
+    RunnerAudioPlayer audio_player;
+    bool ready_to_play_combo_sound = false;
 
     void Awake() 
     {
-        this.score_keeper = FindObjectOfType<RunnerScore>();    
+        this.score_keeper = FindObjectOfType<RunnerScore>();   
+        this.audio_player = FindObjectOfType<RunnerAudioPlayer>();
     }
 
     /**
@@ -37,7 +40,22 @@ public class RunnerUI : MonoBehaviour
     void Update()
     {
         this.score_text.text = this.score_keeper.GetScore().ToString();
+        string old_combo_text = this.combo_text.text;
         this.combo_text.text = RunnerMeteoroidPoints.GetCombo().ToString();
+        // due to the fact that I don't want this to have to be checked in every meteoroid (and to avoid them from triggering
+        // multiple times for one combo up, it needs to go in a script that only appears once. 
+        // additionally, this script uses Update and I still don't want it to play every single frame when combo %10 == 0
+        // therefore we need a boolean to tell it on and off
+        if ((int.Parse(this.combo_text.text) % 10 == 0) && this.ready_to_play_combo_sound == true)
+        {
+            this.audio_player.PlayComboUpClip();
+            this.ready_to_play_combo_sound = false;
+        } 
+
+        if (old_combo_text != this.combo_text.text)
+        {
+            this.ready_to_play_combo_sound = true;
+        }
         // Debug.Log(this.score_keeper);
         // Debug.Log(this.score_
     }

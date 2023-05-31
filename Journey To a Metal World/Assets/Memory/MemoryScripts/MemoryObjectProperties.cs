@@ -49,11 +49,13 @@ public class MemoryObjectProperties : MonoBehaviour
     /// <summary> Places the GameObject that was clicked into a queue that can be used in other scripts. </summary>
     public void storeGameObject()
     {
-        Debug.Log(solar_object + " added");
+        // Debug.Log(solar_object + " added");
         player_controller.getPlayerSelection().Enqueue(solar_object);
     }
 
 
+    /// <summary> Returns the note that is played when an object is selected. </summary>
+    /// <returns> AudioSource object. </returns>
     public AudioSource getNote()
     {
         return note;

@@ -9,8 +9,6 @@ public class MainMenuLoadingScreen : MonoBehaviour
     [SerializeField] GameObject loading_screen_canvas;
     [SerializeField] Image loading_bar_fill;
     [SerializeField] Image progress1;
-    [SerializeField] Image progress2;
-    [SerializeField] Image progress3;
     [SerializeField] float speed;
 
 
@@ -28,22 +26,13 @@ public class MainMenuLoadingScreen : MonoBehaviour
 
         while (!operation.isDone)
         {
+            yield return new WaitForSeconds(1);
             float progress = Mathf.Clamp01(operation.progress / speed);
             loading_bar_fill.fillAmount = progress;
+            // Debug.Log(progress);
 
-            if (progress == 50)
-            {
-                progress1.gameObject.SetActive(false);
-                progress2.gameObject.SetActive(true);
-            }
 
-            if (progress == 80)
-            {
-                progress2.gameObject.SetActive(false);
-                progress3.gameObject.SetActive(true);
-            }
-
-            yield return new WaitForSecondsRealtime(4f);
+            yield return null;
         }
     }
 }

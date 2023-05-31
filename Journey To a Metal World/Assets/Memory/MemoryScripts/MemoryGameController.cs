@@ -20,7 +20,7 @@ public class MemoryGameController : MonoBehaviour
 
     private bool finish_pattern_once = false;
 
-
+    /// <summary> On Awake, it will save the player's high score in the memory game. </summary>
     void Awake()
     {
         if (PlayerPrefs.HasKey("memory_high_score"))
@@ -58,12 +58,16 @@ public class MemoryGameController : MonoBehaviour
     }
 
 
+    /// <summary> Returns the player's high score from the game. </summary>
+    /// <Returns> A 32-bit positive integer, representing the player's score. </returns>
     public int getHighScore()
     {
         return high_score;
     }
 
 
+    /// <summary> Sets the high score of the player. </summary>
+    /// <param name="possible_high_score"> An int value with a score that could pontentially be displayed. </param>
     public void setHighScore(int possible_high_score)
     {
         // we only update the high score if the new one is larger
@@ -74,6 +78,8 @@ public class MemoryGameController : MonoBehaviour
     }
 
 
+
+    /// <summary> Saves the player's high score as a player pref. </summary>
     public void saveHighScore()
     {
         PlayerPrefs.SetInt("memory_high_score", high_score);

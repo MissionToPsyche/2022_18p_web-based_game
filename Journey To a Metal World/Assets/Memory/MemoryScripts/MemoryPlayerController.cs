@@ -39,6 +39,7 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    /// <summary> Indicates that the timer for the game can be started. </summary>
     private void Start()
     {
         time_on = true;
@@ -83,7 +84,7 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
-    /// <summary> Checks to see if we need to generate a new pattern </summary>
+    /// <summary> Checks to see if we need to generate a new pattern. </summary>
     /// <returns> An IEnumerator that pauses so that pattern generation is not instant and players have time to prepare. </returns>
     private IEnumerator generatePatternWithPause()
     {
@@ -97,6 +98,8 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    /// <summary> Shows text to the player that indicates that a new round has started. </summary>
+    /// <returns> An IEnumerator that pauses to show the text to the player. </returns>
     private IEnumerator showRoundText()
     {
         round_text.gameObject.SetActive(true);
@@ -105,6 +108,8 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    /// <summary> On successful completion of a round, a little jingle will play. </summary>
+    /// <returns> An IEnumerator that waits for the round to be complete then plays the jingle. </returns>
     private IEnumerator playRoundWinSound()
     {
         yield return new WaitForSeconds(0.4f);
@@ -113,6 +118,7 @@ public class MemoryPlayerController : MonoBehaviour
     }
 
 
+    /// <summary> When a player loses the round, it will end the game and show the game over screen. </summary>
     public void showGameOver()
     {
         player_selection.Clear();
@@ -162,7 +168,6 @@ public class MemoryPlayerController : MonoBehaviour
                 return;
             }
         }
-
         
         if (player_selection.Count != 0)
         {

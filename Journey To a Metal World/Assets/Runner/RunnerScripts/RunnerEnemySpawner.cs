@@ -8,10 +8,11 @@ public class RunnerEnemySpawner : MonoBehaviour
     [SerializeField] List<WaveConfigSO> wave_configs;
     [SerializeField] List<WaveConfigSO> random_waves;
     [SerializeField] List<WaveConfigSO> testing_waves;
-    [SerializeField] int MAX_WAVES = 60;
+    [SerializeField] int MAX_WAVES = 90;
     // [SerializeField] List<Transform> 
     [SerializeField] float wave_delay = 1f;
     [SerializeField] float WITHIN_SET_DELAY = 0.3f;
+    RunnerProgressBar progress_bar;
     int last_lane_used = -1;
     int LANES_TOTAL = 5;
     int METEOROID_VARIANTS_TOTAL = 9;
@@ -21,6 +22,7 @@ public class RunnerEnemySpawner : MonoBehaviour
     int waves_launched = 0;
     int extra_meteoroids_per_wave = 0; // will be 0, 1, 2 
     int MINIMUM_METEOROIDS_PER_WAVE = 1;
+    
     // with baseline always at least 1 meteoroid sent + 0,1,2 extra sent
     //... well as is I can do 1 extra or 0 extra fine. the problem will be 2 extra requires extra tracking. 
     // would use a stack. because toherwise like lane 0, 1, 0. not consecutive but spawns 2 lane 0's on each other 
@@ -36,6 +38,8 @@ public class RunnerEnemySpawner : MonoBehaviour
     void Start() 
     {
         this.finishline = FindObjectOfType<RunnerFinishMove>();
+        this.progress_bar = FindObjectOfType<RunnerProgressBar>();
+
         // StartCoroutine(SpawnEnemyWaves());    // this is what makes the waves start
     }
 
@@ -76,10 +80,10 @@ public class RunnerEnemySpawner : MonoBehaviour
     {
         int lane = Random.Range(0, this.LANES_TOTAL);
         // int lane = (int) (Random.value * (this.LANES_TOTAL -1));
-        Debug.Log("lane # " + lane);
+        // Debug.Log("lane # " + lane);
         if (lane == this.last_lane_used)
         {
-            Debug.Log("dup lane");
+            // Debug.Log("dup lane");
             int coinFlip = Random.Range(0, 2);
             if (coinFlip == 0)
             {
@@ -140,6 +144,7 @@ public class RunnerEnemySpawner : MonoBehaviour
             }
             this.extra_meteoroids_per_wave = 1;
             this.waves_launched++;
+
             // rnd.next should give us a intger between the lower bound 1st parameter
             // in this case 0 (inclusive) and the upper bound 2nd parameter (exclusive)
             yield return new WaitForSeconds(this.wave_delay);
@@ -180,7 +185,7 @@ public class RunnerEnemySpawner : MonoBehaviour
                 // this.last_lane_used = index;
                 // ahhh actually. that's wrong. because I gave it the end index rather than the lane. 
                 // redo it inside the function probably is best. 
-                Debug.Log("first Index " + index);
+                // Debug.Log("first Index " + index);
                 this.current_wave = this.random_waves[index];
 
                 if (this.continue_spawning == false)
@@ -204,12 +209,17 @@ public class RunnerEnemySpawner : MonoBehaviour
                 // as of right now there will only be one thing in each wave so
                 //that I can not have a stream of all meteoroids in one line. will
                 // need the following line if more than 1 meteoroid in a wave
-                yield return new WaitForSeconds(this.WITHIN_SET_DELAY);
+                if (i < this.MINIMUM_METEOROIDS_PER_WAVE + this.extra_meteoroids_per_wave - 1)
+                {
+                    yield return new WaitForSeconds(this.WITHIN_SET_DELAY);
+                }
                 // important to the not spawning on top of each other it seems. even if it's a smaller value 
             }
-            // this.extra_meteoroids_per_wave = (this.extra_meteoroids_per_wave + 1) % 2;
-            this.extra_meteoroids_per_wave = 1;
+            this.extra_meteoroids_per_wave = (this.extra_meteoroids_per_wave + 1) % 2;
+            // this.extra_meteoroids_per_wave = 1;
             this.waves_launched++;
+            float percent  = (float) (this.waves_launched) / (float) (this.MAX_WAVES);
+            this.progress_bar.ProgressBarLERP(percent);
             // rnd.next should give us a intger between the lower bound 1st parameter
             // in this case 0 (inclusive) and the upper bound 2nd parameter (exclusive)
             yield return new WaitForSeconds(this.wave_delay);

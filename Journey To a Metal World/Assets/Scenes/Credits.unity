@@ -541,8 +541,11 @@ MonoBehaviour:
 
     5. Mechanical Madness
 
+    6. Reach for the Stars
 
-    By: Steven Ho'
+
+    By:
+    Steven Ho'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
   m_sharedMaterial: {fileID: 5758583266211556090, guid: e2ac55f315895bb4f8a24632e12ac3ec, type: 2}
@@ -2017,7 +2020,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 366027119}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.33431676
+  m_Size: 0.3343168
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

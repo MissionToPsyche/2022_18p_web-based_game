@@ -18,6 +18,7 @@ public class MemoryPlayerController : MonoBehaviour
     [SerializeField] MemoryGameStartScreen game_start_screen;
     [SerializeField] TextMeshProUGUI round_text;
     [SerializeField] AudioSource round_win;
+    [SerializeField] AudioSource round_over;
     private MemoryPatternGenerator pattern_generator;
     private MemoryGameController controller;
     private Queue<GameObject> player_selection = new Queue<GameObject>();
@@ -176,7 +177,7 @@ public class MemoryPlayerController : MonoBehaviour
                 // Debug.Log("Invalid Selection");
                 time_on = false;
 
-                // play invalid select sound
+                round_over.Play();
 
                 showGameOver();
 

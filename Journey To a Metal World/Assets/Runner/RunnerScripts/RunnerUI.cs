@@ -46,7 +46,7 @@ public class RunnerUI : MonoBehaviour
         // multiple times for one combo up, it needs to go in a script that only appears once. 
         // additionally, this script uses Update and I still don't want it to play every single frame when combo %10 == 0
         // therefore we need a boolean to tell it on and off
-        if ((int.Parse(this.combo_text.text) % 10 == 0) && this.ready_to_play_combo_sound == true)
+        if ((int.Parse(this.combo_text.text) % 11 == 0) && this.ready_to_play_combo_sound == true && int.Parse(this.combo_text.text) != 0)
         {
             this.audio_player.PlayComboUpClip();
             this.ready_to_play_combo_sound = false;

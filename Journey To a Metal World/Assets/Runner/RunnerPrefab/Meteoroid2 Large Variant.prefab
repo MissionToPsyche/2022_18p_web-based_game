@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1169412167256164234, guid: 96f3f6da15bcf614ca1065de2b00d1fc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 28.361082
+      objectReference: {fileID: 0}
+    - target: {fileID: 1169412167256164234, guid: 96f3f6da15bcf614ca1065de2b00d1fc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.7216
+      objectReference: {fileID: 0}
     - target: {fileID: 1169412167477228986, guid: 96f3f6da15bcf614ca1065de2b00d1fc, type: 3}
       propertyPath: m_Name
       value: Meteoroid2 Large Variant

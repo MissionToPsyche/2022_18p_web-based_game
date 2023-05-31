@@ -55,7 +55,7 @@ public class RunnerMeteoroidPoints : MonoBehaviour
     */
     public int ReachedPointsArea()
     {
-        int added = (int) (this.point * (System.Math.Pow(2, (int)combo/10)));
+        int added = (int) (this.point * (System.Math.Pow(2, (int)combo/11)));
         
         score_keeper.AddToScore(added);
         combo++;
@@ -110,5 +110,10 @@ public class RunnerMeteoroidPoints : MonoBehaviour
     public static int GetCombo()
     {
         return combo;
+    }
+
+    public static void SetComboToZero()
+    {
+        combo = 0;
     }
 }

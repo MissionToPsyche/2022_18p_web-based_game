@@ -11,6 +11,7 @@ using TMPro;
 public class ScoreLogic : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI scoreText;
+    [SerializeField] public AudioSource pointSoundEffect;
 
     private int score;
     private int highScore;
@@ -34,6 +35,7 @@ public class ScoreLogic : MonoBehaviour
     {
         score += 150;
         scoreText.text = "Score: " + score.ToString();
+        pointSoundEffect.Play();
     }
 
 

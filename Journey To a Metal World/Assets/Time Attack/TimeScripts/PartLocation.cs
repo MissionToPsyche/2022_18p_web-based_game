@@ -19,6 +19,7 @@ public class PartLocation : MonoBehaviour
         {"-Y Part Location", 4}
     };
 
+
     private int partLocationType;
     private SpriteRenderer rend;
 

@@ -6,11 +6,11 @@ using UnityEngine;
 public class AreaGenerator : MonoBehaviour
 {
     public GameObject prefab;
-    private int max_area_count = 8;
     public static int cur_area_count = 0;
+    public static List<GameObject> research_areas = new List<GameObject>();
+    private int max_area_count = 8;
     private float radius = 1.7f;
     private float research_area_radius = 0.5f;
-    public static List<GameObject> research_areas = new List<GameObject>();
 
     void Start()
     {
@@ -18,6 +18,7 @@ public class AreaGenerator : MonoBehaviour
         research_areas = new List<GameObject>();
     }
 
+    /// <summary> This function is to generate new research areas if one got detected </summary>
     void Update()
     {
         if(StartScene.game_start == true && cur_area_count < max_area_count)
@@ -47,6 +48,8 @@ public class AreaGenerator : MonoBehaviour
         return num;
     }
 
+    /// <summary> This function is to check if the new generated research area overlap with the existing ones </summary>
+    /// <returns> A boolean on whether it overlaps or not </returns>
     bool isOverlap(float new_area_x, float new_area_y){
         var distance = 0f;
         var exist_area_x = 0f;

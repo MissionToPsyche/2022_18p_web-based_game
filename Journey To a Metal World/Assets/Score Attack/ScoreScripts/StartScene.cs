@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StartScene : MonoBehaviour
 {
-    private Canvas start_canvas;
     public static bool game_start = false;
+    private Canvas start_canvas;
     
     void Start()
     {
@@ -16,10 +16,9 @@ public class StartScene : MonoBehaviour
             start_canvas = game_object.GetComponent<Canvas>();       
             start_canvas.enabled = true;
         }
-        
     }
 
-    /* If timeout, enable all end scene */
+    /// <summary> If timeout, enable all end scene </summary>
     void Update()
     {
         if(game_start == true){

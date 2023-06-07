@@ -11,9 +11,9 @@ public class Orbit : MonoBehaviour
     [SerializeField] float delta_speed = 0.04f;
     int iter_count = 0;
     float RADIAN = (Mathf.PI / 180);
+    float radius = 5.0f;
     public static float speed = 0.15f;
     private Transform transform_object;
-    float radius = 5.0f;
 
     
     void Start()
@@ -21,7 +21,7 @@ public class Orbit : MonoBehaviour
         transform_object = transform;
         transform_object.position = new Vector3(0f, 0f, 0);
         degree = 0.0f;
-    // real deployment value
+        // below are the real deployment value
         speed = 0.8f;
         delta_radius = 0.005f;
         delta_speed = 0.3f;
@@ -29,7 +29,7 @@ public class Orbit : MonoBehaviour
         StartCoroutine(UpdateOrbitMove());
     }
 
-
+    /// <summary> This function is to update the position of the orbital </summary>
     private IEnumerator UpdateOrbitMove()
     {
         while(true){
@@ -70,6 +70,4 @@ public class Orbit : MonoBehaviour
             speed = 0.0f;
         }
     }
-
-    
 }

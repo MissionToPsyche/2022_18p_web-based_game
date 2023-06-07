@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class AreaDetector : MonoBehaviour
 {
+    public GameObject ripple;
     private SpriteRenderer research_area;
     private float shrink_speed = 0.0001f;
-
-    public GameObject ripple;
     private Animator ripple_animator = null;
     private SpriteRenderer ripple_sprite = null;
 
@@ -29,12 +28,11 @@ public class AreaDetector : MonoBehaviour
         if(StartScene.game_start == true){
             UpdatePosition();
             UpdateRippleOrder();
-            
         }
     }
 
 
-    /* This function is to shrink the size of the research area for each update */
+    /// <summary> This function is to shrink the size of the research area for each update </summary>
     void UpdatePosition()
     {
         if(ResearchAreaExist() && (research_area.transform.localScale.x >= 0.2f && research_area.transform.localScale.y >= 0.2f))
@@ -53,7 +51,7 @@ public class AreaDetector : MonoBehaviour
         }
     }
 
-    bool ResearchAreaExist()
+    public bool ResearchAreaExist()
     {
         return research_area;
     }
@@ -63,7 +61,7 @@ public class AreaDetector : MonoBehaviour
         return this.shrink_speed;
     }
 
-    /* Destroy the research area and update score when it is triggered by the ray */
+    /// <summary> Destroy the research area and update score when it is triggered by the ray </summary>
     void OnTriggerEnter2D(Collider2D other) 
     {
         foreach (GameObject area in AreaGenerator.research_areas)

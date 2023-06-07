@@ -24,20 +24,16 @@ public class Shooting : MonoBehaviour
             clone.velocity = transform.up * 13;
             if(source != null){
                 source.Play();
-                Debug.Log("not null");
             }
-            
             StartCoroutine(DelayCoroutine());
         }
     }
 
-    
-
+    /// <summary> This function is add delay time in between every shot </summary>
     IEnumerator DelayCoroutine()
     {
         this.canFire = false; 
         yield return new WaitForSeconds(0.4f);
         this.canFire = true; 
     }
-
 }

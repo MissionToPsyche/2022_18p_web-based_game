@@ -7,8 +7,8 @@ public class Score : MonoBehaviour
 {
     public static int total_score = 0;
     public TMP_Text TextMeshPro;
-
     public static int high_score = 0;
+    
     void Start()
     {
         total_score = 0;

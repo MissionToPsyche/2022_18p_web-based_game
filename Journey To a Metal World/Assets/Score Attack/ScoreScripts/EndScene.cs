@@ -22,14 +22,13 @@ public class EndScene : MonoBehaviour
         }
     }
 
-    /* If timeout, enable all end scene */
+    /// <summary> If timeout, enable all end scene </summary>
     void Update()
     {
         if(Timer.total_time <= 0){
             timeout = true;
             StartScene.game_start = false;
             end_canvas.enabled = true;
-            
         }
     }
 }

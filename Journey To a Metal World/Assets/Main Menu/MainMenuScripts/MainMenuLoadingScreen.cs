@@ -12,12 +12,17 @@ public class MainMenuLoadingScreen : MonoBehaviour
     [SerializeField] float speed;
 
 
+    /// <summary> When called, this method will load the scene asynchronously, producing the loading screen. </summary>
+    /// <param name="index"> An int which is the scene index to be loaded </param>
     public void loadScene(int index)
     {
         StartCoroutine(loadSceneAsync(index));
     }
 
 
+    /// <summary> Enables the loading screen and will transition into the next scene. </summary>
+    /// <param name="index"> An int which is the scene index to be loaded </param>
+    /// <returns> IEnumerator </returns>
     private IEnumerator loadSceneAsync(int index)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(index);

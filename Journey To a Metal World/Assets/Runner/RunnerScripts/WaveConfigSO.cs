@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+    WaveConfig file for the meteoroids that will be spawned. This file identifies what meteoroid
+    and which lane 
+*/
 [CreateAssetMenu(menuName = "Wage Config", fileName = "New Wave Config")]
 public class WaveConfigSO : ScriptableObject 
 {
-    [SerializeField] List<GameObject> enemy_prefabs;
-    [SerializeField] Transform pathPrefab;
-    // [SerializeField] float move_speed = 3f;
-    // note, this is positive because it is being used
-    // with a path and so if it were negative it would actually go
-    // the opposite direction of the next path point rather than simply to the left
-    // Start is called before the first frame update
+    [SerializeField] List<GameObject> enemy_prefabs; // what meteoroid
+
+    [SerializeField] Transform pathPrefab; // which lane
 
     [SerializeField] float time_between_enemy_spawns = 2f;
     [SerializeField] float spawn_time_variance = 0f;
@@ -32,22 +32,25 @@ public class WaveConfigSO : ScriptableObject
     }
 
 
-    // void Start() 
-    // {
-        // this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
-    // }
-
+    /**
+        Get how many prefabs (in this case meteoroids) are in the wave
+    */
     public int GetEnemyCount()
     {
         return this.enemy_prefabs.Count;
     }
 
+    /**
+        return the prefab that is located at the index parameter 
+    */
     public GameObject GetEnemyPrefab(int index)
     {
         return this.enemy_prefabs[index];
     }
+
     /**
-    obtains the first waypoint to know where to start
+        obtains the first waypoint to know where to start
+        Returning the Transform object since that is a position
     */
     public Transform GetStartingWaypoint()
     {
@@ -67,9 +70,4 @@ public class WaveConfigSO : ScriptableObject
         return waypoints;
     }
 
-    // public float GetMoveSpeed()
-    // {
-    //     // return this.meteoroid_move.GetCurrentSpeed();
-    //     return this.move_speed;
-    // }
 }

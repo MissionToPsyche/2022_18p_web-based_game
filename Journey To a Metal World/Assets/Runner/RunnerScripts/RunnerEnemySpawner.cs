@@ -2,45 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+/**
+    The enemy spawner in the Runner spawns meteoroids randomly after a set delay (with differing
+    delays within waves and between different waves)
+    It is attached to an invisible object in the game and there should be exactly one of them
+    There is also a method that allows for spawning a preset arrangement of meteoroids for testing
+*/
 public class RunnerEnemySpawner : MonoBehaviour
 {
     WaveConfigSO current_wave;
-    [SerializeField] List<WaveConfigSO> wave_configs;
+    // [SerializeField] List<WaveConfigSO> wave_configs;
+    // the initial arrangement used for prototypeing 
+
     [SerializeField] List<WaveConfigSO> random_waves;
+    // This contains every single meteoroid wave created (should be 5 lanes * 9 
+    // different meteoroid sizes each for 45 different waves). And it must be in
+    // the order it is beacuse otherwise the randomizer cannot consistently make sure
+    // to use different lanes correctly
+
     [SerializeField] List<WaveConfigSO> testing_waves;
+    // This one is made purely so that testing different deterministic waves can be done without
+    // messing up the other specifically arranged waves
+
     [SerializeField] int MAX_WAVES = 90;
-    // [SerializeField] List<Transform> 
+    // each wave has a 1 second delay and each 2nd meteoroid within a wave has a 0.3 second delay
+    // this should roughly allow a full playthough to the ending to be about 2 minutes 
+
     [SerializeField] float wave_delay = 1f;
     [SerializeField] float WITHIN_SET_DELAY = 0.3f;
+    
     RunnerProgressBar progress_bar;
-    int last_lane_used = -1;
-    int LANES_TOTAL = 5;
-    int METEOROID_VARIANTS_TOTAL = 9;
+    int last_lane_used = -1; // initialize it to a lane that doesn't exist
+    int LANES_TOTAL = 5; // Topmost, Upper, Middle, Lower, Bottom
+    int METEOROID_VARIANTS_TOTAL = 9; // 3 different sizes * 3 different meteoroids = 9 variants 
+
     bool continue_spawning = true;
     bool finished_all_waves = false;
     bool send_finishline = true;
     int waves_launched = 0;
-    int extra_meteoroids_per_wave = 0; // will be 0, 1, 2 
+    int extra_meteoroids_per_wave = 0; // will be 0 or 1
     int MINIMUM_METEOROIDS_PER_WAVE = 1;
-    
-    // with baseline always at least 1 meteoroid sent + 0,1,2 extra sent
-    //... well as is I can do 1 extra or 0 extra fine. the problem will be 2 extra requires extra tracking. 
-    // would use a stack. because toherwise like lane 0, 1, 0. not consecutive but spawns 2 lane 0's on each other 
+    // theoretically more meteoroids can be send per wave like making
+    // extra_meteorids_per_wave max out at 2 or 3 but then everything needs
+    // to be re-tuned    
+    RunnerFinishMove finishline;    
 
-    RunnerFinishMove finishline;
-
-    void Awake()
-    {
-        // Random.InitState(System.DateTime.Now.Millisecond); 
-    }
-    
-
+    /**
+        called first
+    */
     void Start() 
     {
         this.finishline = FindObjectOfType<RunnerFinishMove>();
-        this.progress_bar = FindObjectOfType<RunnerProgressBar>();
+        // we need the finishline so that we can trigger it after going through all waves
 
-        // StartCoroutine(SpawnEnemyWaves());    // this is what makes the waves start
+        this.progress_bar = FindObjectOfType<RunnerProgressBar>();
+        // we need the progress_bar so that we can ask it to update the visual
     }
 
     /**
@@ -61,30 +77,31 @@ public class RunnerEnemySpawner : MonoBehaviour
     */
     public void StartSpawning()
     {
-        // StartCoroutine(SpawnEnemyWaves());
-        // StartCoroutine(SpawnEnemyWavesRandomly());
+        // this is the one used for the game 
         StartCoroutine(SpawnVaryingEnemyWavesRandomly());
+
+        // this one is used for testing specific arrangements
         // StartCoroutine(TestingWavesSpacing());
     }
-
-    //*** the problem is not that they arne't spawning right or at least half the problem isn't that. 
-    // the issue is that they are already over lapping so that means they might collide further!
     
     /**
         function to take care of randomly picking a meteoroid to spawn but making 
         sure to not allow for repeatedly spawning in the same lane
         lane 0 is at the bottom. as of right now lane 4 is at the top.
-
+        changing the number of lanes would require this to be changed 
     */
     int GetAdjustedRandomSpawn()
     {
         int lane = Random.Range(0, this.LANES_TOTAL);
-        // int lane = (int) (Random.value * (this.LANES_TOTAL -1));
         // Debug.Log("lane # " + lane);
+        
+        // if the same lane was used last time
         if (lane == this.last_lane_used)
         {
             // Debug.Log("dup lane");
             int coinFlip = Random.Range(0, 2);
+            // then we coin flip picking the lane above or below it
+            // and make sure to account for not putting it into a non existent lane
             if (coinFlip == 0)
             {
                 lane -= 1;
@@ -92,7 +109,6 @@ public class RunnerEnemySpawner : MonoBehaviour
                 {
                     lane = 0;
                 }
-                // lane = Mathf.Clamp(lane, this.LANES_TOTAL - 1, 0);
             }
             else
             {
@@ -103,15 +119,21 @@ public class RunnerEnemySpawner : MonoBehaviour
         this.last_lane_used = lane;
 
         int meteoroid_index = Random.Range(0, this.METEOROID_VARIANTS_TOTAL);
+
+        // compute which meteoroid is sent from the 1D list 
         int index = lane * this.METEOROID_VARIANTS_TOTAL + meteoroid_index;
         // 1D List but we can treat it almost like travelling around a 2D List
-        // lane # multiplied by how many in each row
-        // + the meteoroid index so we know where 
+        // lane number multiplied by how many in each row + the meteoroid index so we know where 
         // in that row we should be (as in column)
         
         return index;
-
     }
+
+
+    /**
+        Made for the ability to test a deterministic set of meteoroids using a very similar style to 
+        what is actually used in the game. Helpful for checking spacing and dodging meteoroid feasibility
+    */
     IEnumerator TestingWavesSpacing()
     {
         // System.Random rnd = new System.Random();
@@ -130,23 +152,23 @@ public class RunnerEnemySpawner : MonoBehaviour
                     break;
                 }
                 // there is only 1 meteoroid in the wave object. hence getEnemyPrefab at position 0
-                // bad naming to name two thigns waves but this one is the actual object while the loop
+                // bad naming to name two things waves but this one is the actual object while the loop
                 // referes to wave as the total things to be instantiated at once 
+
                 Instantiate(current_wave.GetEnemyPrefab(0),
                     current_wave.GetStartingWaypoint().position, 
                     Quaternion.identity, transform);
                 yield return new WaitForSeconds(this.WITHIN_SET_DELAY);
-                // 0.5 creates quite the distance. 0.1 not enough when putting thigns reallyh close. 
+                // 0.5 creates quite the distance. 0.1 not enough when putting thigns really close. 
                 // note this was checked with gaming laptop with charger in
-                //when together. the top lane and the upper lane used together must be smalls.otherwise collision worries at SMALL delays 
+                //when together. the top lane and the upper lane used together must be smalls.
+                // otherwise collision worries at SMALL delays 
                 test_index++;
                 // important to the not spawning on top of each other it seems. even if it's a smaller value 
             }
             this.extra_meteoroids_per_wave = 1;
             this.waves_launched++;
 
-            // rnd.next should give us a intger between the lower bound 1st parameter
-            // in this case 0 (inclusive) and the upper bound 2nd parameter (exclusive)
             yield return new WaitForSeconds(this.wave_delay);
         }
         if (this.send_finishline == true)
@@ -157,173 +179,62 @@ public class RunnerEnemySpawner : MonoBehaviour
         
     }
 
-
-
-
     IEnumerator SpawnVaryingEnemyWavesRandomly()
     {
-        // System.Random rnd = new System.Random();
-
-        // this.wave_configs.Count()
+        // continuously loop spawning until you've gone through all the waves or we say to stop
         while (this.waves_launched < this.MAX_WAVES && this.continue_spawning == true)
         {
-            // int index = Random.Range(0, this.random_waves.Count);
-
-            // int secondary_index = GetAdjustedRandomSpawn(this.last_lane_used);
-            // WaveConfigSO pair_wave = this.random_waves[secondary_index];
-            // // this.last_lane_used = secondary_index;            
-            // Debug.Log("second Index " + index);
-            //Sidenote: there really should be only 1 meteoroid in the wave with the way
-            // I have it written and this is because the wave must follow the path so sending 5
-            // meteoroids in the same lane is kind of pointlessly weird. But done like this because
-            // it works and in case I find a way to get one wave to have multi directions
-            // for (int i = 0; i < this.current_wave.GetEnemyCount(); i++)
-            
+            //the actual spawning of the meteoroids from within the wave
             for (int i = 0; i < this.MINIMUM_METEOROIDS_PER_WAVE + this.extra_meteoroids_per_wave; i++)
             {
                 int index = GetAdjustedRandomSpawn();
-                // this.last_lane_used = index;
-                // ahhh actually. that's wrong. because I gave it the end index rather than the lane. 
-                // redo it inside the function probably is best. 
-                // Debug.Log("first Index " + index);
                 this.current_wave = this.random_waves[index];
 
+                // if we're supposed to stop spawning mid wave we will do so
                 if (this.continue_spawning == false)
                 {
                     break;
                 }
+
                 // there is only 1 meteoroid in the wave object. hence getEnemyPrefab at position 0
-                // bad naming to name two thigns waves but this one is the actual object while the loop
+                // bad naming to name two things waves but this one is the actual object while the loop
                 // referes to wave as the total things to be instantiated at once 
                 Instantiate(current_wave.GetEnemyPrefab(0),
                     current_wave.GetStartingWaypoint().position, 
                     Quaternion.identity, transform);
                 // Debug.Log(current_wave.GetStartingWaypoint().position);
 
-                // Instantiate(pair_wave.GetEnemyPrefab(i),
-                //     pair_wave.GetStartingWaypoint().position, 
-                //     Quaternion.identity, transform);
-                // Debug.Log(pair_wave.GetStartingWaypoint().position);
-
-                // break out and wait for something
-                // as of right now there will only be one thing in each wave so
-                //that I can not have a stream of all meteoroids in one line. will
-                // need the following line if more than 1 meteoroid in a wave
+                // the inner wave delay
                 if (i < this.MINIMUM_METEOROIDS_PER_WAVE + this.extra_meteoroids_per_wave - 1)
                 {
                     yield return new WaitForSeconds(this.WITHIN_SET_DELAY);
                 }
                 // important to the not spawning on top of each other it seems. even if it's a smaller value 
+                // as otherwise if it's literally the same frame, the random number generator will give you
+                // the same number
             }
+            // bounces between 0 and 1 extra meteoroid
             this.extra_meteoroids_per_wave = (this.extra_meteoroids_per_wave + 1) % 2;
-            // this.extra_meteoroids_per_wave = 1;
+            
             this.waves_launched++;
+            // increment how many waves we've launched
+
             float percent  = (float) (this.waves_launched) / (float) (this.MAX_WAVES);
+            // the percent finished is the number of waves we launched divided by the max number of 
+            // waves we can launch. then we give that to the progress bar LERP
             this.progress_bar.ProgressBarLERP(percent);
-            // rnd.next should give us a intger between the lower bound 1st parameter
-            // in this case 0 (inclusive) and the upper bound 2nd parameter (exclusive)
+
             yield return new WaitForSeconds(this.wave_delay);
+            // this is the delay between waves. it's longer than the within wave delay
         }
+        // if we get here we've gone through all the waves and can now send the finish condition 
+        // (psyche) forward
         if (this.send_finishline == true)
         {
             this.finishline.StartMoving();
         }
 
         
-    }
-
-
-
-    IEnumerator SpawnEnemyWavesRandomly()
-    {
-        // System.Random rnd = new System.Random();
-
-        // this.wave_configs.Count()
-        while (this.waves_launched < this.MAX_WAVES && this.continue_spawning == true)
-        {
-            // int index = Random.Range(0, this.random_waves.Count);
-            int index = GetAdjustedRandomSpawn();
-            // this.last_lane_used = index;
-            // ahhh actually. that's wrong. because I gave it the end index rather than the lane. 
-            // redo it inside the function probably is best. 
-            Debug.Log("first Index " + index);
-            this.current_wave = this.random_waves[index];
-
-            int secondary_index = GetAdjustedRandomSpawn();
-            WaveConfigSO pair_wave = this.random_waves[secondary_index];
-            // // this.last_lane_used = secondary_index;            
-            // Debug.Log("second Index " + index);
-            //Sidenote: there really should be only 1 meteoroid in the wave with the way
-            // I have it written and this is because the wave must follow the path so sending 5
-            // meteoroids in the same lane is kind of pointlessly weird. But done like this because
-            // it works and in case I find a way to get one wave to have multi directions
-            for (int i = 0; i < this.current_wave.GetEnemyCount(); i++)
-            {
-                if (this.continue_spawning == false)
-                {
-                    break;
-                }
-                Instantiate(current_wave.GetEnemyPrefab(i),
-                    current_wave.GetStartingWaypoint().position, 
-                    Quaternion.identity, transform);
-                Debug.Log(current_wave.GetStartingWaypoint().position);
-
-                Instantiate(pair_wave.GetEnemyPrefab(i),
-                    pair_wave.GetStartingWaypoint().position, 
-                    Quaternion.identity, transform);
-                Debug.Log(pair_wave.GetStartingWaypoint().position);
-
-                // break out and wait for something
-                // as of right now there will only be one thing in each wave so
-                //that I can not have a stream of all meteoroids in one line. will
-                // need the following line if more than 1 meteoroid in a wave
-                // yield return new WaitForSeconds(current_wave.GetRandomSpawnTime());
-            }
-
-            this.waves_launched++;
-            // rnd.next should give us a intger between the lower bound 1st parameter
-            // in this case 0 (inclusive) and the upper bound 2nd parameter (exclusive)
-            yield return new WaitForSeconds(this.wave_delay);
-        }
-        if (this.send_finishline == true)
-        {
-            this.finishline.StartMoving();
-        }
-
-        
-    }
-
-
-    //coroutine
-    IEnumerator SpawnEnemyWaves()
-    {
-        foreach (WaveConfigSO wave in this.wave_configs)
-        {
-            this.current_wave = wave;
-            for (int i = 0; i < this.current_wave.GetEnemyCount(); i++)
-            {
-                if (this.continue_spawning == false)
-                {
-                    break;
-                }
-
-                Instantiate(current_wave.GetEnemyPrefab(i),
-                    current_wave.GetStartingWaypoint().position, 
-                    Quaternion.identity, transform);
-                // break out and wait for something
-                // as of right now there will only be one thing in each wave so
-                //that I can not have a stream of all meteoroids in one line. will
-                // need the following line if more than 1 meteoroid in a wave
-                // yield return new WaitForSeconds(current_wave.GetRandomSpawnTime());
-            }
-            yield return new WaitForSeconds(this.wave_delay);
-
-        }
-        this.finished_all_waves = true;
-        if (this.send_finishline == true)
-        {
-            this.finishline.StartMoving();
-        }
     }
 
 

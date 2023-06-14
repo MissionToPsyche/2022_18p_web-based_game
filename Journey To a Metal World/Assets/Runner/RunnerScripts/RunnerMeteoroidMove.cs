@@ -2,79 +2,81 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// correction, seems to work with the pathfinder code. possible that before my speeds just weren't
-//  high enough to be noticeable
+/**
+    The overhead that calculates the raw values that the meteoroids should be moving at
+    this should be attached to one invisible object in the game 
+*/
 public class RunnerMeteoroidMove : MonoBehaviour
 {
-    // will likely need to be able to trigger the orbital
     [SerializeField] float MIN_MOVEMENT_SPEED = 5f;
     [SerializeField] float current_movement_speed = 10f;
     [SerializeField] float MAX_MOVEMENT_SPEED = 20f;
-    // speeds attempted: 10, 20 
-    // speed increase attempted 0.01. 
 
-    // attempt: try it with changed condition so that the inspector isn't changing every frame once
-    // it hits max speed. if that doesn't work. we just make it a consistent 20 or 15. 
-    // 0.001 speed increase is slower although kinda more forgiving. s
     [SerializeField] float SPEED_INCREASE = 0.01f;
     bool game_over = false;
     bool game_started = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-         
-    }
 
     // Update is called once per frame
     void Update()
     {
+        // if the game hasn't started we don't do anything
         if (this.game_started == false)
         {
             return;
         }
         
+        // if the game is over we also don't do anything
         if (this.game_over == true)
         {
             return;
         }
+        // else we increase the speed the meteoroids are moving at 
         IncreaseSpeed();
-        // transform.Translate(movement, 0, 0);
-        // transform.Translate(this.movement_speed, 0, 0);
         
     }
 
+    /**
+        Public method for setting the game_started member variable to true
+        this will let the meteoroidMove script know that it should start increasing the
+        move speed
+    */
     public void StartMeteoroidMove()
     {
         this.game_started = true;
-        // this.current_movement_speed = 20;
     }
+
     /**
         Increments the speed by the SPEED_INCREASE constant and keeps it within minimum and maximum bounds
     */
     public void IncreaseSpeed()
     {
         // intended to have this file control the speed calculations for all.
-        // this.current_movement_speed += this.SPEED_INCREASE;
+        // if we're already at or faster than the current max speed we just return 
         if (this.current_movement_speed >= MAX_MOVEMENT_SPEED)
         {
-            return;
+            return; 
         }
         this.current_movement_speed += this.SPEED_INCREASE;
-        // this.current_movement_speed = Mathf.Clamp(this.current_movement_speed + this.SPEED_INCREASE, this.MAX_MOVEMENT_SPEED, this.MIN_MOVEMENT_SPEED);
     }
 
+    /**
+        Reset the movement speed to be the minimum movement speed
+    */
     public void ResetSpeed()
     {
         this.current_movement_speed = this.MIN_MOVEMENT_SPEED;
     }
 
+    /**
+        Stops all meteoroid movements. Also sets game_over to true. 
+    */
     public void StopMeteoroidMovement()
     {
         this.current_movement_speed = 0;
         this.game_over = true;
     }
     /**
-    returns the current speed of the meteoroids on the screen
+        Getter for the current (raw) speed of the meteoroids on screen
     */
     public float GetCurrentSpeed()
     {

@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-// brainstorming note:
 
-
+/**
+    This script is responsible for moving the meteoroids and is attached to each 
+    meteoroid spawned
+    Attached to every meteoroid prefab spawned
+*/
 public class RunnerPathFinder : MonoBehaviour
 {
     WaveConfigSO wave_config;
@@ -18,87 +21,80 @@ public class RunnerPathFinder : MonoBehaviour
     float percent = 0f;
     Vector3 init_position;
 
+    // happens once the instant it is created
     void Awake() 
     {
         this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
-
+        // we need the spawner before we can do the stuff in start
     }
 
+    // happens at the start
     void Start() 
     {
         wave_config = enemy_spawner.GetCurrentWave();
         waypoints = wave_config.GetWaypoints();
         transform.position = waypoints[waypoint_index].position; 
+        // the 3 lines above are to get the meteoroid to know where it 
+        // needs to go and where it should be right now
+
+
         this.meteoroid_move = FindObjectOfType<RunnerMeteoroidMove>();
+        // need meteoroid move to know where 
         this.init_position = transform.position;
-        // rigid_body = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>(); 
-        // Debug.Log(rigid_body);
     }
 
-    // void FixedUpdate()
-    // {
-    //     FollowPath();
-    // }
 
     void Update() 
     {
         FollowPath();
-        // ApplyVelocity();
-        // DoLerp();
+        // notes for any future edits: 
+        // using velocity is a bad idea because the orbiter does not use velocity and so if
+        // anything hits it, the orbiter will have a physics reaction and go flying and become 
+        // uncontrollable. Unless you are willing to reprogram the movement and physics of both the 
+        // meteoroids and the orbiter, I do not think velocity based movement can be done 
+        
+        // Using LERP may work but it is inconvenient and may be hard. First the camera view
+        // actually has a very small area so the LERP would need to increase by particularly small
+        // amounts (probably). Beyond that, I'm not sure how to get all the percents to sync up
+        // with a speed that all meteoroids are supposed to be following. Additionally,  if the
+        // percents are off, then the meteoroids are zooming across the screen. I did try it and 
+        // couldn't figure out a way to get slow movement. 
+
+        // theoretically it may also be possible to move it via rigid body but my attempts at that 
+        // never actually moved
     }
 
-    void ApplyVelocity()
-    {
-        // bad idea. orbital has no velocity. getting hit makes it uncontrollable
-        // Vector2 vector= new Vector2(-1, 0);
-        // Vector2 velocity = vector* meteoroid_move.GetCurrentSpeed() * Time.deltaTime;
-        // rigid_body.MovePosition(rigid_body.position + velocity);
-    }
 
-    void DoLerp()
-    {
-        Vector3 target_pos = waypoints[1].position; // this is the end waypoint that is off screen
-        // float speed = 0.01f;
-        this.percent += meteoroid_move.GetCurrentSpeed()*Time.deltaTime;
-        // float speed = meteoroid_move.GetCurrentSpeed()*Time.deltaTime;
-        // this.percent += .001f * Time.deltaTime;
-        // this.percent += 0.001f;
-        // transform.position = Vector3.Lerp(init_position, target_pos, this.percent);
-        // transform.position = Vector3.Lerp(init_position, target_pos, 1f - (1f/ (speed* Time.deltaTime) + 1f));
-        transform.position = Vector3.Lerp(init_position, target_pos, this.percent);
-
-        if (transform.position == target_pos)
-        {
-            Destroy(gameObject);
-        }
-
-    }
-
+    /**
+        Responsible for actually moving the metoeorid along the path given 
+    */
     void FollowPath()
     {
+        
         if (waypoint_index < waypoints.Count)
         {
             Vector3 target_position = waypoints[waypoint_index].position;
+            // where we are trying to go
             
-            // float delta = wave_config.GetMoveSpeed() * Time.deltaTime;
-            float delta = meteoroid_move.GetCurrentSpeed() * Time.deltaTime;  // somehow this
-            //doesn't seem to impact the speed?
+            float delta = meteoroid_move.GetCurrentSpeed() * Time.deltaTime;  
+            // calculate the movement, framerate adjusted. if the speed goes wrong check this line
 
-// look into doing the movement with rigid body
             transform.position = Vector2.MoveTowards(transform.position, 
                 target_position, delta);
-            
-            // Vector3 movement_left = new Vector3(-1.0f, 0f, 0f);
+            // actually change the position
 
-            // this.rigid_body.MovePosition(transform.position + movement_left * delta);
-
-            this.speed = delta; // for testing purposes, trying to figure out speed...
+            this.speed = delta; // for testing purposes, show it in the serialized field
             this.rawSpeed = meteoroid_move.GetCurrentSpeed();
+
+            // if we passed the target position go to the next waypoint
+            // although in this context, there are always just the starting waypoint
+            // and the ending waypoint
             if (transform.position == target_position)
             {
                 waypoint_index++;
             }
         }
+        // if we've passed the all waypoints then we are off screen and can destroy the meteoroid
         else
         {
             Destroy(gameObject);

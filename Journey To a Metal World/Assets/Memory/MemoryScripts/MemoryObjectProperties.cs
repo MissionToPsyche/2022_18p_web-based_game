@@ -32,7 +32,7 @@ public class MemoryObjectProperties : MonoBehaviour
 
         solar_object.GetComponent<Image>().sprite = highlight_image;
         solar_object.GetComponent<Button>().interactable = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.3f);
         solar_object.GetComponent<Button>().interactable = true;
         solar_object.GetComponent<Image>().sprite = original;
     }

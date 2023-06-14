@@ -15,6 +15,7 @@ public class PartLogic : MonoBehaviour
     private static float LEFT_BORDER = -12.5f;
     private static float TOP_BORDER = 7f;
     private static float BOTTOM_BORDER = -5f;
+    private static float GRAVITY_SCALE = 2f;
     private static ScoreLogic scoreLogic;
     private static TimeLogic timeLogic;
 
@@ -36,6 +37,7 @@ public class PartLogic : MonoBehaviour
         scoreLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<ScoreLogic>();
         timeLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<TimeLogic>();
 
+        // Dictionary to track part IDs
         PART_SPRITES = new Dictionary<int, Sprite>() {
             {0, antennaSprite},
             {1, magnetometerSprite},
@@ -86,6 +88,9 @@ public class PartLogic : MonoBehaviour
     void OnMouseDown() 
     {
         isDragging = true;
+
+        // Disable gravity
+        GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
 
@@ -94,8 +99,9 @@ public class PartLogic : MonoBehaviour
     {
         isDragging = false;
 
-        // Reset momentum
+        // Reset momentum and gravity
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        GetComponent<Rigidbody2D>().gravityScale = GRAVITY_SCALE;
 
         // Check if dropped part scores a point
         if (isOverPartLocation) {
@@ -134,18 +140,21 @@ public class PartLogic : MonoBehaviour
         Vector2 mousePosition = Input.mousePosition;
         Vector2 mousePositionRelative = Camera.main.ScreenToWorldPoint(mousePosition);
 
+        // Bounds the part's movement horizontally
         if (mousePositionRelative.x > RIGHT_BORDER) {
             mousePositionRelative.x = RIGHT_BORDER;
         } else if (mousePositionRelative.x < LEFT_BORDER) {
             mousePositionRelative.x = LEFT_BORDER;
         }
 
+        // Bounds the part's movement vertically
         if (mousePositionRelative.y > TOP_BORDER) {
             mousePositionRelative.y = TOP_BORDER;
         } else if (mousePositionRelative.y < BOTTOM_BORDER) {
             mousePositionRelative.y = BOTTOM_BORDER;
         }
 
+        // Repositions part to the mouse's location
         float newPositionX = mousePositionRelative.x - transform.position.x;
         float newPositionY = mousePositionRelative.y - transform.position.y;
 

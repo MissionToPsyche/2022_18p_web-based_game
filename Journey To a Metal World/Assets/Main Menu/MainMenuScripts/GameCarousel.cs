@@ -27,6 +27,8 @@ public class GameCarousel : MonoBehaviour
     private Dictionary<GameObject, int> game_scores = new Dictionary<GameObject, int>();
 
 
+    /// <summary> Populates the sceen on the main menu with information about the mini games.
+    /// loads in the player's high scores for each game as well as their total high score. </summary>
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
@@ -63,12 +65,14 @@ public class GameCarousel : MonoBehaviour
     }
 
 
+    /// <summary> Updates the high score of each game after it is played. </summary>
     void Update()
     {
         updateHighScore();
     }
 
 
+    /// <summary> This is connected to the right arrow button on the screen. When pressed, it will go to the next minigame. </summary>
     [ContextMenu("Next")]
     public void nextGame() 
     {
@@ -88,6 +92,7 @@ public class GameCarousel : MonoBehaviour
     }
 
 
+    /// <summary> This is connected to the left arrow button on the screen. When pressed, it will go to the previous minigame. </summary>
     [ContextMenu("Previous")]
     public void prevGame()
     {
@@ -107,13 +112,14 @@ public class GameCarousel : MonoBehaviour
     }
 
 
+    /// <summary> This is connected to the play button on the screen. When pressed, it will played the selected game. </summary>
     public void playGame()
     {
         GameObject game = carousel.First.Value;
         SceneManager.LoadScene(game.name);
     }
 
-
+    /// <summary> This will update the total high score of all the games. </summary>
     private void updateHighScore()
     {
         GameObject[] games = {scoreAttackGame, timeAttackGame, memoryGame, runnerGame};

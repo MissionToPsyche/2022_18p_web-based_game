@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MusicSourceLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /// <summary> Replaces the audio clip being played by the AudioManager </summary>
     void Start()
     {
         GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>().updateMusicTrack();

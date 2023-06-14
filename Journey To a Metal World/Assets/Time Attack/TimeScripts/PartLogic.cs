@@ -15,6 +15,7 @@ public class PartLogic : MonoBehaviour
     private static float LEFT_BORDER = -12.5f;
     private static float TOP_BORDER = 7f;
     private static float BOTTOM_BORDER = -5f;
+    private static float GRAVITY_SCALE = 2f;
     private static ScoreLogic scoreLogic;
     private static TimeLogic timeLogic;
 
@@ -87,6 +88,9 @@ public class PartLogic : MonoBehaviour
     void OnMouseDown() 
     {
         isDragging = true;
+
+        // Disable gravity
+        GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
 
@@ -95,8 +99,9 @@ public class PartLogic : MonoBehaviour
     {
         isDragging = false;
 
-        // Reset momentum
+        // Reset momentum and gravity
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        GetComponent<Rigidbody2D>().gravityScale = GRAVITY_SCALE;
 
         // Check if dropped part scores a point
         if (isOverPartLocation) {

@@ -2023,7 +2023,7 @@ GameObject:
   - component: {fileID: 1661802058}
   - component: {fileID: 1661802060}
   m_Layer: 0
-  m_Name: Orbital
+  m_Name: Orbiter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

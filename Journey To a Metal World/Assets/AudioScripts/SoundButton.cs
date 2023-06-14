@@ -23,7 +23,6 @@ public class SoundButton : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
     void Start()
     {
         audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();

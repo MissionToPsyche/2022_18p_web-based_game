@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance {get { return instance; } }
 
 
-    // Start is called before the first frame update
+    // Initiates AudioManager singleton
     private void Awake() 
     {
         if (instance != null && instance != this) {

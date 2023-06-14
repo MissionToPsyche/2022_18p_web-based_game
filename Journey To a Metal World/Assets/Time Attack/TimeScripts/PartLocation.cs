@@ -11,6 +11,7 @@ public class PartLocation : MonoBehaviour
 {
     private static Color TRANSPARENT = new Color(1, 1, 1, 0.75f);
     private static Color OPAQUE = new Color(1, 1, 1, 1);
+    // Dictionary to track part location IDs
     private static Dictionary<string, int> PART_LOCATIONS = new Dictionary<string, int>() {
         {"Antenna Part Location", 0},
         {"Magnetometer Part Location", 1},
@@ -31,11 +32,7 @@ public class PartLocation : MonoBehaviour
     }
 
 
-    /*
-    * Function: OnTriggerEnter2D
-    * --------------------
-    * Part location turns opaque
-    */
+    /// <summary> Turns the part location opaque if a part is moved onto it </summary>
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Part" && collision.gameObject.GetComponent<PartLogic>().getIsDragging()) {
@@ -44,11 +41,7 @@ public class PartLocation : MonoBehaviour
     }
 
 
-    /*
-    * Function: OnTriggerExit2D
-    * --------------------
-    * Part location turns transparent
-    */
+    /// <summary> Turns the part location transparent when a part is moved off of it </summary>
     void OnTriggerExit2D(Collider2D other) 
     {
         rend.color = TRANSPARENT;

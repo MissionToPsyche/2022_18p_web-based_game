@@ -36,6 +36,7 @@ public class PartLogic : MonoBehaviour
         scoreLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<ScoreLogic>();
         timeLogic = GameObject.FindGameObjectWithTag("Logic").GetComponent<TimeLogic>();
 
+        // Dictionary to track part IDs
         PART_SPRITES = new Dictionary<int, Sprite>() {
             {0, antennaSprite},
             {1, magnetometerSprite},
@@ -134,18 +135,21 @@ public class PartLogic : MonoBehaviour
         Vector2 mousePosition = Input.mousePosition;
         Vector2 mousePositionRelative = Camera.main.ScreenToWorldPoint(mousePosition);
 
+        // Bounds the part's movement horizontally
         if (mousePositionRelative.x > RIGHT_BORDER) {
             mousePositionRelative.x = RIGHT_BORDER;
         } else if (mousePositionRelative.x < LEFT_BORDER) {
             mousePositionRelative.x = LEFT_BORDER;
         }
 
+        // Bounds the part's movement vertically
         if (mousePositionRelative.y > TOP_BORDER) {
             mousePositionRelative.y = TOP_BORDER;
         } else if (mousePositionRelative.y < BOTTOM_BORDER) {
             mousePositionRelative.y = BOTTOM_BORDER;
         }
 
+        // Repositions part to the mouse's location
         float newPositionX = mousePositionRelative.x - transform.position.x;
         float newPositionY = mousePositionRelative.y - transform.position.y;
 

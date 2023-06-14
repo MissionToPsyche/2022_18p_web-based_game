@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrbitalMoviement : MonoBehaviour
+public class OrbiterMoviement : MonoBehaviour
 {
     [SerializeField] Transform start;
     [SerializeField] Transform middle;
@@ -10,7 +10,8 @@ public class OrbitalMoviement : MonoBehaviour
 
     private float interpolationRatio;
 
-    // Update is called once per frame
+
+    /// <summary> Interpolates the orbiters movement across the scene </summary>
     void Update()
     {
         interpolationRatio = (interpolationRatio + (Time.deltaTime / 4)) % 1;

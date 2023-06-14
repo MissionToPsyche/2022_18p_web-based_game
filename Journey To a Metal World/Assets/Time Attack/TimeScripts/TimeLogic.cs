@@ -73,10 +73,12 @@ public class TimeLogic : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
+
     public bool getIsGameStart()
     {
         return isGameStart;
     }
+
 
     public bool getIsGameOver()
     {

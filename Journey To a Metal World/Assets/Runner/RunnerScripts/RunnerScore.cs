@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+    Contains the methods for managing the score of the Runner game
+*/
 public class RunnerScore : MonoBehaviour
 {
-
-    // [SerializeField] public Text score_text;
-    // combo it. make it the more you pass straight the more points you get each time
-    
+   
     int current_high_score = 0;
     int score = 0;
     
@@ -29,23 +29,18 @@ public class RunnerScore : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /**
+        Getter for checking the score
+    */
     public int GetScore()
     {
         return this.score;
     }
 
+    /**
+        Adds integer @val to the existing score
+        Note that this function does keep score from becoming a negative value too
+    */
     public void AddToScore(int val) 
     {
         this.score += val;
@@ -55,6 +50,9 @@ public class RunnerScore : MonoBehaviour
     }
     
 
+    /**
+        Resets the score value to zero
+    */
     public void ResetScore()
     {
         this.score = 0;
@@ -62,7 +60,7 @@ public class RunnerScore : MonoBehaviour
 
     /**
         sets the high score for the Runner game to be the 
-        @highScore parameter
+        @new_score parameter
         if we have extra time we can do maybe an effect when we get a new 
         high score or reach a high 
     */
@@ -81,6 +79,10 @@ public class RunnerScore : MonoBehaviour
         // InformationKeeper.GetRunnerHighScore();
     }
 
+    /**
+        Checks if the int @new_score parameter is larger than the current high score
+        returns true if it is. Else returns false
+    */
     public bool IsLargerThanCurrentHighScore(int new_score)
     {
         if (new_score > this.current_high_score)
@@ -90,6 +92,12 @@ public class RunnerScore : MonoBehaviour
         return false;
     }   
 
+    /**
+        Checks if the int @new_score paramter is tied with the current high score 
+        this method is currently unused but I was theorizing having a special additional 
+        sparkle effect or something for any case where the player had a new high score or 
+        tied their existing high score
+    */
     public bool IsTiedWithCurrentHighScore(int new_score)
     {
         if (new_score == this.current_high_score)
@@ -101,7 +109,10 @@ public class RunnerScore : MonoBehaviour
     }
 
     /**
-        updates the currently stored high score value in PlayerPrefs and set locally
+        updates the currently stored high score value in PlayerPrefs
+        Returns 2 if it is a new high score (higher than your previous high score)
+        return 1 if it ties with the current high score
+        return 0 if it is less than the current high score
     */
     public int UpdateHighScore(int new_score)
     {
@@ -122,7 +133,5 @@ public class RunnerScore : MonoBehaviour
             return 0;
         }
     }
-
-    // public void 
 
 }

@@ -3,45 +3,64 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/**
+    The script attached to the orbiter and controls almost anything that is 
+    orbiter (player) related
+    As a sidenote you will notice it is called an "orbital" in the code. This is
+    an unfortunate mix up as we initially thought it was an orbital but the 
+    thing being launched is in fact an orbiter. Changing every single instance
+    of the word "orbital" being used would be a waste of time and likely result in 
+    a lot of bugs though and since this code will not be publicly available 
+    I have made the decision to leave it  
+*/
 public class RunnerOrbital : MonoBehaviour
 {
-    // so for points. moving past a meteoroid without collisions. if collided then penalty and no point gain.
-    // use triggers. ah but needs to have a boolean. gain point 1 time. can lose points multiple times
-
-    //need to bound the movement to a max and min at top and bottom to not just go off screen and win that way. mm
-    //or just put colliders along the sides. ... that could work. except then I must specify those ones don't 
-    // cause damage
-
-    // start having increasing speed with longer no collisions. probably want to cap it somwhere though
     
     [SerializeField] int MAX_LIVES = 3;
     [SerializeField] float show_speed;
     int lives;
     // float power_bank = 100f;
     float movement_speed = 7f;
+    // note to future dev: if you change the movement speed know that you must make sure 
+    // that you test it against the meteoroids. Also, having the movement_speed of the orbital
+    // beign faster than that of the meteoroids (top speed) seems like a bad idea and 
+    // may give the ability to hit the same meteoroids multiple times (with delays between the
+    // hits)
+
     int INVINCIBILITY_FRAME_LENGTH = 72;
     int invinciblity_frames_left = 0;
     int current_collisions = 0; // because we can theoretically hit multiple things at once
+    // although with the way the game is currently made that is extremely unlikely
+    
     bool damage_effect_on = false;
-    bool movement_allowed= false;
+    // the damage effect is tinting the orbiter red 
+
+    bool movement_allowed= false; // first we start with not being able to move
     List<GameObject> collision_list = new List<GameObject>();
 
     Vector2 raw_input;
     SpriteRenderer sprite;
     Color orbital_color;
     RunnerScore score_keeper;
+
     bool game_over = false;
     bool game_won = false;
-    bool finished = false;
+    bool finished = false; // used to be able to do 
+    // the game over or game one process once and not loop
+
     int COLLISION_MINUS_POINT = -1;
+    // I don't want this value to be too big but also don't want it to be zero
+    // so it's -1. ... if you get a large enough combo this is miniscule in comparison
+    // but losing the combo would be the bigger loss 
+    // In the end though, this value can be changed pretty freely BUT make sure to double
+    // check that the score isn't going negative still
+
     RunnerMeteoroidMove stage; 
     RunnerEnemySpawner enemy_spawner;
     RunnerAudioPlayer audio_player;
 
     [SerializeField] bool apply_camera_shake = true;
     RunnerCameraShake camera_shake; 
-
-
 
     Vector2 min_bounds;
     Vector2 max_bounds;
@@ -52,48 +71,76 @@ public class RunnerOrbital : MonoBehaviour
     RunnerLivesFrontEndManager visual_manager;
     [SerializeField] RunnerGameOverScreen game_over_screen;
     RunnerEnvironmentMovementManager environment_manager;
-    // Color flash = ThisSprite.GetComponent<SpriteRenderer>().color;
-    // flash.
 
-    void Awake() {
+    /**
+        Get the camera immediately 
+    */
+    void Awake() 
     {
         this.camera_shake = Camera.main.GetComponent<RunnerCameraShake>(); 
     }
-    }
+
+    /**
+        Things we need tos tart with so all the other parts work
+    */
     void Start()
     {
-        this.sprite = GetComponent<SpriteRenderer>();
-        this.orbital_color = sprite.color;
-        this.score_keeper = FindObjectOfType<RunnerScore>();
-        this.stage = FindObjectOfType<RunnerMeteoroidMove>();
+        this.sprite = GetComponent<SpriteRenderer>(); // get the sprite
+        this.orbital_color = sprite.color; // get the current color so we can return to it later
+        this.score_keeper = FindObjectOfType<RunnerScore>(); // the points functions will be 
+        // needed since we get points after the orbital moves past the meteoroids 
+        // and we know when that happens here
+
+
         this.visual_manager = FindObjectOfType<RunnerLivesFrontEndManager>();
-        this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>();
+        // needed for spwaning of life sprites 
+
+        this.enemy_spawner = FindObjectOfType<RunnerEnemySpawner>(); // we need to be able to tell the 
+        //meteoroids to stop spawning on loss so a referene to the enemySpawner
+
         this.environment_manager = FindObjectOfType<RunnerEnvironmentMovementManager>();
-        this.lives = MAX_LIVES;
-        audio_player = FindObjectOfType<RunnerAudioPlayer>();
-        // this.game_over_screen = FindObjectOfType<RunnerGameOverScreen>();
-        InitBounds();
+        // needed fr in general manipulation of environment 
+
+        this.lives = MAX_LIVES; // setting the lives to the preset constant
+
+        audio_player = FindObjectOfType<RunnerAudioPlayer>(); 
+        // need the audio player to run the collision sounds
+        
+        InitBounds(); // need to enforce bounds on the game so that the player
+        // cannot move off screen
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        this.game_won = environment_manager.GetIsWin();  // check if we won
+
         // moving the orbital
-        // need to 
-        this.game_won = environment_manager.GetIsWin(); 
         OrbitalMovement();
+
+        // do damage calculations 
         DamageApplied(this.current_collisions);
+
+        // deduct invincibility frames if there are any left
         if (this.invinciblity_frames_left > 0)
         {
             this.invinciblity_frames_left--; 
         }
 
+        //game_over and game_won are what they sound like
+        // finished is used so that we only do this conditional once and don't 
+        // continuously bring up the score screen every signle frame after the game
+        // is over
         if (this.finished == false && (this.game_over == true || this.game_won == true) )
         {
-            // BringUpScoreScreen();
+            
             if (this.game_won == false)
             {
+                // well, this gameLostProcess() == true is a leftover and it should always
+                // be true but I will leave it like this so that it's easier for a future dev
+                // to make a customized loss process
                 if (gameLostProcess() == true)
                 {
                     BringUpScoreScreen();
@@ -103,7 +150,8 @@ public class RunnerOrbital : MonoBehaviour
             {
                 BringUpScoreScreen();
             }
-            this.finished = true;
+            this.finished = true; // this is what makes this entire if statement 
+            // only execute once
             
         }
 
@@ -119,6 +167,9 @@ public class RunnerOrbital : MonoBehaviour
         max_bounds = main_camera.ViewportToWorldPoint(new Vector2(1, 1));
     }
 
+    /**
+        Public method to turn on the orbiter's ability to move
+    */
     public void AllowOrbitalMovement()
     {
         this.movement_allowed = true;
@@ -129,33 +180,53 @@ public class RunnerOrbital : MonoBehaviour
     */
     void OrbitalMovement()
     {
+        // if movement was turned off er exit early
         if (this.movement_allowed == false)
         {
             return;
         }
 
-        Vector2 delta = this.raw_input * movement_speed * Time.deltaTime;;
-        this.show_speed = movement_speed * Time.deltaTime;
+        Vector2 delta = this.raw_input * movement_speed * Time.deltaTime;
+        // do the calculation for the correct direction
+
+
+        this.show_speed = movement_speed * Time.deltaTime; // for testing purposes, display the speed 
+
         Vector2 new_position = new Vector2();
         new_position.x = Mathf.Clamp(transform.position.x + delta.x, this.min_bounds.x + this.padding_left, 
             this.max_bounds.x - this.padding_right);
         new_position.y = Mathf.Clamp(transform.position.y + delta.y, this.min_bounds.y + this.padding_bottom, 
             this.max_bounds.y - this.padding_top);
-        transform.position = new_position;
+        // come up with the new position
+
+        transform.position = new_position; // change the position of the orbiter to the new position
+
         transform.localRotation = Quaternion.Euler(0,0,0); // keep no rotation even after impact
+        // because otherwise hitting meteoroids can knock the orbiter into a skewed rotation
     }
 
 
-    // intended to work with movement asset. 
+    /**
+        required for the movement to work. This reads the movement from the keyboard
+        and saves it into raw input
+    */
     void OnMove(InputValue value)
     {
-        //should be getting the result from the input to w and s keys
         this.raw_input = value.Get<Vector2>();
         // Debug.Log("move value is " + this.raw_input);
     }
 
     /**
-        Currently the only trigger is the finish line. It will mark game over 
+        This is a Unity method 
+        @other is the trigger that we're entering
+        In the Runner game, the point boxes are triggers and I can 
+        use Unity's OnTriggerEnter2d as the base of the point system.
+        Enter the point box trigger. Run that pointbox's function. gain
+        points from it unless we've hit the meteoroid that the point box
+        was associated with. Also, each pointbox can only give you points once
+
+        In general the idea is:
+         get points for moving past meteoroids [without getting hit]
     */
     void OnTriggerEnter2D(Collider2D other) 
     {
@@ -163,113 +234,91 @@ public class RunnerOrbital : MonoBehaviour
         {
             return;
         }
+        // if it's game over we are not able to gain any more points
+        // else if the thing that we're hitting the trigger of is tagged as a point box
+        // we do the points procedures
         else if (other.tag == "PointBox")
         {
             RunnerMeteoroidPoints pointManager = other.GetComponent<RunnerMeteoroidPoints>();
             pointManager.ReachedPointsArea();   
         }
-        // else if (other.tag == "Finish" && this.game_over == false) 
-        // // game_over == false is to make sure this triggers only once
-        // {
-        //     this.game_over = true;
-        //     this.game_won = true;
-        //     environment_manager.StopBackgroundMovement();
-        //     // stage.StopMeteoroidMovement();
-        //     // Debug.Log("Meteoroid Movement Stopp");
-        // }    
-
     }
 
-    // void OnTrig
 
     /**
-    when we collide with something we increase the count of how many things we are currently
-    colliding with. 
-    Collision2D other is representing the thing we collided with in case we need info from it
+        when we collide with something we increase the count of how many things we are currently
+        colliding with. This will be used to determine damage later
+        Collision2D other is representing the thing we collided with in case we need info from it
+        (in this case we might)
     */
     void OnCollisionEnter2D(Collision2D other)
     {
+        // if it's somthing we ignore collisions with we don't do anything more
         if (other.gameObject.tag == "CollisionIgnore")
         {
             return;
         }
         this.current_collisions++;
+        // when we're entering a collision box we increase the collision count and then add the 
+        // object we collided with to the collision list
         this.collision_list.Add(other.gameObject);
         other.gameObject.transform.BroadcastMessage("SetPointTotalToZero");
-        // other.gameObject.transform.BroadcastMessage()
+        // for any object we hit, we need them to run the method SetPointTotalToZero
+        // as we should not be able to gain any points from passing it if we hit it
+
         stage.ResetSpeed();
+        // reset the speed of the meteoroids if we've hit one
 
     }
 
-    /**
-    Attempt to include only allowing being hit once per object
-    */
-    // https://answers.unity.com/questions/305614/get-script-variable-from-collider.html
-    // try this. set the other to be ... hit count?
-    // then need another for damage applied boolean
-    // then ... do I need a queue to keep track of these so I can keep checking if necessary
-    // just keep the script that can check the damage/points so that that is necessary?
-    // queue should work because this is fast and we're just adding and dropping things off of it. 
-    // ... also doing 1 function to it. to measure hit count and later on we'll have to manage damamge applied
-    // count. 
-
-    // go simpler? once the damamge has been applied once we can just change the damage total to 0 and let it "apply"
-    // it again later? 
-    // skips needing the if statements 
-    // void OnCollisionEnter2D(Collision2D other)
-    // {
-    //     if (other.gameObject.tag == "CollisionIgnore")
-    //     {
-    //         return;
-    //     }
-    //     this.current_collisions++;
-    //     other.gameObject.transform.BroadcastMessage("SetPointTotalToZero");
-    //     // other.gameObject.transform.BroadcastMessage()
-    //     stage.ResetSpeed();
-
-    // }
-
-
 
     /**
-    when we stop colliding with something we decrease the count of how many things we are currently
-    colliding with. By implementation, this number should never go below 0 
-    Collision2D other is representing the thing we collided with in case we need info from it
+        when we stop colliding with something we decrease the count of how many things we are currently
+        colliding with. By implementation, this number should never go below 0 
+        Collision2D other is representing the thing we collided with in case we need info from it
     */
     void OnCollisionExit2D(Collision2D other) 
     {
+        // once more, if it's tagged as CollisionIgnore, we ignore it
         if (other.gameObject.tag == "CollisionIgnore")
         {
             return;
         }
+
         this.collision_list.Remove(other.gameObject);
-        this.current_collisions--;    
+        // remove the object we added to the list from when we entered its collision box
+
+        this.current_collisions--; // decrease the [current] collision count by 1    
 
     }
 
     /**
-    Applies damage (minus 1 life) to the Orbital if it needs to be done and takes care of invincible frame decreasing
-    and any other special effects related to damage
+    Applies damage (minus 1 life) to the Orbital if it needs to be done and accounts for 
+    invinciblity frames and any other special effects related to damage
     Specifically:
         if the orbital is currently colliding with something and has no invincibility frames left
-    collision_count = how many things are currently colliding with the orbital
+        we can run the sound clip for a collision
+
+    @collision_count paramter = how many things are currently colliding with the orbital
     returns the amount of damage applied (as of right now always 1 or 0)    
     */
     int DamageApplied(int collision_count)
     {
-        if (this.lives <= 0)
+        if (this.lives <= 0) // theoretically lives should never be less than 0 but for
+        // redundancy I use <= 
         {
             this.game_over = true;
             this.game_won = false;
             return 0;
         }
 
+        // if we have invincibility frames left
         if (this.invinciblity_frames_left > 0)
         {
             // Debug.Log("has " + this.invinciblity_frames_left + " invinciblity frames left. no lives lost. \n Lives left = " + this.lives);
             if (this.invinciblity_frames_left % ((int)(this.INVINCIBILITY_FRAME_LENGTH/2)) == 0)
+            //we conditionally turn on and off the color damage effect of tinting the orbiter red
             {
-                // orbital_color.a = 0;
                 if (damage_effect_on == true)
                 {
                     this.damage_effect_on = false;
@@ -279,32 +328,44 @@ public class RunnerOrbital : MonoBehaviour
                 else if (damage_effect_on == false)
                 {
                     this.damage_effect_on = true;
-                    sprite.color = Color.white;
+                    sprite.color = Color.white; // because this is more the tint than the actual color
                     // Debug.Log("orbital is normal color");
-                    // because this is more the tint than the actual color
 
                 }
             }
             return 0;
         }
         //so if it's here then there was 0 invincibility frames
-        this.damage_effect_on = false;
-        
-        // orbital_color.a = 255;
+
+        this.damage_effect_on = false; // redundant back up damage effect off
+        // and double confirm it's the right color
         sprite.color = orbital_color;
+
+        // if there are collisions right now
         if (collision_count > 0)
         {
             this.damage_effect_on = true;
+            //decrease the lives of the orbiter 
+            DecreaseLives(CalculateDamage()); // these are both
+            // methods from this file 
+            // I know that damage dealt will always be 1 so it's return 1
+            // but in the event that different damage amounts are possible the
+            // returns in this method will need to be changed
 
-            DecreaseLives(CalculateDamage());
             activate_camera_shake();
+            // what it sounds like. we do a quick camera shake 
             sprite.color = Color.red;
             // Debug.Log("orbital should be red");
 
             score_keeper.AddToScore(this.COLLISION_MINUS_POINT);
+            // we apply the negative point penalty to the score
 
             // Debug.Log("No invincibility frames left. -1 life. \n Lives left = " + this.lives);
             this.invinciblity_frames_left = this.INVINCIBILITY_FRAME_LENGTH;
+            // gain invinciblity frames 
+
+            // if we dont' have any more lives left then we have a 
+            // game over with a loss
             if (this.lives == 0)
             {
                 this.game_over = true;
@@ -313,10 +374,14 @@ public class RunnerOrbital : MonoBehaviour
                 orbital_color.g = 0;
                 orbital_color.b = 0;
                 sprite.color = orbital_color;
+                
+
                 this.invinciblity_frames_left = 0;
+                // reset invincibility frames to 0 for consistency
             }
             this.audio_player.PlayCollisionClip();
-            return 1;
+            // play collision sound
+            return 1; // return damage dealt 1
         }
         return 0; // no things currently colliding with object
 
@@ -325,8 +390,8 @@ public class RunnerOrbital : MonoBehaviour
     
 
     /**
-    upon 0 lives left, fade out the player orbital. may integrate restart into this or turn it into separate
-    returns true upon game lost process completing (sprite goes fully invisible)
+        Carries out the process we need to do when thre are 0 lives left
+        returns true 
     */
     bool gameLostProcess()
     {
@@ -336,18 +401,22 @@ public class RunnerOrbital : MonoBehaviour
         orbital_color.b = 0;
         sprite.color = orbital_color;
 
-        // this.stage.StopMeteoroidMovement();
         // this would stop movement. but for the more interesting and nicer view, 
         // let's instead just let any existing meteoroids keep going but not spawn any more
         this.enemy_spawner.StopSpawningMeteoroids();
-        // if (orbital_color.a == 0)
-        // {
-        //     return true;
-        // }
-        // return false;
+
+        // technically the return true is pointless now and a leftover from when I wanted a
+        // fade out that would require this method to be called multiple times
+        // I leave it now because there was another part of the code that depends on it
         return true;
+        
     }
 
+    /**
+        Checks the score to see if it's a new high score, sets it if it is
+        And then brings up the score screen and disables movement
+        for the orbiter and the background
+    */
     void BringUpScoreScreen()
     {
         int current_score = this.score_keeper.GetScore();
@@ -363,50 +432,12 @@ public class RunnerOrbital : MonoBehaviour
 
         this.environment_manager.StopBackgroundMovement();
         Debug.Log("background movement turn off function called from orbital");
-        // int result = score_keeper.UpdateHighScore(current_score);
-
-        // int last_high_score = 
-        // this.game_over_screen.SetupScreen();
-    }
-
-    
-
-    /**
-    The target needs to me a meteoroid for this function to work 
-    */
-    // void FindAndDropMeteoroidFromList(GameObject target)
-    // {
-        // int drop_index;
-        // target_script = target.GetComponent<RunnerMeteoroidPoints>();
-        // target_id = target_script.GetUniqueId();
-
-        // for (int i = 0; i < this.collision_list.Count; i++)
-        // {
-        //     list_scipt = collision_list[i].GetComponent<RunnerMeteoroidPoints>();
-        //     if (target_id == list_script.GetUniqueId())
-        //     {
-        //         drop_index = i;
-        //         break;
-        //     }
-        // }
-
-    // }
-
-
-    /**
-        if we want a different screen for success I'll need this
-        that said, the runner game is the only one that doesn't operate on a timer so...
-        we'll see if we want it
-    */
-    void gameWinProcess()
-    {
-        // this.movement_speed = 0;
-        
     }
 
     /**
-    Go through the collision list (note this is a currently colliding with list)
-     and check for a meteoroid that hasn't had damage applied yet
+        Go through the collision list (note this is a currently colliding with list)
+        and check for a meteoroid that hasn't had damage applied yet
+        if one exists. Apply its damage and return the amount of damage dealt. Otherwise return 0
     */
     int CalculateDamage()
     {
@@ -418,7 +449,7 @@ public class RunnerOrbital : MonoBehaviour
             // RunnerMeteoroidPoints
             RunnerMeteoroidPoints list_script = collision_list[i].transform.GetChild(0).gameObject.GetComponent<RunnerMeteoroidPoints>();
             int damage = list_script.GetDamageAmount();
-            if (damage > 0)
+            if (damage > 0) // we do not want to gain lives so no dealing with negative damage
             {
                 return damage;
             }
@@ -427,6 +458,13 @@ public class RunnerOrbital : MonoBehaviour
         return 0;
 
     }
+
+    /**
+        Decrease the amoount of lives by the int @amount paramter
+        This method does know not to go below 0
+        This method also deals with decreasing the amount of visual life
+        indicators in the UI to reflect losing lives
+    */
     void DecreaseLives(int amount)
     {
         int decrease_by = amount;
@@ -445,6 +483,9 @@ public class RunnerOrbital : MonoBehaviour
         }
     }
 
+    /**
+        Method to run the camera shake when asked
+    */
     void activate_camera_shake()
     {
         if (null != this.camera_shake && true == this.apply_camera_shake)
@@ -453,12 +494,18 @@ public class RunnerOrbital : MonoBehaviour
         }
     }
     
-
+    /**
+        Public getter method to return the maxmimum amount of lives
+        the orbiter can have
+    */
     public int GetMaxLives()
     {
         return this.MAX_LIVES;
     }
 
+    /**
+        public Getter to retun the number of lives the orbiter has right now 
+    */
     public int GetLives()
     {
         return this.lives;

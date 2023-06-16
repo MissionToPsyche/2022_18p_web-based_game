@@ -4,12 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - orbital
-  - PointBox
-  - Part Location
-  - Logic
   - ray
   - research area
+  - Part Location
+  - Logic
+  - PointBox
+  - Orbital
+  - StopBackground
+  - CollisionIgnore
+  - Part
+  - MusicSource
+  - AudioManager
+  - Destroyer
   layers:
   - Default
   - TransparentFX
@@ -17,33 +23,45 @@ TagManager:
   - Parts
   - Water
   - UI
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
+  - Sun
+  - Post Processing
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Space
+    uniqueID: 2101469547
+    locked: 0
+  - name: Sun
+    uniqueID: 2360913783
+    locked: 0
+  - name: Star
+    uniqueID: 2837546471
+    locked: 0
+  - name: Planets
+    uniqueID: 801956263
     locked: 0

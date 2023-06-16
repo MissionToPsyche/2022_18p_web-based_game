@@ -1,44 +1,55 @@
+/*
+*   The PartLocation class is responsible for the logic of part locations in the Time Attack game.
+*   This class controls the highlighting of a part location when the user moves a part over it.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PartLocationsData;
 
 public class PartLocation : MonoBehaviour
 {
-    private static Color transparent = new Color(1, 1, 1, 0.35f);
-    private static Color opaque = new Color(1, 1, 1, 1);
+    private static Color TRANSPARENT = new Color(1, 1, 1, 0.75f);
+    private static Color OPAQUE = new Color(1, 1, 1, 1);
+    // Dictionary to track part location IDs
+    private static Dictionary<string, int> PART_LOCATIONS = new Dictionary<string, int>() {
+        {"Antenna Part Location", 0},
+        {"Magnetometer Part Location", 1},
+        {"Spectrometer Part Location", 2},
+        {"+Y Part Location", 3},
+        {"-Y Part Location", 4}
+    };
 
-    private int id;
+
+    private int partLocationType;
     private SpriteRenderer rend;
+
 
     void Start()
     {
-        id = PartLocationsData.ids[name];
+        partLocationType = PART_LOCATIONS[name];
         rend = GetComponent<SpriteRenderer>();
     }
 
-    /*
-    * Function: OnTriggerEnter2D
-    * --------------------
-    * Part location turns opaque
-    */
+
+    /// <summary> Turns the part location opaque if a part is moved onto it </summary>
     void OnTriggerEnter2D(Collider2D collision)
     {
-        rend.color = opaque;
+        if (collision.gameObject.tag == "Part" && collision.gameObject.GetComponent<PartLogic>().getIsDragging()) {
+            rend.color = OPAQUE;
+        }
     }
 
-    /*
-    * Function: OnTriggerExit2D
-    * --------------------
-    * Part location turns transparent
-    */
+
+    /// <summary> Turns the part location transparent when a part is moved off of it </summary>
     void OnTriggerExit2D(Collider2D other) 
     {
-        rend.color = transparent;
+        rend.color = TRANSPARENT;
     }
 
-    public int getPartLocationID() 
+
+    public int getPartLocationType() 
     {
-        return id;
+        return partLocationType;
     }
 }

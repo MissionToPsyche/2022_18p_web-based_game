@@ -6,18 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class Restart : MonoBehaviour
 {
-    public static bool restart = false;
-    
-    void Awake() {
-        DontDestroyOnLoad(this.gameObject);
+    public void doStart(){
+        StartScene.game_start = true;
     }
 
-    void Update()
-    {
-        if(restart)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            restart = false;
-        }
+    public void doRestart(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Score Attack");
+    }
+
+    public void doMainMenu(){
+        SceneManager.LoadScene("Main Menu");
     }
 }

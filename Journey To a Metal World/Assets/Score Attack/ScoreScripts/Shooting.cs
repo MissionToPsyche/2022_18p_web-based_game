@@ -8,40 +8,32 @@ public class Shooting : MonoBehaviour
 {    
     private GameObject prefab;
     public Rigidbody2D projectile;
-    private IEnumerator coroutine;
-    private bool isFire = false;
+    private AudioSource source;
+    private bool canFire = true;
 
-    void Update()
+    void Start() 
     {
-        this.isFire = false;
+        source = GameObject.FindWithTag("ray").GetComponent<AudioSource>();
     }
 
     void OnFire(InputValue value)
     {
-        this.isFire = true;
-        this.Fire();
-    }
-
-    void Fire()
-    {
-        if(this.isFire){
-            this.coroutine = this.FireContinuously();
-            StartCoroutine(this.coroutine);
-        }
-        else{
-            StopCoroutine(this.coroutine);
-        }
-    }
-
-    public IEnumerator FireContinuously()
-    {
-        while(true)
-        {
+        if(this.canFire && StartScene.game_start == true){
             Rigidbody2D clone;
             clone = Instantiate(projectile, transform.position, transform.rotation);
-            clone.velocity = transform.up * 12;
-            yield return new WaitForSeconds(10000);
+            clone.velocity = transform.up * 13;
+            if(source != null){
+                source.Play();
+            }
+            StartCoroutine(DelayCoroutine());
         }
     }
 
+    /// <summary> This function is add delay time in between every shot </summary>
+    IEnumerator DelayCoroutine()
+    {
+        this.canFire = false; 
+        yield return new WaitForSeconds(0.4f);
+        this.canFire = true; 
+    }
 }
